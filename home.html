@@ -2,10 +2,11 @@
 <html>
     <head>
         <link rel="stylesheet" href="homestyle.css">
+        <script src="redirect.js"></script>
     </head>
     <body>
        <div class="header">
-           <h1 class="title">CourseCritics<img src="reviewsymbol.png" width="65" height="65" class="symbol"/></h1>
+           <h1 class="title">CourseCritics<img src="images/reviewsymbol.png" width="65" height="65" class="symbol"/></h1>
        </div>
 
        <hr>
@@ -16,20 +17,24 @@
 
        <p class="secondline">
            Come share the experiences you've had with courses and learn
-           which courses might be right for you from you're peers! 
+           which courses might be right for you from your peers! 
        </p> 
 
        <div class="search">
             <input type="text" name="search" id="search"
-                placeholder="Find Your School!" list="datalist1" />
+                placeholder="Select a school" list="datalist1" />
             <datalist id="datalist1">
                 <option value="University of British Columbia">
             </datalist>
-
             
+            <button onclick="redirect()" >
+                <img src="images/magnifyingicon.png" class="magnifyingglass"/>
+            </button>
        </div> 
-       <p>
-            test git
-       </p>
+
+       <div class="contactus">
+           <h1>Something wrong?</h1>
+           <a href="contactus.html">CONTACT US</a>
+       </div>
     </body>
 </html>
