@@ -2,11 +2,17 @@
 <html>
     <head>
         <link rel="stylesheet" href="homestyle.css">
-        <script src="redirect.js"></script>
+        <script src="redirect.js" async></script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <meta name="google-signin-client_id" content="795327503596-iibptgqdd2l49s4qphdsa8619gttjpfp.apps.googleusercontent.com"/>
+        
     </head>
     <body>
        <div class="header">
-           <h1 class="title">CourseCritics<img src="images/reviewsymbol.png" width="65" height="65" class="symbol"/></h1>
+           <h1 class="title">
+               CourseCritics
+               <img src="images/reviewsymbol.png" width="65" height="65" class="symbol"/>
+            </h1>
        </div>
 
        <hr>
@@ -30,8 +36,14 @@
             <button onclick="redirect()" >
                 <img src="images/magnifyingicon.png" class="magnifyingglass"/>
             </button>
+
+            <p id="invalidschool">
+                
+            </p>
        </div> 
 
+       <div class="g-signin2" data-onsuccess="onSignIn"></div>
+       
        <div class="contactus">
            <h1>Something wrong?</h1>
            <a href="contactus.html">CONTACT US</a>
