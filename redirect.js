@@ -12,14 +12,20 @@ function redirect() {
     }
 }
 
+//Prevents both signin and signout options to appear at the same time
+
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
-    var myUserEntity = {};
+    var myUserEntity = {}
     myUserEntity.Id = profile.getId();
     myUserEntity.Name = profile.getName();
 
     document.getElementById("signin").style.display = "none";
     document.getElementById("signout").style.display = "inline";
+    document.getElementById("loginmessage").style.display = "none";
+    document.getElementById("logoutmessage").innerHTML = "Welcome, " +
+    myUserEntity.Name
+    document.getElementById("logoutmessage").style.display = "block";
     console.log("User logged in");
     sessionStorage.setItem("myUserEntity",JSON.stringify(myUserEntity));
 }
@@ -32,5 +38,7 @@ function signOut() {
 
     document.getElementById("signin").style.display = "inline";
     document.getElementById("signout").style.display = "none";
+    document.getElementById("loginmessage").style.display = "inline";
+    document.getElementById("logoutmessage").style.display = "none";
     sessionStorage.clear();
 }
