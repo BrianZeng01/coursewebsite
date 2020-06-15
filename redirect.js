@@ -1,4 +1,3 @@
-
 //Currently testing only one school but will implement redirection using
 //mySQL by querying the given school and redirecting to the relevant page
 function redirect() {
@@ -12,14 +11,14 @@ function redirect() {
     }
 }
 
-//Prevents both signin and signout options to appear at the same time
-
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
     var myUserEntity = {}
     myUserEntity.Id = profile.getId();
     myUserEntity.Name = profile.getName();
 
+// Hiding and making the relevent login/logout prompt reappear
+// There is a delay in the display being changed when page is refreshed
     document.getElementById("signin").style.display = "none";
     document.getElementById("signout").style.display = "inline";
     document.getElementById("loginmessage").style.display = "none";
