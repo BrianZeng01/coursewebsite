@@ -86,7 +86,6 @@ button {
 }
 
 #signout {
-  display: none;
   background-color: #1dbab4;
   padding: 1rem;
   color: white;
@@ -97,9 +96,15 @@ button {
   margin: auto;
 }
 
-#loginlogout {
+#login {
+    display: none;
   width: auto;
   text-align: center;
   position: relative;
   margin: 0 auto;
+}
+
+#logout {
+    display: none;
+  text-align: center;
 }
