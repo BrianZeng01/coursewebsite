@@ -5,35 +5,36 @@ body {
 .header {
   text-align: center;
   font-size: 2.75rem;
-  background-color: rgba(21, 97, 173, 0.5);
-  background-image: url(images/Testimg.jpg);
+  /* background-color: rgba(21, 97, 173, 0.5); */
+  background-image: url(images/ubctitle2.jpg);
+  background-size: cover;
   background-blend-mode: multiply;
   left: 0;
   right: 0;
   overflow-x: hidden;
-  padding: 8.5rem;
+  padding: 10.5rem;
 }
 
-@media screen and (max-width: 740px) {
+@media screen and (max-width: 840px) {
   .header img {
     display: none;
   }
   .header h1 {
-    font-size: 3rem;
+    font-size: 6rem;
+  }
+  #logout {
+    display: none;
   }
 }
 
 .header h1 {
-  color: white;
-}
-
-.title {
   margin: 0;
+  color: white;
 }
 
 .nav {
   text-align: center;
-  background-color: #1561ad;
+  background-color: #072145;
   position: sticky;
   padding: auto;
   top: 0;
@@ -54,16 +55,44 @@ body {
   background-color: #1c77ac;
 }
 
-.ubcinfo {
-  overflow-x: hidden;
-  padding: 2rem;
+#account {
+  display: none;
 }
 
-.ubcinfo img {
+.title {
+  text-align: center;
+  margin-left: 5rem;
+  margin-right: 5rem;
+}
+.title div {
+  vertical-align: top;
+  margin-top: 1rem;
+  display: inline-block;
+}
+
+.title h3 {
+  color: grey;
   float: left;
-  padding-bottom: 1rem;
-  padding-top: 1rem;
-  padding-right: 1rem;
+  margin-top: 0.3rem;
+}
+
+.title img {
+  display: inline-block;
+  width: 10rem;
+  height: auto;
+}
+
+.ubcinfo {
+  overflow-x: hidden;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  text-align: center;
+  margin-left: 7rem;
+  margin-right: 7rem;
+  margin-bottom: 3rem;
+  border-style: solid none solid none;
+  border-width: 0.4rem;
+  border-color: #072145;
 }
 
 .g-signin2 {
@@ -71,19 +100,20 @@ body {
 }
 
 #login {
-    display: none;
-    float: right;
+  display: none;
+  float: right;
 }
 
 #logout {
-    display: none;
-    float: right;
+  right: 0rem;
+  display: none;
+  position: absolute;
 }
 
-
 #logoutmessage {
-    font-size: 1.5rem;
-    display: inline-block;
+  font-size: 1.5rem;
+  float: left;
+  color: grey;
 }
 
 .abcRioButton {
@@ -91,8 +121,22 @@ body {
   margin-right: 0.75rem;
 }
 
+.search {
+  text-align: center;
+}
+
+#search {
+  text-align: center;
+  width: 12.5rem;
+  font-size: 1.25rem;
+  padding: 0.5rem;
+  vertical-align: top;
+}
+
 .courses {
   text-align: center;
+  padding: 1rem;
+  margin-top: 3.5rem;
 }
 
 .courses a {
@@ -101,6 +145,7 @@ body {
   background-color: #1c77ac;
   padding: 1rem;
 }
+
 .contactus {
   text-align: center;
   padding-top: 10rem;

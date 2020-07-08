@@ -2,13 +2,15 @@ var myUserEntity = {};
 function checkIfLoggedIn() {
   if (sessionStorage.getItem("myUserEntity") == null) {
     document.getElementById("logout").style.display = "none";
-    document.getElementById("login").style.display = "block";
+    document.getElementById("account").style.display = "none";
+    document.getElementById("login").style.display = "inline-block";
     console.log("signed out");
   } else {
-    document.getElementById("logout").style.display = "block";
+    document.getElementById("logout").style.display = "inline-block";
+    document.getElementById("account").style.display = "inline-block";
     document.getElementById("login").style.display = "none";
-    document.getElementById("logoutmessage").innerHTML =
-      "Welcome, " + JSON.parse(sessionStorage.getItem("myUserEntity"))["Name"];
+    // document.getElementById("logoutmessage").innerHTML =
+    //  JSON.parse(sessionStorage.getItem("myUserEntity"))["Name"] + ",";
     console.log(sessionStorage.getItem("myUserEntity"));
   }
 }
