@@ -3,7 +3,10 @@
   <head>
     <title>UBC</title>
     <link rel="stylesheet" href="style.css" />
-
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <script src="functions.js" async></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta
@@ -26,8 +29,8 @@
 
     <div class="nav">
       <div class="mainNav">
-        <a href="home.html">Home</a>
-        <a href="courses.php">Courses</a>
+        <a href="ubc.html">Home</a>
+        <a href="subjects.php">Courses</a>
         <a href="contactus.html">Contact Us</a>
         <a id="account" href="account.php">Account</a>
         <div id="login">
@@ -56,36 +59,34 @@
       </h2>
     </div>
 
-    <div class="search">
+    <div class="searchinput">
       <form action="course.php">
         <h1>Enter A Course Code</h1>
         <input
           id="search"
           list="datalist1"
           type="text"
-          name="courses"
+          name="course"
           placeholder="Eg. MATH 100"
         />
-        <input
-          id="magnifyingGlass"
-          width="45px"
-          type="image"
-          src="images/magnifyingicon.png"
-          alt="Submit"
-        />
+        <button type="submit" class="submit">
+          <i class="fa fa-search"></i>
+        </button>
       </form>
       <div id="courseList"></div>
     </div>
 
-    <div class="courses">
-      <a href="courses.php">Browse All Courses</a>
+    <div class="browse">
+      <a href="subjects.php">Browse All Courses</a>
     </div>
 
-    <div class="contactus">
-      <h1>Something wrong?</h1>
-      <a href="contactus.html">CONTACT US</a>
+    <div class="footer">
+      <div class="contactus">
+        <h1>Something wrong?</h1>
+        <a href="contactus.html">CONTACT US</a>
+        <h1 class="footerTitle">CourseCritics</h1>
+      </div>
     </div>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script
       src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
