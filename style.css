@@ -15,14 +15,17 @@ body {
   padding: 10.5rem;
 }
 
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 760px) {
   .header img {
     display: none;
   }
   .header h1 {
-    font-size: 6rem;
+    font-size: 4.5rem;
   }
-  #logout {
+  #signout {
+    display: none;
+  }
+  #signin {
     display: none;
   }
 }
@@ -61,8 +64,8 @@ body {
 
 .title {
   text-align: center;
-  margin-left: 5rem;
-  margin-right: 5rem;
+  margin-left: 7rem;
+  margin-right: 7rem;
 }
 .title div {
   vertical-align: top;
@@ -100,14 +103,19 @@ body {
 }
 
 #login {
+  right: 0rem;
   display: none;
-  float: right;
+  position: absolute;
 }
 
 #logout {
   right: 0rem;
   display: none;
   position: absolute;
+}
+
+#signout:hover {
+  background-color: red;
 }
 
 #logoutmessage {
@@ -121,8 +129,8 @@ body {
   margin-right: 0.75rem;
 }
 
-.search {
-  text-align: center;
+.searchinput {
+	text-align: center;
 }
 
 #search {
@@ -131,25 +139,57 @@ body {
   font-size: 1.25rem;
   padding: 0.5rem;
   vertical-align: top;
+  color:  #072145;
+  border: 3px solid #072145;
+  box-shadow: 1px 0px 4px #1c77ac;
+  border-radius: 15px;
+  outline: none;
 }
 
-.courses {
+#search:focus{
+	box-shadow: 1px 1px 13px #1c77ac;
+}
+
+.submit {
+  padding: 10px;
+  height: 40px;
+  width: 80px;
+  font-size: 13px;
+  color: white;
+  background: #072145;
+  border: none;
+  margin: 4px;
+  border-radius: 50px;
+  box-shadow: 0px 0px 13px #1c77ac;
+  outline: none;
+}
+
+.submit:hover {
+  background-color: #1c77ac;
+}
+.browse {
   text-align: center;
   padding: 1rem;
   margin-top: 3.5rem;
 }
 
-.courses a {
+.browse a {
   text-decoration: none;
   color: white;
-  background-color: #1c77ac;
+  font-size: 2rem;
+  background-color: #072145;
   padding: 1rem;
+}
+
+.browse a:hover {
+  background-color: #1c77ac;
 }
 
 .contactus {
   text-align: center;
-  padding-top: 10rem;
+  color: white;
   padding-bottom: 3rem;
+  padding-top: 2.5rem;
 }
 
 .contactus a {
@@ -157,4 +197,18 @@ body {
   padding: 1rem;
   color: white;
   text-decoration: none;
+}
+
+.contactus a:hover {
+  background-color: #1c77ac;
+}
+
+.footer {
+  background-color: #072145;
+  margin-top: 4rem;
+}
+
+.footerTitle {
+  padding-top: 2rem;
+  margin-bottom: 0;
 }
