@@ -11,7 +11,7 @@ echo '
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
 
-    <script src="functions.js" async></script>
+    <script src="login.js" async></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta name="google-signin-client_id" content="795327503596-iibptgqdd2l49s4qphdsa8619gttjpfp.apps.googleusercontent.com" />
 </head>
@@ -45,7 +45,11 @@ echo '
             </form>
             <div id="courseList"></div>
         </div>
+    </div>
 
+    <div class="note">
+        <h3>Note: Sign in to submit a review. Please be mindful
+        when submitting reviews, thank you and enjoy!</h3>
     </div>
     ';
 
@@ -86,7 +90,7 @@ echo '
       <div class="contactus">
         <h1>Something wrong?</h1>
         <a href="contactus.html">CONTACT US</a>
-        <h1 class="footerTitle">CourseCritics</h1>
+        <h1 class="footerTitle">coursecritics.ca</h1>
       </div>
     </div>
 ';

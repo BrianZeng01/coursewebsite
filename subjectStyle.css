@@ -21,6 +21,10 @@ hr {
     margin-top: 0;
 }
 
+.note {
+    text-align: center;
+}
+
 table {
     margin: 0 auto;
     border-color: #072145;

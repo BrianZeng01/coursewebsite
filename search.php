@@ -15,7 +15,10 @@
         $query = "SELECT course_code FROM courses WHERE course_code like '" . $_POST["query"] . "%' LIMIT 30";
         // $_POST["query"]."%'";
         $result = mysqli_query($connection, $query);
+        $existQuery = "SELECT * FROM courses WHERE course_code = ".$_POST["query"];
+        $existResult = mysqli_query($connection, $existQuery);
         $output = '<datalist id="datalist1" class="list-unstyled">';
+
         if(mysqli_num_rows($result) > 0)
         {
             while($row = mysqli_fetch_array($result))

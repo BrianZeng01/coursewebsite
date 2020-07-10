@@ -7,7 +7,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <script src="functions.js" async></script>
+    <script src="login.js" async></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta
       name="google-signin-client_id"
@@ -15,6 +15,15 @@
     />
   </head>
   <body>
+    <div id="fb-root"></div>
+    <script
+      async
+      defer
+      crossorigin="anonymous"
+      src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=289319202271527&autoLogAppEvents=1"
+      nonce="b5Y9HO1S"
+    ></script>
+
     <div class="header">
       <h1>
         CourseCritics
@@ -39,6 +48,11 @@
         <div id="logout">
           <a id="signout" href="#" onclick="signOut();">Sign out</a>
         </div>
+        <!-- <fb:login-button
+          scope="public_profile,email"
+          onlogin="checkLoginState();"
+        >
+        </fb:login-button> -->
       </div>
     </div>
 
@@ -51,7 +65,6 @@
     </div>
 
     <div class="ubcinfo">
-      <!-- <img class="ubcTower" src="images/ubctitle.jpg" width="500px" /> -->
       <h2 class="firstline">
         Finding the right courses can be a stressful task.<br />
         Come share the experiences you've had with courses and learn which
@@ -62,6 +75,7 @@
     <div class="searchinput">
       <form action="course.php">
         <h1>Enter A Course Code</h1>
+        <div id="courseDoesNotExist"></div>
         <input
           id="search"
           list="datalist1"
@@ -69,10 +83,9 @@
           name="course"
           placeholder="Eg. MATH 100"
         />
-        <button type="submit" class="submit">
+        <button type="button" id="submit" onclick="courseDoesNotExist();">
           <i class="fa fa-search"></i>
         </button>
-      </form>
       <div id="courseList"></div>
     </div>
 
@@ -84,9 +97,11 @@
       <div class="contactus">
         <h1>Something wrong?</h1>
         <a href="contactus.html">CONTACT US</a>
-        <h1 class="footerTitle">CourseCritics</h1>
+        <h1 class="footerTitle">coursecritics.ca</h1>
       </div>
     </div>
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script
       src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
@@ -94,22 +109,6 @@
       crossorigin="anonymous"
     ></script>
 
-    <script>
-      $(document).ready(function () {
-        $("#search").keyup(function () {
-          var query = $(this).val();
-          if (query.length > 1) {
-            $.ajax({
-              url: "search.php",
-              method: "POST",
-              data: { query: query },
-              success: function (data) {
-                $("#courseList").html(data);
-              },
-            });
-          }
-        });
-      });
-    </script>
+    <script src="searchBar.js"></script>
   </body>
 </html>

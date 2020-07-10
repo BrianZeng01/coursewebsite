@@ -150,7 +150,7 @@ body {
 	box-shadow: 1px 1px 13px #1c77ac;
 }
 
-.submit {
+#submit {
   padding: 10px;
   height: 40px;
   width: 80px;
@@ -164,7 +164,7 @@ body {
   outline: none;
 }
 
-.submit:hover {
+#submit:hover {
   background-color: #1c77ac;
 }
 .browse {
