@@ -65,13 +65,16 @@ $user = "root";
 $pass = "Hostforme123.";
 $db_name = "Coursecritics";
 
-$connection = mysqli_connect($host, $user, $pass, $db_name);
-if (mysqli_connect_errno()) {
-    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+$connection = new mysqli($host, $user, $pass, $db_name);
+if ($connection->connect_error) {
+    die("Failed to connect to MySQL: " . $connection->error);
 }
 
 $query = "SELECT * FROM subjects";
-$result = mysqli_query($connection, $query);
+$stmt = $connection->prepare($query);
+$stmt->execute();
+$result = $stmt->get_result();
+$stmt->close();
 $count = 1;
 $output = '
 <table>

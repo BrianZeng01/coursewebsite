@@ -69,7 +69,6 @@ $connection = new mysqli($host, $user, $pass, $db_name);
 if ($connection->connect_error) {
     die("Failed to connect to MySQL: " . $connection->connect_error);
 }
-echo $_POST["courses"];
 $query = "SELECT * FROM courses JOIN subjects
  ON subjects.subject_id=courses.subject_id_fk
   WHERE subjects.subject_code = ?";
