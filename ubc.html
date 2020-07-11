@@ -23,85 +23,92 @@
       src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=289319202271527&autoLogAppEvents=1"
       nonce="b5Y9HO1S"
     ></script>
-
-    <div class="header">
-      <h1>
-        CourseCritics
-        <img
-          src="images/reviewsymbol.png"
-          width="65"
-          height="65"
-          class="symbol"
-        />
-      </h1>
-    </div>
-
-    <div class="nav">
-      <div class="mainNav">
-        <a href="ubc.html">Home</a>
-        <a href="subjects.php">Courses</a>
-        <a href="contactus.html">Contact Us</a>
-        <a id="account" href="account.php">Account</a>
-        <div id="login">
-          <div id="signin" class="g-signin2" data-onsuccess="onSignIn"></div>
+    <div class="container">
+      <div class="header">
+        <div class="frontPageHeader">
+          <h1>
+            CourseCritics
+            <img
+              src="images/reviewsymbol.png"
+              width="65"
+              height="65"
+              class="symbol"
+            />
+          </h1>
         </div>
-        <div id="logout">
-          <a id="signout" href="#" onclick="signOut();">Sign out</a>
-        </div>
-        <!-- <fb:login-button
+
+        <div class="nav">
+          <div class="mainNav">
+            <a href="ubc.html">Home</a>
+            <a href="subjects.php">Courses</a>
+            <a href="contactus.html">Contact Us</a>
+            <a id="account" href="account.php">Account</a>
+            <div id="login">
+              <div
+                id="signin"
+                class="g-signin2"
+                data-onsuccess="onSignIn"
+              ></div>
+            </div>
+            <div id="logout">
+              <a id="signout" href="#" onclick="signOut();">Sign out</a>
+            </div>
+            <!-- <fb:login-button
           scope="public_profile,email"
           onlogin="checkLoginState();"
         >
         </fb:login-button> -->
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="title">
+          <img src="images/ubcsymbol.png" />
+          <div>
+            <h1>The University of British Columbia - Vancouver Campus</h1>
+            <h3>A place of mind</h3>
+          </div>
+        </div>
+
+        <div class="ubcinfo">
+          <h2 class="firstline">
+            Finding the right courses can be a stressful task.<br />
+            Come share the experiences you've had with courses and learn which
+            courses might be right for you.
+          </h2>
+        </div>
+
+        <div class="searchinput">
+          <form action="course.php">
+            <h1>Enter A Course Code</h1>
+            <div id="courseDoesNotExist"></div>
+            <input
+              id="search"
+              list="datalist1"
+              type="text"
+              name="course"
+              placeholder="Eg. MATH 100"
+            />
+            <button type="button" id="submit" onclick="courseDoesNotExist();">
+              <i class="fa fa-search"></i>
+            </button>
+          </form>
+          <div id="courseList"></div>
+        </div>
+
+        <div class="browse">
+          <a href="subjects.php">Browse All Courses</a>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div class="contactus">
+          <h1>Something wrong?</h1>
+          <a href="contactus.html">CONTACT US</a>
+          <h1 class="footerTitle">coursecritics.ca</h1>
+        </div>
       </div>
     </div>
-
-    <div class="title">
-      <img src="images/ubcsymbol.png" />
-      <div>
-        <h1>The University of British Columbia - Vancouver Campus</h1>
-        <h3>A place of mind</h3>
-      </div>
-    </div>
-
-    <div class="ubcinfo">
-      <h2 class="firstline">
-        Finding the right courses can be a stressful task.<br />
-        Come share the experiences you've had with courses and learn which
-        courses might be right for you.
-      </h2>
-    </div>
-
-    <div class="searchinput">
-      <form action="course.php">
-        <h1>Enter A Course Code</h1>
-        <div id="courseDoesNotExist"></div>
-        <input
-          id="search"
-          list="datalist1"
-          type="text"
-          name="course"
-          placeholder="Eg. MATH 100"
-        />
-        <button type="button" id="submit" onclick="courseDoesNotExist();">
-          <i class="fa fa-search"></i>
-        </button>
-      <div id="courseList"></div>
-    </div>
-
-    <div class="browse">
-      <a href="subjects.php">Browse All Courses</a>
-    </div>
-
-    <div class="footer">
-      <div class="contactus">
-        <h1>Something wrong?</h1>
-        <a href="contactus.html">CONTACT US</a>
-        <h1 class="footerTitle">coursecritics.ca</h1>
-      </div>
-    </div>
-
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script
       src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
