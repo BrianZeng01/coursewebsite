@@ -16,14 +16,17 @@ echo '
 <html>
 
 <head>
+    <title>Coursecritics Review</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="subjectStyle.css"/>
+    <link rel="stylesheet" href="reviews.css"/>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
 
     <script src="login.js" async></script>
+    <script src="ratings.js" async></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta name="google-signin-client_id" content="795327503596-iibptgqdd2l49s4qphdsa8619gttjpfp.apps.googleusercontent.com" />
 </head>
@@ -48,9 +51,7 @@ echo '
 
             <div class="subjectHeader">
                 <h1 class="subjectTitle">
-                    UBC: ';
-echo $course_code . ' reviews';
-echo '
+                    UBC: ' . $course_code . ' reviews
                 </h1>
                 <hr size="8px" color="#072145">
             </div>
@@ -64,18 +65,58 @@ $stmt->bind_param('s', $course_code);
 $stmt->execute();
 $courses_result = $stmt->get_result();
 $stmt->close();
-
 $columns = mysqli_fetch_array($courses_result);
 $course_id = $columns["course_id"];
-$course_level  = $columns["course_level"];
-$course_title = $course_title["course_title"];
 
-$query_reviews = "SELECT * FROM reviews WHERE course_id_fk=?";
-$stmt->prepare($query_reviews);
+$query_reviews = "SELECT * FROM reviews 
+WHERE course_id_fk=?";
+$stmt = $connection->prepare($query_reviews);
 $stmt->bind_param('i', $course_id);
 $stmt->execute();
 $reviews_result = $stmt->get_result();
 $stmt->close();
+
+$query_aggregates = "SELECT AVG(overall) 'total_overall',
+AVG(difficulty) 'total_difficulty',COUNT(take_again) 'num_take_again'
+ FROM reviews WHERE course_id_fk=?";
+$stmt = $connection->prepare($query_aggregates);
+$stmt->bind_param('s', $course_id);
+$stmt->execute();
+$result_aggregates = $stmt->get_result();
+$stmt->close();
+$row_aggregates = mysqli_fetch_array($result_aggregates);
+// All information needed for the main(aggregated) review box
+// excluding $course_code which is above
+$course_title = $columns["course_title"];
+$total_overall = number_format((float)
+round($row_aggregates["total_overall"],1), 1, '.', '');
+$total_difficulty = number_format((float)
+round($row_aggregates["total_difficulty"],1), 1, '.', '');
+$num_take_again = $row_aggregates["num_take_again"];
+$num_of_reviews = mysqli_num_rows($reviews_result);
+number_format((float)round($r["overall"],1), 1, '.', '');
+
+echo '      <div class="overview">
+                <h1>Overview</h1>
+                <hr class="underline">
+                <h1>' . $course_code . ' <span class="numOfReviews">
+                    (' . $num_of_reviews . ' reviews)</span>
+                </h1>
+                <h2>Title: ' . $course_title . '</h2>
+                <span class="ratings scores">' . $total_overall . '</span>
+                <h1 style="display:inline;"> Overall </h1><br>
+                <span class="ratings scores">' . $total_difficulty . '</span>
+                <h1 style="display:inline;"> Difficulty </h1><br>
+                <h2>' . $num_take_again . '/' . $num_of_reviews . '  People would take this course again</h2>
+                <form action="review.php" method="GET">
+                    <input type="hidden" name="course" value="' . $course_code .'">
+                    <button class="makeReview" type="submit">Write a Review</button>
+                </form>
+                <h3>Note: Sign in to submit a review. Please be mindful
+                when submitting reviews, thank you and enjoy!</h3>
+                <hr class="underline">
+            </div>
+ ';
 
 echo '
         </div>
@@ -88,6 +129,7 @@ echo '
             </div>
         </div>
     </div>
+
+</body>
+</html>
 ';
-
-
