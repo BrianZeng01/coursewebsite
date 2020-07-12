@@ -13,7 +13,7 @@ $(document).ready(function () {
     var query = $(this).val();
     if (query.length > 1) {
       $.ajax({
-        url: "search.php",
+        url: "../php/search.php",
         method: "POST",
         data: { query: query },
         success: function (data) {

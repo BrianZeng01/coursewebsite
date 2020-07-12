@@ -32,7 +32,7 @@ body {
   text-align: center;
   font-size: 2.75rem;
   /* background-color: rgba(21, 97, 173, 0.5); */
-  background-image: url(images/ubctitle2.jpg);
+  background-image: url(../images/ubctitle2.jpg);
   background-size: cover;
   background-blend-mode: multiply;
   left: 0;

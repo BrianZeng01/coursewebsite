@@ -1,14 +1,5 @@
 <?php
-
-$host = "localhost";
-$user = "etpjiwmy_WP1GK";
-$pass = "Hostforme123.";
-$db_name = "etpjiwmy_WP1GK";
-
-$connection = new mysqli($host, $user, $pass, $db_name);
-if ($connection->connect_error) {
-    die("Failed to connect to MySQL: " . $connection->connect_error);
-}
+require 'repetitiveCode/credentials.php';
 $course_code = $_GET["course"];
 
 echo '
@@ -17,38 +8,20 @@ echo '
 
 <head>
     <title>Coursecritics Review</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="subjectStyle.css"/>
-    <link rel="stylesheet" href="reviews.css"/>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-
-    <script src="login.js" async></script>
-    <script src="ratings.js" async></script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="795327503596-iibptgqdd2l49s4qphdsa8619gttjpfp.apps.googleusercontent.com" />
+    <link rel="stylesheet" href="../css/subjectStyle.css"/>
+    <link rel="stylesheet" href="../css/reviews.css"/>
+    <script src="../js/ratings.js" async></script>
+';
+require 'repetitiveCode/head.php';
+echo '
 </head>
 
 <body>
     <div class="container">
         <div class="header">
-            <div class="nav">
-                <div class="mainNav">
-                    <a href="ubc.html">Home</a>
-                    <a href="subjects.php">Courses</a>
-                    <a href="contactus.html">Contact Us</a>
-                    <a id="account" href="account.php">Account</a>
-                    <div id="login">
-                        <div id="signin" class="g-signin2" data-onsuccess="onSignIn"></div>
-                    </div>
-                    <div id="logout">
-                        <a id="signout" href="#" onclick="signOut(); loggedIn();">Sign out</a>
-                    </div>
-                </div>
-            </div>
-
+';
+require 'repetitiveCode/nav.php';
+echo '
             <div class="subjectHeader">
                 <h1 class="subjectTitle">
                     UBC: ' . $course_code . ' reviews
@@ -175,19 +148,14 @@ while ($row = mysqli_fetch_array($reviews_result)) {
 
 $output .= '</ul></div>';
 echo $output;
+//Closing content and container tag
 echo '
         </div>
-
-        <div class="footer">
-            <div class="contactus">
-                <h1>Something wrong?</h1>
-                <a href="contactus.html">CONTACT US</a>
-                <h1 class="footerTitle">coursecritics.ca</h1>
-            </div>
-        </div>
+';
+require 'repetitiveCode/footer.php';
+echo'
     </div>
-
-    <script src="makeReview.js"></script>
+    <script src="../js/makeReview.js"></script>
 </body>
 </html>
 ';
