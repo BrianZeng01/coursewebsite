@@ -10,7 +10,12 @@ echo '
 require 'repetitiveCode/head.php';
 echo '
     </head>
-
+    <style>
+      .courses:link {
+        background-color: #1c77ac;
+        text-decoration: underline;
+      }
+    </style>
 <body>
     <div class="container">
         <div class="header">

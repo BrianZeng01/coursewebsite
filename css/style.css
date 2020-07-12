@@ -80,7 +80,8 @@ body {
   text-decoration: none;
 }
 
-.nav a:hover {
+
+.mainNav a:hover {
   background-color: #1c77ac;
 }
 
