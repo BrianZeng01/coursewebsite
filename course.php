@@ -1,9 +1,9 @@
 <?php
 
 $host = "localhost";
-$user = "root";
+$user = "etpjiwmy_WP1GK";
 $pass = "Hostforme123.";
-$db_name = "Coursecritics";
+$db_name = "etpjiwmy_WP1GK";
 
 $connection = new mysqli($host, $user, $pass, $db_name);
 if ($connection->connect_error) {

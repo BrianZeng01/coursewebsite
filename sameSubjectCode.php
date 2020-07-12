@@ -4,6 +4,7 @@ echo '
 <html>
 
 <head>
+    <title>Coursecritics - UBC courses</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="subjectStyle.css"/>
     <link
@@ -106,7 +107,8 @@ while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
     // echo $overall, $review_count;
 
     $output .= '<tr class="clickable-row" data-href="http://coursecritics.test/course.php?course=' . $row["course_code"] . '">
-                        <td><span class="ratings">' . $overall . '</span>
+                        <td>
+                            <span class="ratings">' . $overall . '</span>
                             <span style="color:gray;">(' . $review_count . ')</span>
                         </td>
                         <td>' . $row["course_code"] . '</td>
