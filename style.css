@@ -229,7 +229,8 @@ body {
 .contactus a:hover {
   background-color: #1c77ac;
 }
-.ratings {
+
+.ratings, .ratings_difficulty  {
   border-radius: 2px;
   font-weight: bold;
   padding: .1rem;

@@ -30,7 +30,7 @@
     display: inline-block;
     margin-right: 100px;
 }
-.makeReview {
+#makeReview {
   background-color: #071245;
   font-size: 2rem;
   color: white;
@@ -39,8 +39,12 @@
   cursor: pointer;
 }
 
-.makeReview:hover {
+#makeReview:hover {
   background-color: #1c77ac;
+}
+
+#notLoggedIn {
+    color: red;
 }
 
 .review {

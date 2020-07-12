@@ -44,7 +44,7 @@ echo '
                         <div id="signin" class="g-signin2" data-onsuccess="onSignIn"></div>
                     </div>
                     <div id="logout">
-                        <a id="signout" href="#" onclick="signOut();">Sign out</a>
+                        <a id="signout" href="#" onclick="signOut(); loggedIn();">Sign out</a>
                     </div>
                 </div>
             </div>
@@ -77,7 +77,7 @@ $reviews_result = $stmt->get_result();
 $stmt->close();
 
 $query_aggregates = "SELECT AVG(overall) 'total_overall',
-AVG(difficulty) 'total_difficulty',COUNT(take_again) 'num_take_again'
+AVG(difficulty) 'total_difficulty',SUM(take_again=1) 'num_take_again'
  FROM reviews WHERE course_id_fk=?";
 $stmt = $connection->prepare($query_aggregates);
 $stmt->bind_param('s', $course_id);
@@ -107,7 +107,8 @@ echo '      <div class="overview">
             <h2>' . $num_take_again . '/' . $num_of_reviews . '  People would take this course again</h2>
             <form action="review.php" method="GET">
                 <input type="hidden" name="course" value="' . $course_code . '">
-                <button class="makeReview" type="submit">Write a Review</button>
+                <button id="makeReview" type="button">Write a Review</button>
+                <h4 id="notLoggedIn"></h4>
             </form>
             <h3>Note: Sign in to submit a review. Please be mindful
             when submitting reviews, thank you and enjoy!</h3>
@@ -186,6 +187,7 @@ echo '
         </div>
     </div>
 
+    <script src="makeReview.js"></script>
 </body>
 </html>
 ';

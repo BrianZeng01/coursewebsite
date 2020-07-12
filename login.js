@@ -4,14 +4,17 @@ function checkIfLoggedIn() {
     document.getElementById("logout").style.display = "none";
     document.getElementById("account").style.display = "none";
     document.getElementById("login").style.display = "inline-block";
+    
     console.log("signed out");
   } else {
     document.getElementById("logout").style.display = "inline-block";
     document.getElementById("account").style.display = "inline-block";
     document.getElementById("login").style.display = "none";
+
+
     // document.getElementById("logoutmessage").innerHTML =
     //  JSON.parse(sessionStorage.getItem("myUserEntity"))["Name"] + ",";
-    console.log(sessionStorage.getItem("myUserEntity"));
+    // console.log(sessionStorage.getItem("myUserEntity"));
   }
 }
 
@@ -22,6 +25,10 @@ function onSignIn(googleUser) {
   myUserEntity.Id = profile.getId();
   myUserEntity.Name = profile.getName();
 
+  if(document.getElementById("makeReview") != null) {
+    console.log("here");
+    document.getElementById("makeReview").setAttribute("type", "submit");
+  }
   console.log("User logged in");
   sessionStorage.setItem("myUserEntity", JSON.stringify(myUserEntity));
   checkIfLoggedIn();
