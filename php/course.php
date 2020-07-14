@@ -1,7 +1,7 @@
 <?php
 require 'repetitiveCode/credentials.php';
 $course_code = $_GET["course"];
-
+$user_id = $_COOKIE["id"];
 echo '
 <!DOCTYPE html>
 <html>
@@ -31,7 +31,7 @@ echo '
         </div>
         
         <div class="content">';
-
+echo $user_id;
 $query_course_id = "SELECT * FROM courses WHERE course_code=?";
 $stmt = $connection->prepare($query_course_id);
 $stmt->bind_param('s', $course_code);
@@ -77,13 +77,28 @@ echo '      <div class="overview">
             <h1 style="display:inline;"> Overall </h1><br><br>
             <span class="ratings_difficulty scores">' . $total_difficulty . '</span>
             <h1 style="display:inline;"> Difficulty </h1><br>
-            <h2>' . $num_take_again . '/' . $num_of_reviews . '  People would take this course again</h2>
+            <h2>' . $num_take_again . '/' . $num_of_reviews .
+    '  People would take this course again</h2>
             <form action="review.php" method="GET">
                 <input type="hidden" name="course" value="' . $course_code . '">
-                <button id="makeReview" type="button">Write a Review</button>
+';
+if(isset($user_id)) {
+    echo '
+                <button id="makeReview" type="submit">
+                    Write a Review
+                </button>
+';
+} else {
+    echo '
+                <button id="makeReview" type="button">
+                    Write a Review
+                </button>
+'; 
+}
+echo '
                 <h4 id="notLoggedIn"></h4>
             </form>
-            <h3>Note: Sign in to submit a review. Please be mindful
+            <h3>Note: Sign in to submit a review and upvote/downvote. Please be mindful
             when submitting reviews, thank you and enjoy!</h3>
             <hr class="underline">
         </div>
@@ -103,7 +118,7 @@ while ($row = mysqli_fetch_array($reviews_result)) {
         $name = $row["user_first_name"];
     }
     $mysql_date = strtotime($row["date"]);
-    $date = date("M d/Y" , $mysql_date);
+    $date = date("M d/Y", $mysql_date);
     $difficulty = number_format((float) round($row["difficulty"], 1), 1, '.', '');
     $overall = number_format((float) round($row["overall"], 1), 1, '.', '');
     $professor = $row["professor"];
@@ -119,31 +134,38 @@ while ($row = mysqli_fetch_array($reviews_result)) {
     $advice = $row["advice"];
 
     $output .= '<li>
-                <div class="review">
-                    <h2 style="display:inline-block;">' . $name .'</h2>
-                    <h4 class="date">'.$date.'</h4><br>
-                    <span class="ratings scores_review">'
+                 <div class="review">
+                        <h2 style="display:inline-block;">' . $name . '</h2>
+                        <h4 class="date">' . $date . '</h4><br>
+                        <span class="ratings scores_review">'
         . $overall .
         '</span>
-                    <h2 class="ratingHeaders">Overall</h2>
-                    <span class="ratings_difficulty scores_review">'
+                        <h2 class="ratingHeaders">Overall</h2>
+                        <span class="ratings_difficulty scores_review">'
         . $difficulty .
         '</span>
 
-                    <h2 class="ratingHeaders">Difficulty</h2><br>
-                    <h3 class="h3seperators">Prof: ' . $professor . '</h3>
-                    <h3>Textbook: ' . $textbook . ' </h3><br>
+                        <h2 class="ratingHeaders">Difficulty</h2><br>
+                        <h3 class="h3seperators">Prof: ' . $professor . '</h3>
+                        <h3>Textbook: ' . $textbook . ' </h3><br>
 
-                    <h3 class="h3seperators">Grade: ' . $grade . '</h3>
-                    <h3 class="h3seperators">Year: ' . $year . '</h3>
-                    <h3>Take Again? ' . $take_again . '</h3>
+                        <h3 class="h3seperators">Grade: ' . $grade . '</h3>
+                        <h3 class="h3seperators">Year: ' . $year . '</h3>
+                        <h3>Take Again? ' . $take_again . '</h3>
 
-                    <h2 class="commentHeader">Comments</h2>
-                    <p class="comment">' . $comment . '</p>
-                    <h2 class="commentHeader">Advice</h2>
-                    <p class="comment">'.$advice.'</p>
+                        <h2 class="commentHeader">Comments</h2>
+                        <p class="comment">' . $comment . '</p>
+                        <h2 class="commentHeader">Advice</h2>
+                        <p class="comment">' . $advice . '</p>
                 </div>
-            </li>';
+                <div class="vote">
+                    <img id="upvote" src="../images/upvote.png" width="50px"/><br>
+                    <h2 style="text-align:center;">' . $votes . '</h2>
+                    <img id="downvote" src="../images/downvote.png" width="50px"/>
+
+                </div>
+            </li>
+            ';
 }
 
 $output .= '</ul></div>';
@@ -153,7 +175,7 @@ echo '
         </div>
 ';
 require 'repetitiveCode/footer.php';
-echo'
+echo '
     </div>
     <script src="../js/makeReview.js"></script>
 </body>

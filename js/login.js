@@ -4,31 +4,29 @@ function checkIfLoggedIn() {
     document.getElementById("logout").style.display = "none";
     document.getElementById("account").style.display = "none";
     document.getElementById("login").style.display = "inline-block";
-    
-    console.log("signed out");
   } else {
     document.getElementById("logout").style.display = "inline-block";
     document.getElementById("account").style.display = "inline-block";
     document.getElementById("login").style.display = "none";
-
-
-    // document.getElementById("logoutmessage").innerHTML =
-    //  JSON.parse(sessionStorage.getItem("myUserEntity"))["Name"] + ",";
-    // console.log(sessionStorage.getItem("myUserEntity"));
   }
 }
 
 checkIfLoggedIn();
 
 function onSignIn(googleUser) {
-  var profile = googleUser.getBasicProfile();
-  myUserEntity.Id = profile.getId();
-  myUserEntity.Name = profile.getName();
-
-  if(document.getElementById("makeReview") != null) {
-    console.log("here");
-    document.getElementById("makeReview").setAttribute("type", "submit");
+  console.log(getCookie("id"));
+  if (getCookie("id") == undefined) {
+    var profile = googleUser.getBasicProfile();
+    myUserEntity.Id = profile.getId();
+    myUserEntity.Name = profile.getName();
+    document.cookie =
+      "id=" +
+      myUserEntity.Id +
+      "; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/;";
+    location.reload();
   }
+  // console.log(document.cookie)
+
   console.log("User logged in");
   sessionStorage.setItem("myUserEntity", JSON.stringify(myUserEntity));
   checkIfLoggedIn();
@@ -40,8 +38,18 @@ function signOut() {
     console.log("User signed out.");
   });
 
-  sessionStorage.clear();
-  checkIfLoggedIn();
+  if (getCookie("id") !== undefined) {
+    document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    sessionStorage.clear();
+    location.reload();
+    checkIfLoggedIn();
+  }
+}
+
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(";").shift();
 }
 
 // window.fbAsyncInit = function () {
