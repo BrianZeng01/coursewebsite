@@ -4,10 +4,10 @@
 }
 
 @media screen and (max-width: 1400px) {
-    .content {
-        margin-left: 10%;
-        margin-right: 20%;
-    }
+  .content {
+    margin-left: 10%;
+    margin-right: 20%;
+  }
 }
 .numOfReviews {
   color: gray;
@@ -26,9 +26,9 @@
   font-size: 1.5rem;
 }
 
-.ratingHeaders{
-    display: inline-block;
-    margin-right: 100px;
+.ratingHeaders {
+  display: inline-block;
+  margin-right: 100px;
 }
 #makeReview {
   background-color: #071245;
@@ -44,13 +44,32 @@
 }
 
 #notLoggedIn {
-    color: red;
+  color: red;
+}
+
+
+li {
+  display: flex;
+  flex-direction: row;
 }
 
 .review {
   margin-top: 0;
-  padding: 0;
   margin-bottom: 0;
+  padding: 1rem;
+  padding-top: 0.2rem;
+  flex: 1;
+}
+
+.vote {
+  background-color: white;
+  padding-left: 1rem;
+  vertical-align: center;
+}
+
+.vote img {
+  color: #A9B7B7;
+  cursor: pointer;
 }
 
 ul {
@@ -59,13 +78,8 @@ ul {
   padding: 0;
 }
 
-li {
-  padding: 1rem;
-  padding-top: 0.2rem;
-}
-
 li:nth-child(odd) {
-  background-color: #f2f4f4;
+    background-color: #f2f4f4;
 }
 
 li:nth-child(even) {
@@ -73,12 +87,12 @@ li:nth-child(even) {
 }
 
 .commentHeader {
-    margin-top: 0;
-    margin-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .comment {
-    margin-top: 0;
+  margin-top: 0;
 }
 .h3seperators {
   width: 215px;
@@ -90,8 +104,17 @@ li:nth-child(even) {
 }
 
 .date {
-    float: right;
+  float: right;
 }
 .comment {
-    font-size: 1rem;
+  font-size: 1rem;
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+  .content {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
 }
