@@ -13,6 +13,14 @@
       name="google-signin-client_id"
       content="795327503596-iibptgqdd2l49s4qphdsa8619gttjpfp.apps.googleusercontent.com"
     />
+    <script
+      async
+      defer
+      crossorigin="anonymous"
+      src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=289319202271527&autoLogAppEvents=1"
+      nonce="b5Y9HO1S"
+    ></script>
+
     <style>
       .home:link {
         background-color: #1c77ac;
@@ -21,16 +29,38 @@
     </style>
   </head>
   <body>
-    <div id="fb-root"></div>
-    <script
-      async
-      defer
-      crossorigin="anonymous"
-      src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=289319202271527&autoLogAppEvents=1"
-      nonce="b5Y9HO1S"
-    ></script>
     <div class="container">
       <div class="header">
+        <div class="nav">
+          <div class="mainNav">
+            <a class="home" href="../html/ubc.html">Home</a>
+            <a class="courses" href="../php/subjects.php">Courses</a>
+            <a class="contactus" href="../html/contactus.html">Contact Us</a>
+            <a id="account" href="../php/account.php">Account</a>
+            <div id="login" onclick="loginDropdown()" class="dropdown">
+              Sign In
+              <div id="loginDropdown" class="dropdown-content">
+                <div
+                  id="signin"
+                  class="g-signin2"
+                  data-onsuccess="onSignIn"
+                ></div>
+                <div>
+                  <fb:login-button
+                    class="fb-signin"
+                    scope="public_profile,email"
+                    onlogin="checkLoginState();"
+                  >
+                  </fb:login-button>
+                </div>
+              </div>
+            </div>
+            <div id="logout">
+              <a id="signout" href="#" onclick="signOut();">Sign Out</a>
+            </div>
+          </div>
+        </div>
+
         <div class="frontPageHeader">
           <h1>
             CourseCritics
@@ -42,30 +72,7 @@
             />
           </h1>
         </div>
-
-        <div class="nav">
-          <div class="mainNav">
-            <a class="home" href="../html/ubc.html">Home</a>
-            <a class="courses" href="../php/subjects.php">Courses</a>
-            <a class="contactus" href="../html/contactus.html">Contact Us</a>
-            <a id="account" href="../php/account.php">Account</a>
-            <div id="login">
-              <div
-                id="signin"
-                class="g-signin2"
-                data-onsuccess="onSignIn"
-              ></div>
-            </div>
-            <div id="logout">
-              <a id="signout" href="#" onclick="signOut();">Sign out</a>
-            </div>
-            <!-- <fb:login-button
-          scope="public_profile,email"
-          onlogin="checkLoginState();"
-        >
-        </fb:login-button> -->
-          </div>
-        </div>
+        <hr />
       </div>
 
       <div class="content">
@@ -95,6 +102,7 @@
               type="text"
               name="course"
               placeholder="Eg. MATH 100"
+              maxlength="10"
             />
             <button type="button" id="submit" onclick="courseDoesNotExist();">
               <i class="fa fa-search"></i>

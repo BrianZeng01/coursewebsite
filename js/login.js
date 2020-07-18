@@ -1,6 +1,6 @@
-var myUserEntity = {};
-function checkIfLoggedIn() {
-  if (sessionStorage.getItem("myUserEntity") == null) {
+function displayLogin() {
+  // console.log(myUserEntity);
+  if (getCookie("id") == undefined) {
     document.getElementById("logout").style.display = "none";
     document.getElementById("account").style.display = "none";
     document.getElementById("login").style.display = "inline-block";
@@ -8,41 +8,57 @@ function checkIfLoggedIn() {
     document.getElementById("logout").style.display = "inline-block";
     document.getElementById("account").style.display = "inline-block";
     document.getElementById("login").style.display = "none";
+    console.log("Logged in via " + getCookie("thirdParty"));
+    console.log(getCookie("id"), getCookie("name"));
   }
 }
 
-checkIfLoggedIn();
-
 function onSignIn(googleUser) {
-  console.log(getCookie("id"));
+  // console.log(getCookie("id"));
   if (getCookie("id") == undefined) {
+    var myUserEntity = {};
     var profile = googleUser.getBasicProfile();
     myUserEntity.Id = profile.getId();
-    myUserEntity.Name = profile.getName();
+    myUserEntity.Name = profile.getGivenName();
     document.cookie =
       "id=" +
       myUserEntity.Id +
       "; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/;";
+    document.cookie =
+      "name=" +
+      myUserEntity.Name +
+      "; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/;";
+    document.cookie = "thirdParty=Google; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/;";
+
+
+    sessionStorage.setItem("myUserEntity", JSON.stringify(myUserEntity));
     location.reload();
   }
   // console.log(document.cookie)
-
-  console.log("User logged in");
-  sessionStorage.setItem("myUserEntity", JSON.stringify(myUserEntity));
-  checkIfLoggedIn();
 }
 
 function signOut() {
-  var auth2 = gapi.auth2.getAuthInstance();
-  auth2.signOut().then(function () {
-    console.log("User signed out.");
-  });
-
   if (getCookie("id") !== undefined) {
+
+    if (getCookie("thirdParty") == "Google") {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log("User signed out of Google.");
+    });
+    }
+
+    if (getCookie("thirdParty") == "Facebook") {
+      FB.logout(function(response) {
+              console.log("User signed out of Facebook");
+      });
+    }
+
     document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "name=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "thirdParty=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
     sessionStorage.clear();
     location.reload();
-    checkIfLoggedIn();
   }
 }
 
@@ -52,31 +68,72 @@ function getCookie(name) {
   if (parts.length === 2) return parts.pop().split(";").shift();
 }
 
-// window.fbAsyncInit = function () {
-//   FB.init({
-//     appId: "289319202271527",
-//     cookie: true,
-//     xfbml: true,
-//     version: "v7.0.",
-//   });
+function statusChangeCallback(response) {
+  console.log("statusChangeCallback");
+  console.log(response);
+  if (response.status === "connected") {
+    testAPI();
+  } else {
+    console.log("FB not logged in");
+  }
+}
 
-//   FB.AppEvents.logPageView();
-// };
+function checkLoginState() {
+  // Called when a person is finished with the Login Button.
+  FB.getLoginStatus(function (response) {
+    statusChangeCallback(response);
+  });
+}
 
-// (function (d, s, id) {
-//   var js,
-//     fjs = d.getElementsByTagName(s)[0];
-//   if (d.getElementById(id)) {
-//     return;
-//   }
-//   js = d.createElement(s);
-//   js.id = id;
-//   js.src = "https://connect.facebook.net/en_US/sdk.js";
-//   fjs.parentNode.insertBefore(js, fjs);
-// })(document, "script", "facebook-jssdk");
+window.fbAsyncInit = function () {
+  FB.init({
+    appId: "289319202271527",
+    cookie: true,
+    xfbml: true,
+    version: "v7.0",
+  });
 
-// function checkLoginState() {
-//   FB.getLoginStatus(function (response) {
-//     statusChangeCallback(response);
-//   });
-// }
+  FB.getLoginStatus(function (response) {
+    statusChangeCallback(response);
+  });
+};
+
+function testAPI() {
+  FB.api("/me", function (response) {
+    
+    if (getCookie("id") == undefined) {
+    // console.log("Successful login for: " + response.name + response.id);
+    firstname = response.name.substr(0,response.name.indexOf(' '));
+    document.cookie =
+      "id=" +
+      response.id +
+      "; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/;";
+    document.cookie =
+      "name=" +
+      firstname +
+      "; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/;";
+    document.cookie = "thirdParty=Facebook; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/;";
+
+    location.reload();
+    }
+  });
+}
+
+function loginDropdown() {
+  document.getElementById("loginDropdown").classList.toggle("show");
+}
+
+window.onclick = function (event) {
+  if (!event.target.matches(".dropdown")) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains("show")) {
+        openDropdown.classList.remove("show");
+      }
+    }
+  }
+};
+
+displayLogin();
