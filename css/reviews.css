@@ -47,7 +47,6 @@
   color: red;
 }
 
-
 li {
   display: flex;
   flex-direction: row;
@@ -61,15 +60,22 @@ li {
   flex: 1;
 }
 
+.nav {
+  z-index: 2;
+}
+
 .vote {
   background-color: white;
   padding-left: 1rem;
   vertical-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 .vote img {
-  color: #A9B7B7;
   cursor: pointer;
+  filter: invert(79%) sepia(5%) saturate(284%) hue-rotate(314deg)
+    brightness(90%) contrast(85%);
 }
 
 ul {
@@ -79,7 +85,7 @@ ul {
 }
 
 li:nth-child(odd) {
-    background-color: #f2f4f4;
+  background-color: #f2f4f4;
 }
 
 li:nth-child(even) {
@@ -106,13 +112,12 @@ li:nth-child(even) {
 .date {
   float: right;
 }
+
 .comment {
   font-size: 1rem;
 }
 
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 480px) {
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
   .content {
     margin-left: 5%;
     margin-right: 5%;

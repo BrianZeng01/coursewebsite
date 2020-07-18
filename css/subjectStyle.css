@@ -11,12 +11,9 @@
 
 .subjectHeader {
     margin-bottom: 2rem;
+    margin-top: 60px;
 }
 
-/* .search {
-    text-align: left;
-    margin-left: 2rem;
-} */
 hr {
     margin-top: 0;
 }
@@ -57,4 +54,12 @@ th {
     font-size: 1.1rem;
     padding-top: .5rem;
     padding-bottom: .5rem;
+}
+
+.ratings,
+.ratings_difficulty {
+  border-radius: 2px;
+  font-weight: bold;
+  padding: 0.1rem;
+  color: white;
 }
