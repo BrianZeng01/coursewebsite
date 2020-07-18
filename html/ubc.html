@@ -2,12 +2,12 @@
 <html>
   <head>
     <title>Coursecritics - UBC</title>
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="css/styles.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <script src="../js/login.js" async></script>
+    <script src="js/login.js" async></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta
       name="google-signin-client_id"
@@ -22,7 +22,7 @@
     ></script>
 
     <style>
-      .home:link {
+      #home {
         background-color: #1c77ac;
         text-decoration: underline;
       }
@@ -33,10 +33,10 @@
       <div class="header">
         <div class="nav">
           <div class="mainNav">
-            <a class="home" href="../html/ubc.html">Home</a>
-            <a class="courses" href="../php/subjects.php">Courses</a>
-            <a class="contactus" href="../html/contactus.html">Contact Us</a>
-            <a id="account" href="../php/account.php">Account</a>
+            <a id="home" href="index.html">Home</a>
+            <a id="courses" href="php/subjects.php">Courses</a>
+            <a id="contactus" href="html/contactus.html">Contact Us</a>
+            <a id="account" href="php/account.php">Account</a>
             <div id="login" onclick="loginDropdown()" class="dropdown">
               Sign In
               <div id="loginDropdown" class="dropdown-content">
@@ -65,7 +65,7 @@
           <h1>
             CourseCritics
             <img
-              src="../images/reviewsymbol.png"
+              src="images/reviewsymbol.png"
               width="65"
               height="65"
               class="symbol"
@@ -77,7 +77,7 @@
 
       <div class="content">
         <div class="title">
-          <img src="../images/ubcsymbol.png" />
+          <img src="images/ubcsymbol.png" />
           <div>
             <h1>The University of British Columbia - Vancouver Campus</h1>
             <h3>A place of mind</h3>
@@ -93,7 +93,7 @@
         </div>
 
         <div class="searchinput">
-          <form action="../php/course.php" method="GET">
+          <form action="php/course.php" method="GET">
             <h1>Enter A Course Code</h1>
             <div id="courseDoesNotExist"></div>
             <input
@@ -112,14 +112,14 @@
         </div>
 
         <div class="browse">
-          <a href="../php/subjects.php">Browse All Courses</a>
+          <a href="php/subjects.php">Browse All Courses</a>
         </div>
       </div>
 
       <div class="footer">
         <div class="contactus">
           <h1>Something wrong?</h1>
-          <a href="../html/contactus.html">CONTACT US</a>
+          <a href="html/contactus.html">CONTACT US</a>
           <h1 class="footerTitle">coursecritics.ca</h1>
         </div>
       </div>
@@ -131,6 +131,6 @@
       crossorigin="anonymous"
     ></script>
 
-    <script src="../js/searchBar.js"></script>
+    <script src="js/searchBar.js"></script>
   </body>
 </html>

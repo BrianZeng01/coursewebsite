@@ -5,13 +5,13 @@ echo '
 
 <head>
     <title>Coursecritics - UBC courses</title>
-    <link rel="stylesheet" href="../css/subjectStyle.css"/>
+    <link rel="stylesheet" href="../css/subjectStyles.css"/>
 ';
 require 'repetitiveCode/head.php';
 echo '
     </head>
     <style>
-      .courses:link {
+      #courses {
         background-color: #1c77ac;
         text-decoration: underline;
       }
@@ -22,9 +22,9 @@ echo '
 ';
 require 'repetitiveCode/nav.php';
 echo '
-                 <div class="subjectHeader">
-                <h1 class="subjectTitle">The University of British Columbia: Course Schedule</h1>
-                <hr size="8px" color="#072145">
+            <div class="subjectHeader">
+                <h1 class="subjectTitle">CourseCritics: UBC Course Schedule</h1>
+                <hr>
             </div>
         </div>
     
@@ -64,7 +64,7 @@ $output = '
     </tr>';
 
 while ($row = mysqli_fetch_array($result)) {
-    $output .= '<tr class="clickable-row" data-href="http://coursecritics.test/php/sameSubjectCode.php?courses=' . $row["subject_code"] .'">
+    $output .= '<tr class="clickable-row" data-href="https://coursecritics.test/php/sameSubjectCode.php?courses=' . $row["subject_code"] .'">
                         <td>' . $row["subject_code"] . '</td>
                         <td>' . $row["subject_title"] . '</td>
                         <td>' . $row["faculty_or_school"] . '</td>

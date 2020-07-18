@@ -5,7 +5,7 @@ echo '
 
 <head>
     <title>Coursecritics - UBC courses</title>
-    <link rel="stylesheet" href="../css/subjectStyle.css"/>
+    <link rel="stylesheet" href="../css/subjectStyles.css"/>
 ';
 require 'repetitiveCode/head.php';
 echo '
@@ -19,7 +19,7 @@ echo '
 require 'repetitiveCode/nav.php';
 echo '
             <div class="subjectHeader">
-                <h1 class="subjectTitle">The University of British Columbia: Course Schedule</h1>
+                <h1 class="subjectTitle">CourseCritics: UBC Course Schedule</h1>
                 <hr size="8px" color="#072145">
             </div>
         </div>
@@ -82,7 +82,7 @@ while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
     }
     // echo $overall, $review_count;
 
-    $output .= '<tr class="clickable-row" data-href="http://coursecritics.test/php/course.php?course=' . $row["course_code"] . '">
+    $output .= '<tr class="clickable-row" data-href="https://coursecritics.test/php/course.php?course=' . $row["course_code"] . '">
                         <td>
                             <span class="ratings">' . $overall . '</span>
                             <span style="color:gray;">(' . $review_count . ')</span>

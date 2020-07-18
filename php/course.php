@@ -2,16 +2,18 @@
 require 'repetitiveCode/credentials.php';
 $course_code = $_GET["course"];
 $user_id = $_COOKIE["id"];
+$user_name = $_COOKIE["name"];
 echo '
 <!DOCTYPE html>
 <html>
 
 <head>
     <title>Coursecritics Review</title>
-    <link rel="stylesheet" href="../css/subjectStyle.css"/>
-    <link rel="stylesheet" href="../css/reviews.css"/>
+    <link rel="stylesheet" href="../css/subjectStyles.css"/>
+    <link rel="stylesheet" href="../css/reviewStyles.css"/>
     <script src="../js/ratings.js" async></script>
 ';
+
 require 'repetitiveCode/head.php';
 echo '
 </head>
@@ -24,14 +26,13 @@ require 'repetitiveCode/nav.php';
 echo '
             <div class="subjectHeader">
                 <h1 class="subjectTitle">
-                    UBC: ' . $course_code . ' reviews
+                    ' . $course_code . ' Reviews
                 </h1>
                 <hr size="8px" color="#072145">
             </div>
         </div>
         
         <div class="content">';
-echo $user_id;
 $query_course_id = "SELECT * FROM courses WHERE course_code=?";
 $stmt = $connection->prepare($query_course_id);
 $stmt->bind_param('s', $course_code);
@@ -82,7 +83,7 @@ echo '      <div class="overview">
             <form action="review.php" method="GET">
                 <input type="hidden" name="course" value="' . $course_code . '">
 ';
-if(isset($user_id)) {
+if (isset($user_id)) {
     echo '
                 <button id="makeReview" type="submit">
                     Write a Review
@@ -90,11 +91,12 @@ if(isset($user_id)) {
 ';
 } else {
     echo '
-                <button id="makeReview" type="button">
+                <button id="makeReview" type="button" onclick="notLoggedIn();">
                     Write a Review
                 </button>
-'; 
+';
 }
+
 echo '
                 <h4 id="notLoggedIn"></h4>
             </form>
@@ -111,7 +113,6 @@ $output = '<div class=allReviews>
                 <ul>';
 
 while ($row = mysqli_fetch_array($reviews_result)) {
-    $votes = $row["votes"];
     if ($row["anonymous"]) {
         $name = "Anonymous";
     } else {
@@ -132,6 +133,8 @@ while ($row = mysqli_fetch_array($reviews_result)) {
     }
     $comment = $row["review_comment"];
     $advice = $row["advice"];
+    $votes = $row["votes"];
+    $voters = $row["voters"];
 
     $output .= '<li>
                  <div class="review">
@@ -158,16 +161,27 @@ while ($row = mysqli_fetch_array($reviews_result)) {
                         <h2 class="commentHeader">Advice</h2>
                         <p class="comment">' . $advice . '</p>
                 </div>
+';
+if(isset($user_id)) {
+    $output .= '
                 <div class="vote">
                     <img id="upvote" src="../images/upvote.png" width="50px"/><br>
                     <h2 style="text-align:center;">' . $votes . '</h2>
                     <img id="downvote" src="../images/downvote.png" width="50px"/>
-
                 </div>
             </li>
-            ';
+';
+} else {
+    $output .= '
+                <div class="vote">
+                    <img id="upvote" src="../images/upvote.png" width="50px"/><br>
+                    <h2 style="text-align:center;">' . $votes . '</h2>
+                    <img id="downvote" src="../images/downvote.png" width="50px"/>
+                </div>
+            </li>
+';
 }
-
+}
 $output .= '</ul></div>';
 echo $output;
 //Closing content and container tag
