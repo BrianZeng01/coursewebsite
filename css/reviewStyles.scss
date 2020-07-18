@@ -1,0 +1,122 @@
+@import "./variables";
+
+.content {
+  margin-left: 20%;
+  margin-right: 30%;
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  @media screen and (max-width: 1400px) {
+    margin-left: 10%;
+    margin-right: 20%;
+  }
+}
+
+.underline {
+  height: 6px;
+  background-color: $primaryColor;
+}
+
+.overview {
+  .scores {
+    font-size: 2rem;
+  }
+  .scores_review {
+    font-size: 1.5rem;
+  }
+
+  .ratingHeaders {
+    display: inline-block;
+    margin-right: 100px;
+  }
+
+  #makeReview {
+    background-color: #071245;
+    font-size: 2rem;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 15px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $secondaryColor;
+    }
+  }
+
+  #notLoggedIn {
+    color: red;
+  }
+}
+
+.allReviews {
+  ul {
+    list-style-type: none;
+    margin-left: 0;
+    padding: 0;
+  }
+
+  li {
+    display: flex;
+    flex-direction: row;
+    &:nth-child(odd) {
+      background-color: #f2f4f4;
+    }
+
+    &:nth-child(even) {
+      background-color: #e5e8e8;
+    }
+  }
+
+  .review {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 1rem;
+    padding-top: 0.2rem;
+    flex: 1;
+
+    h3 {
+      display: inline-block;
+      margin-top: 0;
+    }
+  }
+
+  .vote {
+    background-color: white;
+    padding-left: 1rem;
+    vertical-align: center;
+    position: relative;
+    z-index: 1;
+
+    img {
+      cursor: pointer;
+      filter: invert(79%) sepia(5%) saturate(284%) hue-rotate(314deg)
+        brightness(90%) contrast(85%);
+    }
+  }
+
+  .commentHeader {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .comment {
+    margin-top: 0;
+  }
+  .h3seperators {
+    width: 215px;
+  }
+
+  .date {
+    float: right;
+  }
+
+  .comment {
+    font-size: 1rem;
+  }
+}
+
+.nav {
+  z-index: 2;
+}

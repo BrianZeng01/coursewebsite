@@ -1,0 +1,70 @@
+.subjectHeader {
+  margin-bottom: 2rem;
+  margin-top: 60px;
+}
+
+.subjectHeader h1 {
+  background-color: #1c77ac;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  text-align: center;
+  color: white;
+}
+
+.subjectHeader hr {
+  height: 8px;
+  margin-top: 0;
+  background-color: #071245;
+  border-color: #071245;
+}
+
+.note {
+  text-align: center;
+}
+
+table {
+  margin: 0 auto;
+  border-color: #071245;
+  border-style: none solid solid solid;
+  border-width: 5px;
+  border-spacing: 0;
+  border-collapse: collapse;
+  cursor: pointer;
+}
+
+table tr:nth-child(odd) {
+  background-color: lightskyblue;
+}
+
+table tr:hover {
+  background: #071245;
+  color: white;
+}
+
+table td {
+  padding-bottom: 0.3rem;
+  padding-top: 0.3rem;
+  padding-right: 3rem;
+}
+
+table th {
+  text-align: left;
+  padding-right: 3.5rem;
+  color: white;
+  background-color: #071245;
+  font-size: 1.1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.ratings,
+.ratings_difficulty {
+  border-radius: 2px;
+  font-weight: bold;
+  padding: 0.1rem;
+  color: white;
+}
+/*# sourceMappingURL=subjectStyles.css.map */

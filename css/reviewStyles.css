@@ -1,0 +1,132 @@
+.content {
+  margin-left: 20%;
+  margin-right: 30%;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  .content {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .content {
+    margin-left: 10%;
+    margin-right: 20%;
+  }
+}
+
+.underline {
+  height: 6px;
+  background-color: #071245;
+}
+
+.overview .scores {
+  font-size: 2rem;
+}
+
+.overview .scores_review {
+  font-size: 1.5rem;
+}
+
+.overview .ratingHeaders {
+  display: inline-block;
+  margin-right: 100px;
+}
+
+.overview #makeReview {
+  background-color: #071245;
+  font-size: 2rem;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.overview #makeReview:hover {
+  background-color: #1c77ac;
+}
+
+.overview #notLoggedIn {
+  color: red;
+}
+
+.allReviews ul {
+  list-style-type: none;
+  margin-left: 0;
+  padding: 0;
+}
+
+.allReviews li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.allReviews li:nth-child(odd) {
+  background-color: #f2f4f4;
+}
+
+.allReviews li:nth-child(even) {
+  background-color: #e5e8e8;
+}
+
+.allReviews .review {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 1rem;
+  padding-top: 0.2rem;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.allReviews .review h3 {
+  display: inline-block;
+  margin-top: 0;
+}
+
+.allReviews .vote {
+  background-color: white;
+  padding-left: 1rem;
+  vertical-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.allReviews .vote img {
+  cursor: pointer;
+  -webkit-filter: invert(79%) sepia(5%) saturate(284%) hue-rotate(314deg) brightness(90%) contrast(85%);
+          filter: invert(79%) sepia(5%) saturate(284%) hue-rotate(314deg) brightness(90%) contrast(85%);
+}
+
+.allReviews .commentHeader {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.allReviews .comment {
+  margin-top: 0;
+}
+
+.allReviews .h3seperators {
+  width: 215px;
+}
+
+.allReviews .date {
+  float: right;
+}
+
+.allReviews .comment {
+  font-size: 1rem;
+}
+
+.nav {
+  z-index: 2;
+}
+/*# sourceMappingURL=reviewStyles.css.map */
