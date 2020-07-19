@@ -14,7 +14,7 @@ echo '
     <script src="../js/ratings.js" async></script>
 ';
 
-require 'repetitiveCode/head.php';
+require 'repetitiveCode/commonHTML/head.php';
 echo '
 </head>
 
@@ -22,7 +22,7 @@ echo '
     <div class="container">
         <div class="header">
 ';
-require 'repetitiveCode/nav.php';
+require 'repetitiveCode/commonHTML/nav.php';
 echo '
             <div class="subjectHeader">
                 <h1 class="subjectTitle">
@@ -188,7 +188,7 @@ echo $output;
 echo '
         </div>
 ';
-require 'repetitiveCode/footer.php';
+require 'repetitiveCode/commonHTML/footer.php';
 echo '
     </div>
     <script src="../js/makeReview.js"></script>

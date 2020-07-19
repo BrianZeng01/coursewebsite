@@ -2,7 +2,6 @@
 <html>
   <head>
     <title>Coursecritics - UBC</title>
-    <link rel="stylesheet" href="css/styles.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -17,10 +16,11 @@
       async
       defer
       crossorigin="anonymous"
-      src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=289319202271527&autoLogAppEvents=1"
-      nonce="b5Y9HO1S"
+      src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0"
+      nonce="3mnzlDHn"
     ></script>
 
+    <link rel="stylesheet" href="css/styles.css" />
     <style>
       #home {
         background-color: #1c77ac;
@@ -32,32 +32,29 @@
     <div class="container">
       <div class="header">
         <div class="nav">
-          <div class="mainNav">
-            <a id="home" href="index.html">Home</a>
-            <a id="courses" href="php/subjects.php">Courses</a>
-            <a id="contactus" href="html/contactus.html">Contact Us</a>
-            <a id="account" href="php/account.php">Account</a>
-            <div id="login" onclick="loginDropdown()" class="dropdown">
-              Sign In
-              <div id="loginDropdown" class="dropdown-content">
-                <div
-                  id="signin"
-                  class="g-signin2"
-                  data-onsuccess="onSignIn"
-                ></div>
-                <div>
-                  <fb:login-button
-                    class="fb-signin"
-                    scope="public_profile,email"
-                    onlogin="checkLoginState();"
-                  >
-                  </fb:login-button>
-                </div>
+          <a id="home" href="index.html">Home</a>
+          <a id="courses" href="php/subjects.php">Courses</a>
+          <a id="contactus" href="html/contactus.html">Contact Us</a>
+          <a id="account" href="php/account.php">Account</a>
+          <div id="login" onclick="loginDropdown()" class="dropdown">
+            Sign In
+            <div id="loginDropdown" class="dropdown-content">
+              <div
+                id="signin"
+                class="g-signin2"
+                data-onsuccess="onSignIn"
+              ></div>
+              <div class="fb-signin">
+                <fb:login-button
+                  scope="public_profile,email"
+                  onlogin="checkLoginState();"
+                >
+                </fb:login-button>
               </div>
             </div>
-            <div id="logout">
-              <a id="signout" href="#" onclick="signOut();">Sign Out</a>
-            </div>
+          </div>
+          <div id="logout">
+            <a id="signout" href="#" onclick="signOut();">Sign Out</a>
           </div>
         </div>
 

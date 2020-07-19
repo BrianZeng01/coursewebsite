@@ -32,26 +32,19 @@ body {
     margin-top: 50px;
     overflow-x: hidden;
     padding: 10.5rem;
+    @media screen and (max-width: 760px) {
+      img {
+        display: none;
+      }
+      h1 {
+        font-size: 4.5rem;
+      }
+    }
   }
 
   h1 {
     margin: 0;
     color: white;
-  }
-
-  @media screen and (max-width: 760px) {
-    img {
-      display: none;
-    }
-    h1 {
-      font-size: 4.5rem;
-    }
-    #signout {
-      display: none;
-    }
-    #signin {
-      display: none;
-    }
   }
 
   .nav {
@@ -80,20 +73,10 @@ body {
 
   #login {
     right: 0rem;
+    padding: 1rem;
     display: none;
     position: absolute;
-
-    .g-signin2 {
-      padding: 0;
-      margin: 0;
-    }
-
-    .fb-signin {
-      padding: 0;
-      margin: 0;
-    }
   }
-
   #logout {
     right: 0rem;
     display: none;
@@ -110,9 +93,6 @@ body {
     font-size: 1.5rem;
     color: white;
     margin: auto;
-    padding: 1rem;
-    padding-right: 2rem;
-    padding-left: 2rem;
   }
 
   .dropdown:hover,
@@ -226,7 +206,7 @@ body {
       padding: 1rem;
 
       &:hover {
-          background-color: $secondaryColor;
+        background-color: $secondaryColor;
       }
     }
   }

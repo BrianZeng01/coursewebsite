@@ -7,7 +7,7 @@ echo '
     <title>Coursecritics - UBC courses</title>
     <link rel="stylesheet" href="../css/subjectStyles.css"/>
 ';
-require 'repetitiveCode/head.php';
+require 'repetitiveCode/commonHTML/head.php';
 echo '
 </head>
 
@@ -16,7 +16,7 @@ echo '
     <div class="container">
         <div class="header">
 ';
-require 'repetitiveCode/nav.php';
+require 'repetitiveCode/commonHTML/nav.php';
 echo '
             <div class="subjectHeader">
                 <h1 class="subjectTitle">CourseCritics: UBC Course Schedule</h1>
@@ -98,7 +98,7 @@ $connection->close();
 echo '
         </div>
 ';
-require 'repetitiveCode/footer.php';
+require 'repetitiveCode/commonHTML/footer.php';
 echo '
    </div>
 
