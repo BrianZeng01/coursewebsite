@@ -23,16 +23,8 @@
 }
 
 .overview .scores {
+  padding-right: 0;
   font-size: 2rem;
-}
-
-.overview .scores_review {
-  font-size: 1.5rem;
-}
-
-.overview .ratingHeaders {
-  display: inline-block;
-  margin-right: 100px;
 }
 
 .overview #makeReview {
@@ -76,7 +68,7 @@
   background-color: #e5e8e8;
 }
 
-.allReviews .review {
+.review {
   margin-top: 0;
   margin-bottom: 0;
   padding: 1rem;
@@ -86,12 +78,22 @@
           flex: 1;
 }
 
-.allReviews .review h3 {
+.review .ratingHeaders {
+  display: inline-block;
+  margin-right: 100px;
+}
+
+.review h3 {
   display: inline-block;
   margin-top: 0;
 }
 
-.allReviews .vote {
+.review .scores_review {
+  padding-right: 0;
+  font-size: 1.5rem;
+}
+
+.review .vote {
   background-color: white;
   padding-left: 1rem;
   vertical-align: center;
@@ -99,30 +101,30 @@
   z-index: 1;
 }
 
-.allReviews .vote img {
+.review .vote img {
   cursor: pointer;
   -webkit-filter: invert(79%) sepia(5%) saturate(284%) hue-rotate(314deg) brightness(90%) contrast(85%);
           filter: invert(79%) sepia(5%) saturate(284%) hue-rotate(314deg) brightness(90%) contrast(85%);
 }
 
-.allReviews .commentHeader {
+.review .commentHeader {
   margin-top: 0;
   margin-bottom: 0;
 }
 
-.allReviews .comment {
+.review .comment {
   margin-top: 0;
 }
 
-.allReviews .h3seperators {
+.review .h3seperators {
   width: 215px;
 }
 
-.allReviews .date {
+.review .date {
   float: right;
 }
 
-.allReviews .comment {
+.review .comment {
   font-size: 1rem;
 }
 

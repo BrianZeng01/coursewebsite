@@ -21,15 +21,8 @@
 
 .overview {
   .scores {
+    padding-right: 0;
     font-size: 2rem;
-  }
-  .scores_review {
-    font-size: 1.5rem;
-  }
-
-  .ratingHeaders {
-    display: inline-block;
-    margin-right: 100px;
   }
 
   #makeReview {
@@ -68,18 +61,27 @@
       background-color: #e5e8e8;
     }
   }
+}
 
-  .review {
+.review {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 1rem;
+  padding-top: 0.2rem;
+  flex: 1;
+
+  .ratingHeaders {
+    display: inline-block;
+    margin-right: 100px;
+  }
+  h3 {
+    display: inline-block;
     margin-top: 0;
-    margin-bottom: 0;
-    padding: 1rem;
-    padding-top: 0.2rem;
-    flex: 1;
+  }
 
-    h3 {
-      display: inline-block;
-      margin-top: 0;
-    }
+  .scores_review {
+    padding-right: 0;
+    font-size: 1.5rem;
   }
 
   .vote {
