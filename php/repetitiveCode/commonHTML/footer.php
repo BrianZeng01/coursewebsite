@@ -1,5 +1,4 @@
-<?php
-echo ' 
+ 
 <div class="footer">
     <div class="contactus">
         <h1>Something wrong?</h1>
@@ -7,4 +6,3 @@ echo '
         <h1 class="footerTitle">coursecritics.ca</h1>
     </div>
 </div>
-'; 
