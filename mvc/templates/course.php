@@ -117,66 +117,8 @@
                                             <?php echoXss($review["advice"]); ?>
                                         </p>
                                     </div>
-                                    <?php if (isset($model["cookies"]["id"])) : ?>
-                                        <div class="vote">
-
-                                            <?php
-                                            $id = $review["review_id"];
-                                            $upvoters = json_encode(explode(",", $review["upvoters"]));
-                                            $downvoters = json_encode(explode(",", $review["downvoters"]));
-                                            $votes = $review["votes"];
-                                            ?>
-                                            <!-- Only !== false can be used due to return value of strpos -->
-                                            <?php if (strpos($review["upvoters"], $model["cookies"]["id"]) !== false) : ?>
-
-                                                <?php echo "
-                                                <input id='upvote$id' class='upvoted' 
-                                                onclick='alreadyUpvoted()' type='image' src='../images/upvote.png' alt='Upvote' width='50px' /><br>";
-                                                ?>
-                                                <h2 id="votes<?php echo $id ?>" style="text-align:center;"><?php echo $review["votes"]; ?></h2>
-                                                <?php echo "
-                                                <input id='downvote$id' class='null' 
-                                                onclick='fromUpvotedToNull($votes,$id,$upvoters,$downvoters)' type='image' src='../images/downvote.png' alt='Downvote' width='50px' /><br>";
-                                                ?>
-
-                                            <?php elseif (strpos($review["downvoters"], $model["cookies"]["id"]) !== false) : ?>
-
-                                                <?php echo "
-                                                <input id='upvote$id' class='null' 
-                                                onclick='fromDownvotedToNull($votes,$id,$upvoters,$downvoters)' type='image' src='../images/upvote.png' alt='Upvote' width='50px' /><br>";
-                                                ?>
-                                                <h2 id="votes<?php echo $id ?>" style="text-align:center;"><?php echo $review["votes"]; ?></h2>
-                                                <?php echo "
-                                                <input id='downvote$id' class='downvoted' 
-                                                onclick='alreadyDownvoted()' type='image' src='../images/downvote.png' alt='Downvote' width='50px' /><br>";
-                                                ?>
-
-
-                                            <?php else : ?>
-
-                                                <?php echo "
-                                                <input id='upvote$id' class='null' 
-                                                onclick='upvote($votes,$id,$upvoters,$downvoters)' type='image' src='../images/upvote.png' alt='Upvote' width='50px' /><br>";
-                                                ?>
-                                                <h2 id="votes<?php echo $id ?>" style="text-align:center;"><?php echo $review["votes"]; ?></h2>
-                                                <?php echo "
-                                                <input id='downvote$id' class='null' 
-                                                onclick='downvote($votes,$id,$upvoters,$downvoters)' type='image' src='../images/downvote.png' alt='Downvote' width='50px' /><br>";
-                                                ?>
-
-                                            <?php endif; ?>
-                                        </div>
-                                </li>
-                            <?php else : ?>
-                                <div class="vote">
-                                    <input type="image" class="null" src="../images/upvote.png" alt="Upvote" width="50px" /><br>
-
-                                    <h2 style="text-align:center;"><?php echo $review["votes"]; ?></h2>
-
-                                    <input type="image" class="null" src="../images/downvote.png" alt="Downvote" width="50px" />
-                                </div>
-                                </li>
-                            <?php endif; ?>
+                                    
+                                    <?php voteState($review, $model); ?>
 
                         <?php endforeach; ?>
                         </ul>

@@ -9,7 +9,8 @@ class courseModel
         $this->databaseConnection = new databaseConnection();
     }
 
-    public function closeConnection() {
+    public function closeConnection()
+    {
         $this->databaseConnection->closeConnection();
     }
     public function getCourse($courseCode)
@@ -59,6 +60,55 @@ AVG(difficulty) 'average_difficulty',SUM(take_again=1) 'num_take_again'
     }
 }
 
-function test() {
-    echo "test";
+function voteState($review, $model)
+{
+    $votes = $review["votes"];
+    if (isset($model["cookies"]["id"])) {
+
+        $id = $review["review_id"];
+        $upvoters = json_encode(explode(",", $review["upvoters"]));
+        $downvoters = json_encode(explode(",", $review["downvoters"]));
+        echo "<div class='vote'>";
+        // <!-- Only !== false can be used due to return value of strpos -->
+        if (strpos($review["upvoters"], $model["cookies"]["id"]) !== false) {
+
+            echo "
+                                                <input id='upvote$id' class='upvoted' 
+                                                onclick='alreadyUpvoted()' type='image' src='../images/upvote.png' alt='Upvote' width='50px' /><br>
+                                                <h2 id='votes$id' style='text-align:center;'>$votes</h2>
+                                                <input id='downvote$id' class='null' 
+                                                onclick='removeUpvote($votes,$id)' type='image' src='../images/downvote.png' alt='Downvote' width='50px' /><br>
+                                                ";
+        } elseif (strpos($review['downvoters'], $model["cookies"]["id"]) !== false) {
+
+            echo "
+                                                <input id='upvote$id' class='null' 
+                                                onclick='removeDownvote($votes,$id)' type='image' src='../images/upvote.png' alt='Upvote' width='50px' /><br>
+                                                <h2 id='votes$id' style='text-align:center;'>$votes</h2>
+                                                <input id='downvote$id' class='downvoted' 
+                                                onclick='alreadyDownvoted()' type='image' src='../images/downvote.png' alt='Downvote' width='50px' /><br>
+                                                ";
+        } else {
+            echo $review["upvoters"];
+            echo "
+                                                <input id='upvote$id' class='null' 
+                                                onclick='upvote($votes,$id)' type='image' src='../images/upvote.png' alt='Upvote' width='50px' /><br>
+                                                <h2 id='votes$id' style='text-align:center;'>$votes</h2>
+                                                <input id='downvote$id' class='null' 
+                                                onclick='downvote($votes,$id)' type='image' src='../images/downvote.png' alt='Downvote' width='50px' /><br>
+                                                ";
+        };
+        echo "</div> </li>";
+    } else {
+        echo "
+                                <div class='vote'>
+                                    <input type='image' class='null' src='../images/upvote.png' alt='Upvote' width='50px' /><br>
+
+                                    <h2 style='text-align:center;'>$votes</h2>
+
+                                    <input type='image' class='null' src='../images/downvote.png' alt='Downvote' width='50px' />
+                                </div>
+                                </li>
+                                ";
+    }
 }
