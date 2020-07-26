@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="../css/subjectStyles.css" />
     <link rel="stylesheet" href="../css/reviewStyles.css" />
     <script src="../js/ratings.js" async></script>
-
     <?php require 'repetitiveCode/commonHTML/head.php'; ?>
 </head>
 
@@ -30,7 +29,7 @@
                 <hr class="underline">
                 <h1><?php echo $model["course"]["course_code"] ?>
                     <span class="numOfReviews">
-                        (<?php echo mysqli_num_rows($model["reviews"]); ?> reviews)
+                        (<?php echo num_rows($model["reviews"]); ?> reviews)
                     </span>
                 </h1>
                 <h2>
@@ -45,25 +44,19 @@
                 </span>
                 <h1 style="display:inline;">&nbspDifficulty</h1><br>
                 <h2><?php echo $model["aggregates"]["num_take_again"] . '/' .
-                        mysqli_num_rows($model["reviews"]) .
+                        num_rows($model["reviews"]) .
                         ' People would take this course again' ?></h2>
                 <form action="review.php" method="GET">
                     <input type="hidden" name="course" value="<?php echoXss($model["course"]["course_code"]); ?>">
-                    <?php
-                    if (isset($model["cookies"]["id"])) {
-                        echo '
-                    <button id="makeReview" type="submit">
-                        Write a Review
-                    </button>
-                    ';
-                    } else {
-                        echo '
-                    <button id="makeReview" type="button" onclick="notLoggedIn();">
-                        Write a Review
-                    </button>
-                    ';
-                    }
-                    ?>
+                    <?php if (isset($model["cookies"]["id"])) : ?>
+                        <button id="makeReview" type="submit">
+                            Write a Review
+                        </button>
+                    <?php else : ?>
+                        <button id="makeReview" type="button" onclick="notLoggedIn();">
+                            Write a Review
+                        </button>
+                    <?php endif; ?>
                     <h4 id="notLoggedIn"></h4>
                 </form>
                 <h3>Note: Sign in to submit a review and upvote/downvote. Please be mindful
@@ -77,16 +70,7 @@
                         <hr class="underline">
                         <ul>
                             <?php foreach ($model["reviews"] as $review) : ?>
-                                <?php if ($review["anonymous"]) {
-                                    $name = "Anonymous";
-                                } else {
-                                    $name = $review["user_first_name"];
-                                }
-                                if ($review["take_again"]) {
-                                    $take_again = "Yes";
-                                } else {
-                                    $take_again = "No";
-                                }
+                                <?php
                                 $mysql_date = strtotime($review["date"]);
                                 $date = date("M d/Y", $mysql_date);
                                 $difficulty = number_format((float) round($review["difficulty"], 1), 1, '.', '');
@@ -94,7 +78,10 @@
                                 ?>
                                 <li>
                                     <div class="review">
-                                        <h2 style="display:inline-block;"><?php echoXss($name); ?></h2>
+                                        <h2 style="display:inline-block;">
+                                            <?php echoXss($review["anonymous"] ?
+                                                $review["user_first_name"] : "Anonymous"); ?>
+                                        </h2>
                                         <h4 class="date"><?php echoXss($date); ?></h4><br>
                                         <span class="ratings scores_review">
                                             <?php echo $overall; ?>
@@ -118,7 +105,8 @@
                                         <h3 class="h3seperators">
                                             Year: <?php echoXss($review["year"]); ?>
                                         </h3>
-                                        <h3>Take Again? <?php echoXss($take_again); ?></h3>
+                                        <h3>Take Again?
+                                            <?php echoXss($review["take_again"] ? "Yes" : "No"); ?></h3>
 
                                         <h2 class="commentHeader">Comments</h2>
                                         <p class="comment">
@@ -129,29 +117,68 @@
                                             <?php echoXss($review["advice"]); ?>
                                         </p>
                                     </div>
-                                    <?php
-                                    if (isset($user_id)) {
-                                        echo '
-                                    <div class="vote">
-                                        <img id="upvote" src="../images/upvote.png" width="50px" /><br>
-                                        <h2 style="text-align:center;">' . $review["votes"] . '</h2>
-                                        <img id="downvote" src="../images/downvote.png" width="50px" />
-                                    </div>
+                                    <?php if (isset($model["cookies"]["id"])) : ?>
+                                        <div class="vote">
+
+                                            <?php
+                                            $id = $review["review_id"];
+                                            $upvoters = json_encode(explode(",", $review["upvoters"]));
+                                            $downvoters = json_encode(explode(",", $review["downvoters"]));
+                                            $votes = $review["votes"];
+                                            ?>
+                                            <!-- Only !== false can be used due to return value of strpos -->
+                                            <?php if (strpos($review["upvoters"], $model["cookies"]["id"]) !== false) : ?>
+
+                                                <?php echo "
+                                                <input id='upvote$id' class='upvoted' 
+                                                onclick='alreadyUpvoted()' type='image' src='../images/upvote.png' alt='Upvote' width='50px' /><br>";
+                                                ?>
+                                                <h2 id="votes<?php echo $id ?>" style="text-align:center;"><?php echo $review["votes"]; ?></h2>
+                                                <?php echo "
+                                                <input id='downvote$id' class='null' 
+                                                onclick='fromUpvotedToNull($votes,$id,$upvoters,$downvoters)' type='image' src='../images/downvote.png' alt='Downvote' width='50px' /><br>";
+                                                ?>
+
+                                            <?php elseif (strpos($review["downvoters"], $model["cookies"]["id"]) !== false) : ?>
+
+                                                <?php echo "
+                                                <input id='upvote$id' class='null' 
+                                                onclick='fromDownvotedToNull($votes,$id,$upvoters,$downvoters)' type='image' src='../images/upvote.png' alt='Upvote' width='50px' /><br>";
+                                                ?>
+                                                <h2 id="votes<?php echo $id ?>" style="text-align:center;"><?php echo $review["votes"]; ?></h2>
+                                                <?php echo "
+                                                <input id='downvote$id' class='downvoted' 
+                                                onclick='alreadyDownvoted()' type='image' src='../images/downvote.png' alt='Downvote' width='50px' /><br>";
+                                                ?>
+
+
+                                            <?php else : ?>
+
+                                                <?php echo "
+                                                <input id='upvote$id' class='null' 
+                                                onclick='upvote($votes,$id,$upvoters,$downvoters)' type='image' src='../images/upvote.png' alt='Upvote' width='50px' /><br>";
+                                                ?>
+                                                <h2 id="votes<?php echo $id ?>" style="text-align:center;"><?php echo $review["votes"]; ?></h2>
+                                                <?php echo "
+                                                <input id='downvote$id' class='null' 
+                                                onclick='downvote($votes,$id,$upvoters,$downvoters)' type='image' src='../images/downvote.png' alt='Downvote' width='50px' /><br>";
+                                                ?>
+
+                                            <?php endif; ?>
+                                        </div>
                                 </li>
-                                ';
-                                    } else {
-                                        echo '
+                            <?php else : ?>
                                 <div class="vote">
-                                    <img id="upvote" src="../images/upvote.png" width="50px" /><br>
-                                    <h2 style="text-align:center;">' . $review["votes"] . '</h2>
-                                    <img id="downvote" src="../images/downvote.png" width="50px" />
+                                    <input type="image" class="null" src="../images/upvote.png" alt="Upvote" width="50px" /><br>
+
+                                    <h2 style="text-align:center;"><?php echo $review["votes"]; ?></h2>
+
+                                    <input type="image" class="null" src="../images/downvote.png" alt="Downvote" width="50px" />
                                 </div>
                                 </li>
-                                ';
-                                    }
-                                    ?>
+                            <?php endif; ?>
 
-                                <?php endforeach; ?>
+                        <?php endforeach; ?>
                         </ul>
             </div>
         </div>
@@ -159,7 +186,9 @@
         <?php require 'repetitiveCode/commonHTML/footer.php'; ?>
 
     </div>
-    <script src="../js/makeReview.js"></script>
+
+    <script src="../js/votes.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
 
 </html>
