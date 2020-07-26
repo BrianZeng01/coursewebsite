@@ -19,4 +19,8 @@ class databaseConnection
     public function prepare($query) {
         return $this->connection->prepare($query);
     }
+
+    public function closeConnection() {
+        $this->connection->close();
+    }
 }

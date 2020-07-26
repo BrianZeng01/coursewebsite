@@ -9,6 +9,9 @@ class courseModel
         $this->databaseConnection = new databaseConnection();
     }
 
+    public function closeConnection() {
+        $this->databaseConnection->closeConnection();
+    }
     public function getCourse($courseCode)
     {
         $query = "SELECT * FROM courses WHERE course_code=?";
