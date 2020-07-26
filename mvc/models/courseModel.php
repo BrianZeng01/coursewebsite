@@ -9,7 +9,7 @@ class courseModel
         $this->databaseConnection = new databaseConnection();
     }
 
-    function getCourse($courseCode)
+    public function getCourse($courseCode)
     {
         $query = "SELECT * FROM courses WHERE course_code=?";
         $stmt = $this->databaseConnection->prepare($query);
@@ -22,7 +22,7 @@ class courseModel
     }
 
 
-    function getReviews($courseId)
+    public function getReviews($courseId)
     {
 
         $query = "SELECT * FROM reviews 
@@ -36,7 +36,7 @@ WHERE course_id_fk=?";
         return $result;
     }
 
-    function getAggregates($courseId)
+    public function getAggregates($courseId)
     {
 
         $query = "SELECT AVG(overall) 'average_overall',
@@ -54,4 +54,8 @@ AVG(difficulty) 'average_difficulty',SUM(take_again=1) 'num_take_again'
 
         return $array;
     }
+}
+
+function test() {
+    echo "test";
 }

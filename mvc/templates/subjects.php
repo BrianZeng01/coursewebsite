@@ -1,3 +1,4 @@
+<?php require_once("utils.php"); ?>
 <!DOCTYPE html>
 <html>
 
@@ -52,9 +53,9 @@
 
                 <?php foreach ($model as $subject) : ?>
                     <tr class="clickable-row" data-href="https://coursecritics.test/php/sameSubjectCode.php?courses=<?php echo $subject['subject_code'] ?>">
-                        <td><?php echo ($subject['subject_code']) ?></td>
-                        <td><?php echo ($subject['subject_title']) ?></td>
-                        <td><?php echo ($subject['faculty_or_school']) ?></td>
+                        <td><?php echoXss($subject['subject_code']); ?></td>
+                        <td><?php echoXss($subject['subject_title']); ?></td>
+                        <td><?php echoXss($subject['faculty_or_school']); ?></td>
                     </tr>
                 <?php endforeach; ?>
 

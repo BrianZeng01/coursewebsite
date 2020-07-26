@@ -1,5 +1,5 @@
 .content {
-  margin-left: 20%;
+  margin-left: 30%;
   margin-right: 30%;
 }
 
@@ -12,8 +12,8 @@
 
 @media screen and (max-width: 1400px) {
   .content {
-    margin-left: 10%;
-    margin-right: 20%;
+    margin-left: 15%;
+    margin-right: 15%;
   }
 }
 
@@ -25,6 +25,7 @@
 .overview .scores {
   padding-right: 0;
   font-size: 2rem;
+  padding-left: .4rem;
 }
 
 .overview #makeReview {
@@ -91,20 +92,7 @@
 .review .scores_review {
   padding-right: 0;
   font-size: 1.5rem;
-}
-
-.review .vote {
-  background-color: white;
-  padding-left: 1rem;
-  vertical-align: center;
-  position: relative;
-  z-index: 1;
-}
-
-.review .vote img {
-  cursor: pointer;
-  -webkit-filter: invert(79%) sepia(5%) saturate(284%) hue-rotate(314deg) brightness(90%) contrast(85%);
-          filter: invert(79%) sepia(5%) saturate(284%) hue-rotate(314deg) brightness(90%) contrast(85%);
+  padding-left: .3rem;
 }
 
 .review .commentHeader {
@@ -130,5 +118,33 @@
 
 .nav {
   z-index: 2;
+}
+
+.vote {
+  background-color: white;
+  padding-left: 1rem;
+  vertical-align: middle;
+  position: relative;
+  z-index: 1;
+}
+
+.vote input {
+  cursor: pointer;
+  outline: none;
+}
+
+.vote .null {
+  -webkit-filter: invert(79%) sepia(5%) saturate(284%) hue-rotate(314deg) brightness(90%) contrast(85%);
+          filter: invert(79%) sepia(5%) saturate(284%) hue-rotate(314deg) brightness(90%) contrast(85%);
+}
+
+.vote .upvoted {
+  -webkit-filter: invert(61%) sepia(16%) saturate(1810%) hue-rotate(93deg) brightness(106%) contrast(88%);
+          filter: invert(61%) sepia(16%) saturate(1810%) hue-rotate(93deg) brightness(106%) contrast(88%);
+}
+
+.vote .downvoted {
+  -webkit-filter: invert(37%) sepia(20%) saturate(6817%) hue-rotate(341deg) brightness(97%) contrast(86%);
+          filter: invert(37%) sepia(20%) saturate(6817%) hue-rotate(341deg) brightness(97%) contrast(86%);
 }
 /*# sourceMappingURL=reviewStyles.css.map */

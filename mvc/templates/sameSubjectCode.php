@@ -1,6 +1,6 @@
+<?php require_once("utils.php"); ?>
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Coursecritics - UBC courses</title>
     <link rel="stylesheet" href="../css/subjectStyles.css" />
@@ -46,21 +46,15 @@
                 $ratings = $model["ratings"];
                 $text = $model["text"];
 
-                for ($i=0; $i < sizeof($ratings); $i++) {
-
-                    echo '
-                    <tr class="clickable-row" data-href="https://coursecritics.test/php/course.php?course=' . $text[$i]["course_code"] . '">
-                        <td>
-                            <span class="ratings">' . $ratings[$i]["overall"] . '</span>
-                            <span style="color:gray;">(' . $ratings[$i]["reviewCount"] . ')</span>
+                for ($i=0; $i < sizeof($ratings); $i++) : ?>
+                    <tr class="clickable-row" data-href="https://coursecritics.test/php/course.php?course=<?php echoXss($text[$i]["course_code"]); ?>"> <td>
+                            <span class="ratings"><?php echo $ratings[$i]["overall"]; ?></span>
+                            <span style="color:gray;">(<?php echo $ratings[$i]["reviewCount"]; ?>)</span>
                         </td>
-                        <td>' . $text[$i]["course_code"] . '</td>
-                        <td>' . $text[$i]["course_title"] . '</td>
-                    </tr>';
-                }
-                ?>
-
-
+                        <td><?php echoXss($text[$i]["course_code"]); ?></td>
+                        <td><?php echoXss($text[$i]["course_title"]); ?></td>
+                    </tr>
+                <?php endfor;?>
             </table>
           
         </div>

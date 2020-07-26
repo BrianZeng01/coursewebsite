@@ -24,6 +24,7 @@ class courseController extends controller {
 
         $view = new courseView();
         $view->render($model);
+        $this->courseModel->close();
     }
 
 }
