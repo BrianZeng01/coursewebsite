@@ -1,5 +1,5 @@
 <?php
-require_once("databaseConnect.php");
+require_once("databaseConnection.php");
 
 class courseModel
 {
@@ -89,7 +89,6 @@ function voteState($review, $model)
                                                 onclick='alreadyDownvoted()' type='image' src='../images/downvote.png' alt='Downvote' width='50px' /><br>
                                                 ";
         } else {
-            echo $review["upvoters"];
             echo "
                                                 <input id='upvote$id' class='null' 
                                                 onclick='upvote($votes,$id)' type='image' src='../images/upvote.png' alt='Upvote' width='50px' /><br>

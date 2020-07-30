@@ -1,4 +1,5 @@
 <?php
+
 class subjectView {
 
     public function render($model)

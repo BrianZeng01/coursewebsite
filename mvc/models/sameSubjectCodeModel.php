@@ -1,6 +1,6 @@
 <?php
 
-require_once("databaseConnect.php");
+require_once("databaseConnection.php");
 
 class sameSubjectCodeModel
 {

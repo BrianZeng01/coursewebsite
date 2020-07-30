@@ -1,4 +1,3 @@
- 
 <div class="footer">
     <div class="contactus">
         <h1>Something wrong?</h1>

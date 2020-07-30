@@ -1,7 +1,7 @@
 <?php
 require_once("../../mvc/models/votingModel.php");
 
-class voting
+class votingController
 {
 
     function __construct()
@@ -15,5 +15,5 @@ class voting
     }
 }
 
-$voting = new voting();
+$voting = new votingController();
 $voting->post($_POST["user"], $_POST["reviewId"], $_POST["voteAction"]);
