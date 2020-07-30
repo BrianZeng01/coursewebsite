@@ -48,6 +48,7 @@
                         ' People would take this course again' ?></h2>
                 <form action="review.php" method="GET">
                     <input type="hidden" name="course" value="<?php echoXss($model["course"]["course_code"]); ?>">
+                    <input type="hidden" name="courseId" value="<?php echoXss($model["course"]["course_id"]); ?>">
                     <?php if (isset($model["cookies"]["id"])) : ?>
                         <button id="makeReview" type="submit">
                             Write a Review

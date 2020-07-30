@@ -1,0 +1,22 @@
+.starBox {
+  width: 50px;
+  filter: invert(98%) sepia(2%) saturate(422%) hue-rotate(167deg)
+    brightness(93%) contrast(85%);
+}
+
+[type="radio"] + img {
+  cursor: pointer;
+}
+
+[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+#overallRating, #difficultyRating {
+  h2 {
+    display: inline-block;
+  }
+}
