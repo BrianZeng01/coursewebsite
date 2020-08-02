@@ -18,7 +18,8 @@ class reviewModel {
         $stmt->close();
 
         if($result["course_code"] == "") {
-            echo "not a course";
+            header("Location: https://coursecritics.test");
+            exit;
         }
 
         return $result;

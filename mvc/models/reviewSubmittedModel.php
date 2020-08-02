@@ -11,36 +11,53 @@ class reviewSubmittedModel
 
     public function verifyReview($review)
     {
-        $verifiedUser = $this->verifyUser($_COOKIE["id"]);
-        $verifiedCourse = $this->verifyCourse($review["courseId"]);
+        $userId = $this->verifyUser($review["courseId"]);
+        $courseCode = $this->verifyCourse($review["courseId"]);
 
         $scores = [1, 2, 3, 4, 5];
         $textbooks = ["Required", "Recommended", "Not Required"];
         $grades = ["A+", "A-", "A", "B+", "B", "B-", "C+", "C", "C-", "D", "F", "Rather Not Say", "N/A"];
         $years = range(1970, date("Y"));
-        $regex = "/^[a-zA-Z]+[\s]?[a-zA-Z]*$/";
+        $regex = "/^[a-zA-Z]*[\s]?[a-zA-Z]*$/";
 
+        print_r($review);
         if (
-            !$verifiedUser || !$verifiedCourse || !in_array($review["overall"], $scores) || !in_array($review["difficulty"], $scores) ||
+            $userId == false || $courseCode == false || !in_array($review["overall"], $scores) || !in_array($review["difficulty"], $scores) ||
             !in_array($review["textbook"], $textbooks) || !in_array($review["grade"], $grades) ||
             !in_array($review["year"], $years) || !preg_match($regex, $review["professor"]) ||
-            31 < strlen($review["professor"]) || strlen($review["professor"]) < 2
+            30 < strlen($review["professor"])
         ) {
             $this->failedVerification();
         } else {
-            $this->submitReview($review);
+            $this->submitReview($review, $courseCode);
         }
     }
 
-    public function verifyUser($user)
+    public function verifyUser($courseId)
     {
+        $query = "SELECT user_id FROM reviews WHERE course_id_fk=?";
+        $stmt = $this->databaseConnection->prepare($query);
+        $stmt->bind_param('i', $courseId);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        $stmt->close();
+
+        if (!isset($_COOKIE["id"])) {
+            echo "no cookie";
+            return false;
+        }
+
+        foreach ($result as $user) {
+            if ($_COOKIE["id"] == $user["user_id"]) {
+                return false;
+            }
+        }
         return true;
     }
-
     public function verifyCourse($courseId)
     {
 
-        $query = "SELECT course_code,course_id FROM courses WHERE course_id=?";
+        $query = "SELECT course_code FROM courses WHERE course_id=?";
         $stmt = $this->databaseConnection->prepare($query);
         $stmt->bind_param('i', $courseId);
         $stmt->execute();
@@ -50,18 +67,62 @@ class reviewSubmittedModel
         if ($result["course_code"] == "") {
             return false;
         } else {
-            return true;
+            return $result["course_code"];
         }
     }
 
-
-    public function submitReview($review)
+    public function submitReview($review, $courseCode)
     {
-        print_r($review);
-        echo "verified";
+        if (isset($review["anonymous"])) {
+            $anonymous = 1;
+        } else {
+            $anonymous = 0;
+        }
+        if (isset($review["takeAgain"])) {
+            $takeAgain = 1;
+        } else {
+            $takeAgain = 0;
+        }
+        if (rtrim($review["professor"]) == "") {
+            $professor = "N/A";
+        } else {
+            $professor = $review["professor"];
+        }
+        if ($review["advice"] == "") {
+            $advice = "N/A";
+        } else {
+            $advice = $review["advice"];
+        }
+
+        $query = "INSERT INTO reviews (difficulty,overall,grade,professor,textbook,anonymous,
+        take_again,review_comment,advice,year,user_id,user_first_name,course_id_fk)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";
+        $stmt = $this->databaseConnection->prepare($query);
+        $stmt->bind_param(
+            "iisssiississi",
+            $review["difficulty"],
+            $review["overall"],
+            $review["grade"],
+            $professor,
+            $review["textbook"],
+            $anonymous,
+            $takeAgain,
+            $review["comment"],
+            $advice,
+            $review["year"],
+            $_COOKIE["id"],
+            $_COOKIE["name"],
+            $review["courseId"]
+        );
+        $stmt->execute();
+        $stmt->close();
+
+        header("Location: https://coursecritics.test/php/course.php?course=$courseCode");
+        exit;
     }
     public function failedVerification()
     {
-        return;
+        header("Location: https://coursecritics.test");
+        exit;
     }
 }
