@@ -9,15 +9,15 @@ class reviewController {
        $this->reviewModel = new reviewModel(); 
     }
 
-    function get() {
-        $course = $_GET["course"];
-        $courseId = $_GET["courseId"];
+    function post() {
+        $courseId = $_POST["courseId"];
+        $model = $this->reviewModel->verifyCourse($courseId);
         
         $view = new reviewView();
-        $view->render($course,$courseId);
+        $view->render($model);
         
     }
 }
 
 $reviewController = new reviewController();
-$reviewController->get();
+$reviewController->post();
