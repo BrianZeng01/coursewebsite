@@ -1,6 +1,6 @@
 <?php require_once("utils.php"); ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <title>Coursecritics Review</title>
@@ -46,19 +46,9 @@
                 <h2><?php echo $model["aggregates"]["num_take_again"] . '/' .
                         num_rows($model["reviews"]) .
                         ' People would take this course again' ?></h2>
-                <form action="review.php" method="POST">
-                    <input type="hidden" name="courseId" value="<?php echoXss($model["course"]["course_id"]); ?>">
-                    <?php if (isset($model["cookies"]["id"])) : ?>
-                        <button id="makeReview" type="submit">
-                            Write a Review
-                        </button>
-                    <?php else : ?>
-                        <button id="makeReview" type="button" onclick="notLoggedIn();">
-                            Write a Review
-                        </button>
-                    <?php endif; ?>
-                    <h4 id="notLoggedIn"></h4>
-                </form>
+
+                <?php reviewState($model); ?>
+
                 <h3>Note: Sign in to submit a review and upvote/downvote. Please be mindful
                     when submitting reviews, thank you and enjoy!</h3>
                 <hr class="underline">
@@ -80,7 +70,7 @@
                                     <div class="review">
                                         <h2 style="display:inline-block;">
                                             <?php echoXss($review["anonymous"] ?
-                                                $review["user_first_name"] : "Anonymous"); ?>
+                                                "Anonymous" : $review["user_first_name"]); ?>
                                         </h2>
                                         <h4 class="date"><?php echoXss($date); ?></h4><br>
                                         <span class="ratings scores_review">
@@ -117,10 +107,10 @@
                                             <?php echoXss($review["advice"]); ?>
                                         </p>
                                     </div>
-                                    
+
                                     <?php voteState($review, $model); ?>
 
-                        <?php endforeach; ?>
+                                <?php endforeach; ?>
                         </ul>
             </div>
         </div>
