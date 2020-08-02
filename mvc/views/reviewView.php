@@ -1,7 +1,7 @@
 <?php
 
 class reviewView {
-    function render($course,$courseId) {
+    function render($model) {
         include "../mvc/templates/review.php";
     }
 }

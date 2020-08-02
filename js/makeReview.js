@@ -11,6 +11,28 @@ if (getCookie("id") === undefined) {
   window.location.replace("https://coursecritics.test");
 }
 
+$(document).ready(function () {
+  $("#comment").on("keyup keypress", function () {
+    var commentLength = document.getElementById("comment").value.length;
+    document.getElementById("commentCounter").value = 500 - commentLength;
+  });
+
+  $("#advice").on("keyup keypress", function () {
+    var adviceLength = document.getElementById("advice").value.length;
+    document.getElementById("adviceCounter").value = 500 - adviceLength;
+  });
+
+  $("#professor").on("keyup keypress", function () {
+    var professor = document.getElementById("professor");
+    var regex = /^[a-zA-Z]+[\s]?[a-zA-Z]*$/;
+
+    if (!regex.test(professor.value)) {
+      professor.value = professor.value.substr(0, professor.value.length - 1);
+    }
+  });
+
+});
+
 function overallRating(value) {
   overallValue = value;
   var elements = document
@@ -86,6 +108,10 @@ function hoverOverall(value) {
   }
 }
 
+//default checked radio buttons
+overallRating(3);
+difficultyRating(3);
+
 function hoverOffOverall() {
   overallRating(overallValue);
 }
@@ -95,7 +121,7 @@ function difficultyRating(value) {
   var elements = document
     .getElementById("difficultyRating")
     .getElementsByTagName("img");
-    
+
   for (i = 0; i < elements.length; i++) {
     elements[i].style.filter =
       "invert(98%) sepia(2%) saturate(422%) hue-rotate(167deg) brightness(93%) contrast(85%)";
@@ -170,3 +196,10 @@ function hoverOffDifficulty() {
   difficultyRating(difficultyValue);
 }
 
+var end = 1970;
+var start = new Date().getFullYear();
+var options = "<option value='' disabled selected>Year</option>";
+for (var year = start; year >= end; year--) {
+  options += "<option value=" + year + ">" + year + "</option>";
+}
+document.getElementById("year").innerHTML = options;

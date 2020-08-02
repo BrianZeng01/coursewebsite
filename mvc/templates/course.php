@@ -46,8 +46,7 @@
                 <h2><?php echo $model["aggregates"]["num_take_again"] . '/' .
                         num_rows($model["reviews"]) .
                         ' People would take this course again' ?></h2>
-                <form action="review.php" method="GET">
-                    <input type="hidden" name="course" value="<?php echoXss($model["course"]["course_code"]); ?>">
+                <form action="review.php" method="POST">
                     <input type="hidden" name="courseId" value="<?php echoXss($model["course"]["course_id"]); ?>">
                     <?php if (isset($model["cookies"]["id"])) : ?>
                         <button id="makeReview" type="submit">
