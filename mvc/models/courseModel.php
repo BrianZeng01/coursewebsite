@@ -111,3 +111,34 @@ function voteState($review, $model)
                                 ";
     }
 }
+function reviewState($model)
+{
+    $courseId = $model["course"]["course_id"];
+
+    if (isset($model["cookies"]["id"])) {
+        foreach ($model["reviews"] as $review) {
+            $reviewId = $review["review_id"];
+            if ($model["cookies"]["id"] == $review["user_id"]) {
+                echo "<form action='editReview.php' method='POST'>
+                        <input type='hidden' name='reviewId' value='$reviewId'>
+                         <button id='makeReview' type='submit'>
+                              Edit Review
+                         </button>
+                </form>";
+                return;
+            }
+        }
+        echo "<form action ='review.php' method='POST'>
+                <input type='hidden' name='courseId' value='$courseId'>
+                <button id='makeReview' type='submit'>
+                     Write a Review
+                </button>
+            </form>";
+    } else {
+        echo '<button id="makeReview" type="button" onclick="notLoggedIn();">
+                  Write a Review
+              </button>
+              <h4 id="notLoggedIn"></h4>
+                        ';
+    }
+}
