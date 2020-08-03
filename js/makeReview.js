@@ -12,7 +12,7 @@ if (getCookie("id") === undefined) {
 }
 
 $(document).ready(function () {
-  $("#comment").on("keyup keypress", function () {
+  $("#comment").on("keyup keypress keydown", function () {
     var commentLength = document.getElementById("comment").value.length;
     document.getElementById("commentCounter").value = 500 - commentLength;
   });
@@ -22,7 +22,7 @@ $(document).ready(function () {
     document.getElementById("adviceCounter").value = 500 - adviceLength;
   });
 
-  $("#professor").on("keyup keypress", function () {
+  $("#professor").on("keyup keypress keydown", function () {
     var professor = document.getElementById("professor");
     var regex = /^[a-zA-Z]+[\s]?[a-zA-Z]*$/;
 
@@ -30,7 +30,6 @@ $(document).ready(function () {
       professor.value = professor.value.substr(0, professor.value.length - 1);
     }
   });
-
 });
 
 function overallRating(value) {
@@ -109,8 +108,10 @@ function hoverOverall(value) {
 }
 
 //default checked radio buttons
-overallRating(3);
-difficultyRating(3);
+overallRating(document.querySelector("input[name=overall]:checked").value);
+difficultyRating(
+  document.querySelector("input[name=difficulty]:checked").value
+);
 
 function hoverOffOverall() {
   overallRating(overallValue);
@@ -203,3 +204,7 @@ for (var year = start; year >= end; year--) {
   options += "<option value=" + year + ">" + year + "</option>";
 }
 document.getElementById("year").innerHTML = options;
+var currentYear = document.getElementById("currentYear");
+if (typeof currentYear != "undefined" && currentYear != null) {
+  document.getElementById("year").value = currentYear.value;
+}

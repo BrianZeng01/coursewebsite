@@ -3,11 +3,13 @@
 <html lang="en">
 
 <head>
-    <title><?php echoXss($model["course_code"]); ?> Review</title>
+    <title>Editing Review</title>
     <link rel="stylesheet" href="../css/subjectStyles.css" />
     <link rel="stylesheet" href="../css/makeReviewStyles.css" />
     <?php require 'repetitiveCode/commonHTML/head.php'; ?>
+    <script src="../js/editReview.js" async></script>
     <script src="../js/makeReview.js" async></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
@@ -17,15 +19,26 @@
         <div class="header">
             <?php require 'repetitiveCode/commonHTML/nav.php'; ?>
             <div class="subjectHeader">
-                <h1 class="subjectTitle">Write a Review for <?php echoXss($model["course_code"]); ?></h1>
+                <h1 class="subjectTitle">Edit Review for <?php echoXss($model["course_code"]); ?></h1>
                 <hr size="8px" color="#072145">
             </div>
         </div>
+        
+        <input type="hidden" id="currentOverall" value="<?php echoXss($model["overall"]);?>"> 
+        <input type="hidden" id="currentDifficulty" value="<?php echoXss($model["difficulty"]);?>"> 
+        <input type="hidden" id="currentAnonymous" value="<?php echoXss($model["anonymous"]);?>"> 
+        <input type="hidden" id="currentTakeAgain" value="<?php echoXss($model["take_again"]);?>"> 
+        <input type="hidden" id="currentTextbook" value="<?php echoXss($model["textbook"]);?>"> 
+        <input type="hidden" id="currentGrade" value="<?php echoXss($model["grade"]);?>"> 
+        <input type="hidden" id="currentYear" value="<?php echoXss($model["year"]);?>"> 
+        <input type="hidden" id="currentProfessor" value="<?php echoXss($model["professor"]);?>"> 
+        <input type="hidden" id="currentComment" value="<?php echoXss($model["review_comment"]);?>"> 
+        <input type="hidden" id="currentAdvice" value="<?php echoXss($model["advice"]);?>"> 
 
         <div class="content">
 
-            <form action="reviewSubmitted.php" method="POST">
-                <input type="hidden" name="courseId" value="<?php echoXss($model["course_id"]); ?>">
+            <form action="reviewEditted.php" method="POST">
+                <input type="hidden" name="reviewId" value="<?php echoXss($model["review_id"]); ?>">
                 <div>
                     <div id="overallRating">
                         <label>
@@ -37,7 +50,7 @@
                             <img id="overallRating2" class="starBox overallRating2" onmouseover="hoverOverall(2)" onmouseout="hoverOffOverall()" src="../images/starBox.png">
                         </label>
                         <label>
-                            <input type="radio" name="overall" value=3 onclick="overallRating(3)" checked>
+                            <input type="radio" name="overall" value=3 onclick="overallRating(3)">
                             <img id="overallRating3" class="starBox overallRating3" onmouseover="hoverOverall(3)" onmouseout="hoverOffOverall()" src="../images/starBox.png">
                         </label>
                         <label>
@@ -62,7 +75,7 @@
                             <img id="difficultyRating2" class="starBox" onmouseover="hoverDifficulty(2)" onmouseout="hoverOffDifficulty()" src="../images/starBox.png">
                         </label>
                         <label>
-                            <input type="radio" name="difficulty" value=3 onclick="difficultyRating(3)" checked>
+                            <input type="radio" name="difficulty" value=3 onclick="difficultyRating(3)">
                             <img id="difficultyRating3" class="starBox" onmouseover="hoverDifficulty(3)" onmouseout="hoverOffDifficulty()" src="../images/starBox.png">
                         </label>
                         <label>
@@ -114,18 +127,19 @@
                     <div id="comments">
                         <label for="comment">Comments</label>
                         <textarea type="text" id="comment" name="comment" style="resize:none;" required maxlength="500" placeholder='At first glance, the course content seemed daunting and the workload looked heavy. However, the course had great structure and lessons were very organized which made it managable. The "simpler" material seemed kind of rushed. The course content was also extrememly relevant during my first internship and carried over into my upper year courses.'></textarea>
-                        <input disabled maxlength="3" size="3" value="500" id="commentCounter">
+                        <input disabled maxlength="3" size="3" value="<?php $value = 500 - strlen($model["review_comment"]); echo $value;?>" id="commentCounter">
 
                         <label for="advice">Advice</label>
                         <textarea type="text" id="advice" name="advice" style="resize:none;" maxlength="500" placeholder="The entire course builds on itself so make sure to keep up with the lessons. The first few weeks were quite easy which led to a lot of people underestimating the importance of the topics and struggling later on. The question bank for exams is pretty small so as long as you do a couple practice exams you will be fine."></textarea>
-                        <input disabled maxlength="3" size="3" value="500" id="adviceCounter">
+                        <input disabled maxlength="3" size="3" value="<?php $value = 500 - strlen($model["advice"]); echo $value;?>" id="adviceCounter">
                     </div>
 
                     <div id="submitReview">
-                        <input type="submit" value="Submit Review">
+                        <input type="submit" value="Edit Review">
                     </div>
 
             </form>
+
         </div>
         <?php require "repetitiveCode/commonHTML/footer.php"; ?>
     </div>

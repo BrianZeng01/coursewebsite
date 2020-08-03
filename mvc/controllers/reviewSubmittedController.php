@@ -10,8 +10,6 @@ class reviewSubmittedController {
 
     public function post() {
         $this->reviewSubmittedModel->verifyReview($_POST);
-        exit;
-
     }
 }
 
