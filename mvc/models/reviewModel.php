@@ -8,7 +8,7 @@ class reviewModel {
        $this->databaseConnection = new databaseConnection(); 
     }
 
-    public function verifyCourse($courseId) {
+    public function verifyCourseExists($courseId) {
         
         $query = "SELECT course_code,course_id FROM courses WHERE course_id=?";
         $stmt = $this->databaseConnection->prepare($query);

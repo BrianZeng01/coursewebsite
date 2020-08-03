@@ -1,7 +1,7 @@
 <?php
 require_once("../mvc/models/databaseConnection.php");
 
-class reviewSubmittedModel
+class reviewSubmittedModel 
 {
 
     function __construct()
@@ -9,10 +9,24 @@ class reviewSubmittedModel
         $this->databaseConnection = new databaseConnection();
     }
 
-    public function verifyReview($review)
+    public function verifyReview($review, $action)
     {
-        $userId = $this->verifyUser($review["courseId"]);
-        $courseCode = $this->verifyCourse($review["courseId"]);
+        if ($action == "insert") {
+            $userId = $this->verifyUserHasNoReview($review["courseId"]);
+            $courseCode = $this->verifyCourseExists($review["courseId"]);
+            $this->verifyReviewInputs($review, $userId, $courseCode);
+            $this->submitReview($review, $courseCode);
+        } else if ($action == "update") {
+            $userId = true;
+            $courseCode = true;
+            $this->verifyReviewInputs($review,$userId,$courseCode);
+            $this->updateReview($review);
+        }
+
+    }
+
+    public function verifyReviewInputs($review, $userId, $courseCode)
+    {
 
         $scores = [1, 2, 3, 4, 5];
         $textbooks = ["Required", "Recommended", "Not Required"];
@@ -20,7 +34,6 @@ class reviewSubmittedModel
         $years = range(1970, date("Y"));
         $regex = "/^[a-zA-Z]*[\s]?[a-zA-Z]*$/";
 
-        print_r($review);
         if (
             $userId == false || $courseCode == false || !in_array($review["overall"], $scores) || !in_array($review["difficulty"], $scores) ||
             !in_array($review["textbook"], $textbooks) || !in_array($review["grade"], $grades) ||
@@ -28,12 +41,10 @@ class reviewSubmittedModel
             30 < strlen($review["professor"])
         ) {
             $this->failedVerification();
-        } else {
-            $this->submitReview($review, $courseCode);
+        } 
         }
-    }
 
-    public function verifyUser($courseId)
+    public function verifyUserHasNoReview($courseId)
     {
         $query = "SELECT user_id FROM reviews WHERE course_id_fk=?";
         $stmt = $this->databaseConnection->prepare($query);
@@ -43,7 +54,6 @@ class reviewSubmittedModel
         $stmt->close();
 
         if (!isset($_COOKIE["id"])) {
-            echo "no cookie";
             return false;
         }
 
@@ -54,7 +64,7 @@ class reviewSubmittedModel
         }
         return true;
     }
-    public function verifyCourse($courseId)
+    public function verifyCourseExists($courseId)
     {
 
         $query = "SELECT course_code FROM courses WHERE course_id=?";
@@ -89,7 +99,7 @@ class reviewSubmittedModel
             $professor = $review["professor"];
         }
         if ($review["advice"] == "") {
-            $advice = "N/A";
+            $advice = "None";
         } else {
             $advice = $review["advice"];
         }

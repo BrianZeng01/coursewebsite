@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="../css/subjectStyles.css" />
     <link rel="stylesheet" href="../css/makeReviewStyles.css" />
     <?php require 'repetitiveCode/commonHTML/head.php'; ?>
-    <script src="../js/editReview.js" async></script>
-    <script src="../js/makeReview.js" async></script>
+    <script src="../js/editReview.js" defer></script>
+    <script src="../js/makeReview.js" defer></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -23,17 +23,17 @@
                 <hr size="8px" color="#072145">
             </div>
         </div>
-        
-        <input type="hidden" id="currentOverall" value="<?php echoXss($model["overall"]);?>"> 
-        <input type="hidden" id="currentDifficulty" value="<?php echoXss($model["difficulty"]);?>"> 
-        <input type="hidden" id="currentAnonymous" value="<?php echoXss($model["anonymous"]);?>"> 
-        <input type="hidden" id="currentTakeAgain" value="<?php echoXss($model["take_again"]);?>"> 
-        <input type="hidden" id="currentTextbook" value="<?php echoXss($model["textbook"]);?>"> 
-        <input type="hidden" id="currentGrade" value="<?php echoXss($model["grade"]);?>"> 
-        <input type="hidden" id="currentYear" value="<?php echoXss($model["year"]);?>"> 
-        <input type="hidden" id="currentProfessor" value="<?php echoXss($model["professor"]);?>"> 
-        <input type="hidden" id="currentComment" value="<?php echoXss($model["review_comment"]);?>"> 
-        <input type="hidden" id="currentAdvice" value="<?php echoXss($model["advice"]);?>"> 
+
+        <input type="hidden" id="currentOverall" value="<?php echoXss($model["overall"]); ?>">
+        <input type="hidden" id="currentDifficulty" value="<?php echoXss($model["difficulty"]); ?>">
+        <input type="hidden" id="currentAnonymous" value="<?php echoXss($model["anonymous"]); ?>">
+        <input type="hidden" id="currentTakeAgain" value="<?php echoXss($model["take_again"]); ?>">
+        <input type="hidden" id="currentTextbook" value="<?php echoXss($model["textbook"]); ?>">
+        <input type="hidden" id="currentGrade" value="<?php echoXss($model["grade"]); ?>">
+        <input type="hidden" id="currentYear" value="<?php echoXss($model["year"]); ?>">
+        <input type="hidden" id="currentProfessor" value="<?php echoXss($model["professor"]); ?>">
+        <input type="hidden" id="currentComment" value="<?php echoXss($model["review_comment"]); ?>">
+        <input type="hidden" id="currentAdvice" value="<?php echoXss($model["advice"]); ?>">
 
         <div class="content">
 
@@ -127,17 +127,26 @@
                     <div id="comments">
                         <label for="comment">Comments</label>
                         <textarea type="text" id="comment" name="comment" style="resize:none;" required maxlength="500" placeholder='At first glance, the course content seemed daunting and the workload looked heavy. However, the course had great structure and lessons were very organized which made it managable. The "simpler" material seemed kind of rushed. The course content was also extrememly relevant during my first internship and carried over into my upper year courses.'></textarea>
-                        <input disabled maxlength="3" size="3" value="<?php $value = 500 - strlen($model["review_comment"]); echo $value;?>" id="commentCounter">
+                        <input disabled maxlength="3" size="3" value="<?php $value = 500 - strlen($model["review_comment"]);
+                                                                        echo $value; ?>" id="commentCounter">
 
                         <label for="advice">Advice</label>
                         <textarea type="text" id="advice" name="advice" style="resize:none;" maxlength="500" placeholder="The entire course builds on itself so make sure to keep up with the lessons. The first few weeks were quite easy which led to a lot of people underestimating the importance of the topics and struggling later on. The question bank for exams is pretty small so as long as you do a couple practice exams you will be fine."></textarea>
-                        <input disabled maxlength="3" size="3" value="<?php $value = 500 - strlen($model["advice"]); echo $value;?>" id="adviceCounter">
+                        <input disabled maxlength="3" size="3" value="<?php $value = 500 - strlen($model["advice"]);
+                                                                        echo $value; ?>" id="adviceCounter">
                     </div>
 
                     <div id="submitReview">
                         <input type="submit" value="Edit Review">
                     </div>
 
+            </form>
+            <form id='deleteReview' action='deleteReview.php' method='POST'>
+                <input type='hidden' name='reviewId' value=<?php echoXss($model["review_id"]) ?>>
+                <input type="button" value="Delete Review" onclick='
+            if (confirm("Are you sure you want to Delete this Review?")) {
+                document.getElementById("deleteReview").submit();
+            };'>
             </form>
 
         </div>

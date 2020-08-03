@@ -11,7 +11,7 @@ class reviewController {
 
     function post() {
         $courseId = $_POST["courseId"];
-        $model = $this->reviewModel->verifyCourse($courseId);
+        $model = $this->reviewModel->verifyCourseExists($courseId);
         
         $view = new reviewView();
         $view->render($model);

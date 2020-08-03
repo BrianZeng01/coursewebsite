@@ -1,7 +1,8 @@
 <?php
-require_once("databaseConnection.php");
+require_once("../mvc/models/databaseConnection.php");
+require_once("../mvc/models/reviewModel.php");
 
-class courseModel
+class courseModel extends reviewModel
 {
 
     function __construct()
@@ -66,8 +67,6 @@ function voteState($review, $model)
     if (isset($model["cookies"]["id"])) {
 
         $id = $review["review_id"];
-        $upvoters = json_encode(explode(",", $review["upvoters"]));
-        $downvoters = json_encode(explode(",", $review["downvoters"]));
         echo "<div class='vote'>";
         // <!-- Only !== false can be used due to return value of strpos -->
         if (strpos($review["upvoters"], $model["cookies"]["id"]) !== false) {
@@ -140,5 +139,48 @@ function reviewState($model)
               </button>
               <h4 id="notLoggedIn"></h4>
                         ';
+    }
+}
+
+function editOrFlagReview($review) {
+    if(!isset($_COOKIE["id"])) {
+        return;
+    }
+
+    if ($review["user_id"] == $_COOKIE["id"]) {
+        editReview($review["review_id"]);
+        return;
+    } else {
+        flagReview($review["review_id"],$review["users_report"]);
+        return;
+    }
+}
+
+
+
+function editReview($reviewId) {
+        echo "<div class='edit'>
+                <form action='editReview.php' method='POST'>
+                    <input type='hidden' name='reviewId' value='$reviewId'>
+                    <button title='Edit Review'><i class='far fa-edit fa-2x'></i></button>
+                </form>
+                <form id='deleteReview' action='deleteReview.php' method='POST'>
+                    <input type='hidden' name='reviewId' value='$reviewId'>
+                    <button title='Delete Review' type='button' onclick='deleteConfirmation();'><i class='far fa-trash-alt fa-2x'></i></button>
+                </form>
+               </div>";
+}
+
+function flagReview($reviewId, $usersReport) {
+
+    if (strpos($usersReport,$_COOKIE["id"]) !== false) {
+    echo "<div class='flag'>
+            <button id='flag$reviewId' type='button' class='reported' title='Remove Report' onclick='removeReport($reviewId);'><i class ='fas fa-flag fa-2x'></i></button>
+        </div>";
+    } else {
+    echo "<div class='flag'>
+            <button id='flag$reviewId' type='button' class='notReported' title='Report Review' onclick='report($reviewId);'><i class ='fas fa-flag fa-2x'></i></button>
+        </div>";
+
     }
 }

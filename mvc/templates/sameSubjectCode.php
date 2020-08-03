@@ -1,6 +1,6 @@
 <?php require_once("utils.php"); ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Coursecritics - UBC courses</title>
     <link rel="stylesheet" href="../css/subjectStyles.css" />

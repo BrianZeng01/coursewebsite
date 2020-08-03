@@ -19,6 +19,7 @@ class courseController extends controller {
         $model["cookies"] = $_COOKIE;
         $model["course"] = $this->courseModel->getCourse($courseCode);
         $courseId = $model["course"]["course_id"];
+        $this->courseModel->verifyCourseExists($courseId);
         $model["reviews"] = $this->courseModel->getReviews($courseId);
         $model["aggregates"] = $this->courseModel->getAggregates($courseId);
 

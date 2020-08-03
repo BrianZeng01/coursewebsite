@@ -8,12 +8,12 @@ class votingController
     {
        $this->votingModel = new votingModel();   
     }
-    public function post($user, $reviewId, $voteAction)
+    public function post()
     {
-        $this->votingModel->updateVote($user, $reviewId, $voteAction);
+        $this->votingModel->updateVote($_POST["user"], $_POST["reviewId"], $_POST["voteAction"]);
 
     }
 }
 
 $voting = new votingController();
-$voting->post($_POST["user"], $_POST["reviewId"], $_POST["voteAction"]);
+$voting->post();

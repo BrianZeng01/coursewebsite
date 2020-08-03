@@ -39,7 +39,7 @@ function upvote(votes, reviewId) {
       downvoteBtn.className = "null";
     },
     error: function () {
-      console.log("failed ajax call");
+      console.log("failed ajax vote call");
     },
   });
   console.log("upvoted");
@@ -69,7 +69,7 @@ function downvote(votes, reviewId) {
       console.log("downvoted");
     },
     error: function () {
-      console.log("failed ajax call");
+      console.log("failed ajax vote call");
     },
   });
 }
@@ -98,7 +98,7 @@ function removeUpvote(votes, reviewId) {
       console.log("removeUpvote");
     },
     error: function () {
-      console.log("failed ajax call");
+      console.log("failed ajax vote call");
     },
   });
 }
@@ -128,7 +128,7 @@ function removeDownvote(votes, reviewId) {
       console.log("removeDownvote");
     },
     error: function () {
-      console.log("failed ajax call");
+      console.log("failed ajax vote call");
     },
   });
 }

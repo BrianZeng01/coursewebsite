@@ -9,7 +9,7 @@ class reviewSubmittedController {
     }
 
     public function post() {
-        $this->reviewSubmittedModel->verifyReview($_POST);
+        $this->reviewSubmittedModel->verifyReview($_POST, "insert");
     }
 }
 
