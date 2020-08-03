@@ -6,7 +6,9 @@
     <title>Coursecritics Review</title>
     <link rel="stylesheet" href="../css/subjectStyles.css" />
     <link rel="stylesheet" href="../css/reviewStyles.css" />
+    <script src="https://kit.fontawesome.com/3efe0c799c.js" crossorigin="anonymous"></script>
     <script src="../js/ratings.js" async></script>
+    <script src="../js/reportReview.js" async></script>
     <?php require 'repetitiveCode/commonHTML/head.php'; ?>
 </head>
 
@@ -43,9 +45,13 @@
                     <?php echo $model["aggregates"]["average_difficulty"]; ?>
                 </span>
                 <h1 style="display:inline;">&nbspDifficulty</h1><br>
-                <h2><?php echo $model["aggregates"]["num_take_again"] . '/' .
+                <h2><?php if (num_rows($model["reviews"]) == 0) {
+                    echo '0/0 People would take this course again';
+                } else {
+                    echo $model["aggregates"]["num_take_again"] . '/' .
                         num_rows($model["reviews"]) .
-                        ' People would take this course again' ?></h2>
+                        ' People would take this course again';
+                }?></h2>
 
                 <?php reviewState($model); ?>
 
@@ -106,6 +112,10 @@
                                         <p class="comment">
                                             <?php echoXss($review["advice"]); ?>
                                         </p>
+
+                                        <!-- One of the below options depending on if its your review -->
+                                        <?php editOrFlagReview($review); ?>
+                                        
                                     </div>
 
                                     <?php voteState($review, $model); ?>
@@ -118,7 +128,13 @@
         <?php require 'repetitiveCode/commonHTML/footer.php'; ?>
 
     </div>
-
+    <script>
+        function deleteConfirmation() {
+            if (confirm("Are you sure you want to Delete this Review?")) {
+                document.getElementById("deleteReview").submit();
+            };
+        }
+    </script>
     <script src="../js/votes.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
