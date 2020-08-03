@@ -1,9 +1,7 @@
 <?php
 require_once("../mvc/models/databaseConnection.php");
-require_once("../mvc/models/reviewModel.php");
 
-
-class editReviewModel extends reviewModel
+class editReviewModel
 {
 
     function __construct()
@@ -11,13 +9,7 @@ class editReviewModel extends reviewModel
         $this->databaseConnection = new databaseConnection();
     }
 
-    public function updateReview()
-    {
-
-        return;
-    }
-
-    public function verifyUser($userId)
+    public function verifyUserMadeThisReview($userId)
     {
         
         if (!isset($_COOKIE["id"]) || $userId != $_COOKIE["id"]) {
@@ -40,9 +32,16 @@ class editReviewModel extends reviewModel
         $stmt->execute();
         $result = $stmt->get_result()->fetch_assoc();
         $stmt->close();
+        $this->verifyUserMadeThisReview($result["user_id"]);
 
-        $this->verifyUser($result["user_id"]);
+        $query = "SELECT course_code FROM courses WHERE course_id=?";
+        $stmt = $this->databaseConnection->prepare($query);
+        $stmt->bind_param("i", $result["course_id_fk"]);
+        $stmt->execute();
+        $courseCode = $stmt->get_result()->fetch_assoc()["course_code"];
+        $stmt->close();
 
+        $result["course_code"] = $courseCode;
         return $result;
 
     }
