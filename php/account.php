@@ -1,2 +1,2 @@
 <?php
-echo "Work in Progress";
+require_once("../mvc/controllers/accountController.php");
