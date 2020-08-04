@@ -1,7 +1,7 @@
 <div class="nav">
-    <a id="home" href="../index.html">Home</a>
+    <a id="home" href="../index.php">Home</a>
     <a id="courses" href="../php/subjects.php">Courses</a>
-    <a id="contactus" href="../html/contactus.html">Contact Us</a>
+    <a id="contactus" href="../php/contactUs.php">Contact Us</a>
     <a id="account" class="account" href="../php/account.php">Account</a>
     <div id="login" onclick="loginDropdown()" class="dropdown">
         Sign In
