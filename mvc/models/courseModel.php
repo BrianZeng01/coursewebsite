@@ -61,15 +61,15 @@ AVG(difficulty) 'average_difficulty',SUM(take_again=1) 'num_take_again'
     }
 }
 
-function voteState($review, $model)
+function voteState($review)
 {
     $votes = $review["votes"];
-    if (isset($model["cookies"]["id"])) {
+    if (isset($_COOKIE["id"])) {
 
         $id = $review["review_id"];
         echo "<div class='vote'>";
         // <!-- Only !== false can be used due to return value of strpos -->
-        if (strpos($review["upvoters"], $model["cookies"]["id"]) !== false) {
+        if (strpos($review["upvoters"], $_COOKIE["id"]) !== false) {
 
             echo "
                                                 <input id='upvote$id' class='upvoted' 
@@ -78,7 +78,7 @@ function voteState($review, $model)
                                                 <input id='downvote$id' class='null' 
                                                 onclick='removeUpvote($votes,$id)' type='image' src='../images/downvote.png' alt='Downvote' width='50px' /><br>
                                                 ";
-        } elseif (strpos($review['downvoters'], $model["cookies"]["id"]) !== false) {
+        } elseif (strpos($review['downvoters'], $_COOKIE["id"]) !== false) {
 
             echo "
                                                 <input id='upvote$id' class='null' 

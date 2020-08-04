@@ -118,7 +118,7 @@
                                         
                                     </div>
 
-                                    <?php voteState($review, $model); ?>
+                                    <?php voteState($review); ?>
 
                                 <?php endforeach; ?>
                         </ul>

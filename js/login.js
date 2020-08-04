@@ -23,12 +23,12 @@ function onSignIn(googleUser) {
     document.cookie =
       "id=" +
       myUserEntity.Id +
-      "; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/;";
+      "; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/;  SameSite=None; Secure";
     document.cookie =
       "name=" +
       myUserEntity.Name +
-      "; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/;";
-    document.cookie = "thirdParty=Google; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/;";
+      "; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/; SameSite=None; Secure";
+    document.cookie = "thirdParty=Google; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/; SameSite=None; Secure";
 
 
     sessionStorage.setItem("myUserEntity", JSON.stringify(myUserEntity));
@@ -107,12 +107,12 @@ function testAPI() {
     document.cookie =
       "id=" +
       response.id +
-      "; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/;";
+      "; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/; SameSite=None; Secure";
     document.cookie =
       "name=" +
       firstname +
-      "; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/;";
-    document.cookie = "thirdParty=Facebook; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/;";
+      "; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/; SameSite=None; Secure";
+    document.cookie = "thirdParty=Facebook; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/; SameSite=None; Secure";
 
     location.reload();
     }
