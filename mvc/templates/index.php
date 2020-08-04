@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Coursecritics - UBC</title>
+    <?php require "php/repetitiveCode/commonHTML/head.php"; ?>
+    <style>
+        #home {
+            background-color: #1c77ac;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <?php require "php/repetitiveCode/commonHTML/nav.php" ?>
+            <div class="frontPageHeader">
+                <h1>
+                    CourseCritics
+                    <img src="images/reviewsymbol.png" width="65" height="65" class="symbol" />
+                </h1>
+            </div>
+            <hr />
+        </div>
+
+        <div class="content">
+            <div class="title">
+                <img src="images/ubcsymbol.png" />
+                <div>
+                    <h1>The University of British Columbia - Vancouver Campus</h1>
+                    <h3>A place of mind</h3>
+                </div>
+            </div>
+
+            <div class="ubcinfo">
+                <h2 class="firstline">
+                    Finding the right courses can be a stressful task.<br />
+                    Come share the experiences you've had with courses and learn which
+                    courses might be right for you.
+                </h2>
+            </div>
+
+            <div class="searchinput">
+                <form action="php/course.php" method="GET">
+                    <h1>Enter A Course Code</h1>
+                    <div id="courseDoesNotExist"></div>
+                    <input id="search" list="datalist1" type="text" name="course" placeholder="Eg. MATH 100" maxlength="10" />
+                    <button type="button" id="submit" onclick="courseDoesNotExist();">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <div id="courseList"></div>
+                </form>
+            </div>
+
+            <div class="browse">
+                <a href="php/subjects.php">Browse All Courses</a>
+            </div>
+        </div>
+
+        <?php require "php/repetitiveCode/commonHTML/footer.php"; ?>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="js/searchBar.js"></script>
+</body>
+
+</html>
