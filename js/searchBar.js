@@ -15,7 +15,7 @@ $(document).ready(function () {
       $.ajax({
         url: "../php/ajax/search.php",
         method: "POST",
-        data: { query: query },
+        data: { query: query, searchAction: "courses" },
         success: function (data) {
           $("#courseList").html(data);
           // console.log(data);
