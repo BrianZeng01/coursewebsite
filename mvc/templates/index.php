@@ -46,25 +46,34 @@
                 <form action="php/course.php" method="GET">
                     <h1>Enter A Course Code</h1>
                     <div id="courseDoesNotExist"></div>
-                    <input id="search" list="datalist1" type="text" name="course" placeholder="Eg. MATH 100" maxlength="10" />
-                    <button type="button" id="submit" onclick="courseDoesNotExist();">
+                    <input id="searchCourse" list="datalistCourse" type="text" name="course" placeholder="Eg. MATH 100" maxlength="10" />
+                    <button type="button" id="submitCourse" onclick="courseDoesNotExist();">
                         <i class="fa fa-search"></i>
                     </button>
                     <div id="courseList"></div>
+                </form>
+                <form action="php/sameSubjectCode.php" method="GET">
+                    <h1><br> Or <br><br> Enter a Subject Code</h1>
+                    <div id="subjectDoesNotExist"></div>
+                    <input id="searchSubject" list="datalistSubject" type="text" name="courses" placeholder="Eg. MATH 100" maxlength="10" />
+                    <button type="button" id="submitSubject" onclick="subjectDoesNotExist();">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <div id="subjectList"></div>
                 </form>
             </div>
 
             <div class="browse">
                 <a href="php/subjects.php">Browse All Courses</a>
+                </?>
             </div>
+
+            <?php require "php/repetitiveCode/commonHTML/footer.php"; ?>
         </div>
 
-        <?php require "php/repetitiveCode/commonHTML/footer.php"; ?>
-    </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="js/searchBar.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="js/searchBar.js"></script>
 </body>
 
 </html>

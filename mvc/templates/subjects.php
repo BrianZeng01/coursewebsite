@@ -27,17 +27,28 @@
 
 
         <div class="content">
+
             <div class="searchinput">
-                <form action="course.php">
+                <form action="course.php" method="GET">
                     <h1>Enter A Course Code</h1>
                     <div id="courseDoesNotExist"></div>
-                    <input id="search" list="datalist1" type="text" name="course" placeholder="Eg. MATH 100" />
-                    <button type="button" id="submit" onclick="courseDoesNotExist();">
+                    <input id="searchCourse" list="datalistCourse" type="text" name="course" placeholder="Eg. MATH 100" maxlength="10" />
+                    <button type="button" id="submitCourse" onclick="courseDoesNotExist();">
                         <i class="fa fa-search"></i>
                     </button>
+                    <div id="courseList"></div>
                 </form>
-                <div id="courseList"></div>
+                <form action="sameSubjectCode.php" method="GET">
+                    <h1><br> Or <br><br> Enter a Subject Code</h1>
+                    <div id="subjectDoesNotExist"></div>
+                    <input id="searchSubject" list="datalistSubject" type="text" name="courses" placeholder="Eg. MATH 100" maxlength="10" />
+                    <button type="button" id="submitSubject" onclick="subjectDoesNotExist();">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <div id="subjectList"></div>
+                </form>
             </div>
+
 
             <div class="note">
                 <h3>Note: Sign in to submit a review. Please be mindful

@@ -21,7 +21,7 @@ class searchModel
                 $stmt->execute();
                 $result = $stmt->get_result();
                 $stmt->close();
-                $output = '<datalist id="datalist1">';
+                $output = '<datalist id="datalistCourse">';
 
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_array($result)) {
@@ -30,9 +30,29 @@ class searchModel
                 }
                 $output .= '</datalist>';
                 echo $output;
-            } else {
-                return;
+            }
+        } else {
+            if (isset($post["query"]) && $post["searchAction"] == "subject") {
+                $output = '';
+                $input = $post["query"] . "%";
+                $query = "SELECT subject_code FROM subjects WHERE subject_code like ? LIMIT 30";
+                $stmt = $this->databaseConnection->prepare($query);
+                $stmt->bind_param('s', $input);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $stmt->close();
+                $output = '<datalist id="datalistSubject">';
+
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_array($result)) {
+                        $output .= '<option>' . $row["subject_code"] . '</option>';
+                    }
+                }
+                $output .= '</datalist>';
+                echo $output;
             }
         }
+
+        return;
     }
 }

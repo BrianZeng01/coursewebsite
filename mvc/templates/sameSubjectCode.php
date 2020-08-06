@@ -18,18 +18,6 @@
         </div>
 
         <div class="content">
-            <div class="searchinput">
-                <form action="course.php">
-                    <h1>Enter A Course Code</h1>
-                    <div id="courseDoesNotExist"></div>
-                    <input id="search" list="datalist1" type="text" name="course" placeholder="Eg. MATH 100" />
-                    <button type="button" id="submit" onclick="courseDoesNotExist();">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </form>
-                <div id="courseList"></div>
-            </div>
-
 
             <div class="note">
                 <h3>Note: Sign in to submit a review. Please be mindful
