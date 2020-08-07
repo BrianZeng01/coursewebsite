@@ -1,8 +1,7 @@
 <?php
 require_once("../mvc/models/databaseConnection.php");
-require_once("../mvc/models/reviewModel.php");
 
-class courseModel extends reviewModel
+class courseModel
 {
 
     function __construct()
@@ -127,12 +126,13 @@ function reviewState($model)
                 return;
             }
         }
-        echo "<form action ='review.php' method='POST'>
-                <input type='hidden' name='courseId' value='$courseId'>
-                <button id='makeReview' type='submit'>
+        echo "
+            <div id='reviewBox'>
+                <button id='writeReview' type='button' onclick='writeReview($courseId)'>
                      Write a Review
                 </button>
-            </form>";
+            </div>
+            ";
     } else {
         echo '<button id="makeReview" type="button" onclick="notLoggedIn();">
                   Write a Review
@@ -142,8 +142,9 @@ function reviewState($model)
     }
 }
 
-function editOrFlagReview($review) {
-    if(!isset($_COOKIE["id"])) {
+function editOrFlagReview($review)
+{
+    if (!isset($_COOKIE["id"])) {
         return;
     }
 
@@ -151,15 +152,16 @@ function editOrFlagReview($review) {
         editReview($review["review_id"]);
         return;
     } else {
-        flagReview($review["review_id"],$review["users_report"]);
+        flagReview($review["review_id"], $review["users_report"]);
         return;
     }
 }
 
 
 
-function editReview($reviewId) {
-        echo "<div class='edit'>
+function editReview($reviewId)
+{
+    echo "<div class='edit'>
                 <form action='editReview.php' method='POST'>
                     <input type='hidden' name='reviewId' value='$reviewId'>
                     <button title='Edit Review'><i class='far fa-edit fa-2x'></i></button>
@@ -171,16 +173,16 @@ function editReview($reviewId) {
                </div>";
 }
 
-function flagReview($reviewId, $usersReport) {
+function flagReview($reviewId, $usersReport)
+{
 
-    if (strpos($usersReport,$_COOKIE["id"]) !== false) {
-    echo "<div class='flag'>
+    if (strpos($usersReport, $_COOKIE["id"]) !== false) {
+        echo "<div class='flag'>
             <button id='flag$reviewId' type='button' class='reported' title='Remove Report' onclick='removeReport($reviewId);'><i class ='fas fa-flag fa-2x'></i></button>
         </div>";
     } else {
-    echo "<div class='flag'>
+        echo "<div class='flag'>
             <button id='flag$reviewId' type='button' class='notReported' title='Report Review' onclick='report($reviewId);'><i class ='fas fa-flag fa-2x'></i></button>
         </div>";
-
     }
 }

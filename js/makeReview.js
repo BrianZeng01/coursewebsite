@@ -11,6 +11,39 @@ if (getCookie("id") === undefined) {
   window.location.replace("https://coursecritics.test");
 }
 
+function writeReview(courseId) {
+  $.ajax({
+    url: "../mvc/controllers/reviewController.php",
+    method: "POST",
+    data: { courseId: courseId, action: "reviewBox" },
+    success: function (data) {
+      document.getElementById("writeReview").style.display = "none";
+      reviewBox = document.getElementById("reviewBox");
+      reviewBox.innerHTML = data;
+      if (data.length > 1000) {
+        //default checked radio buttons
+        overallRating(
+          document.querySelector("input[name=overall]:checked").value
+        );
+        difficultyRating(
+          document.querySelector("input[name=difficulty]:checked").value
+        );
+        //Year dropdown
+        var end = 1970;
+        var start = new Date().getFullYear();
+        var options = "<option value='' disabled selected>Year</option>";
+        for (var year = start; year >= end; year--) {
+          options += "<option value=" + year + ">" + year + "</option>";
+        }
+        document.getElementById("year").innerHTML = options;
+        var currentYear = document.getElementById("currentYear");
+        if (typeof currentYear != "undefined" && currentYear != null) {
+          document.getElementById("year").value = currentYear.value;
+        }
+      }
+    },
+  });
+}
 $(document).ready(function () {
   $("#comment").on("keyup keypress keydown", function () {
     var commentLength = document.getElementById("comment").value.length;
@@ -107,12 +140,6 @@ function hoverOverall(value) {
   }
 }
 
-//default checked radio buttons
-overallRating(document.querySelector("input[name=overall]:checked").value);
-difficultyRating(
-  document.querySelector("input[name=difficulty]:checked").value
-);
-
 function hoverOffOverall() {
   overallRating(overallValue);
 }
@@ -195,16 +222,4 @@ function hoverDifficulty(value) {
 
 function hoverOffDifficulty() {
   difficultyRating(difficultyValue);
-}
-
-var end = 1970;
-var start = new Date().getFullYear();
-var options = "<option value='' disabled selected>Year</option>";
-for (var year = start; year >= end; year--) {
-  options += "<option value=" + year + ">" + year + "</option>";
-}
-document.getElementById("year").innerHTML = options;
-var currentYear = document.getElementById("currentYear");
-if (typeof currentYear != "undefined" && currentYear != null) {
-  document.getElementById("year").value = currentYear.value;
 }

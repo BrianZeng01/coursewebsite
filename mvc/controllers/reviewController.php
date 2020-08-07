@@ -1,6 +1,5 @@
 <?php
-require_once("../mvc/models/reviewModel.php");
-require_once("../mvc/views/reviewView.php");
+require_once $_SERVER['DOCUMENT_ROOT'] . "/mvc/models/reviewModel.php";
 
 class reviewController {
 
@@ -10,14 +9,16 @@ class reviewController {
     }
 
     function post() {
+        $action = $_POST["action"];
+        if ($action == "reviewBox") {
         $courseId = $_POST["courseId"];
-        $model = $this->reviewModel->verifyCourseExists($courseId);
+        $this->reviewModel->verifyCourseExists($courseId, $action);
+        } else if($action == "insert") {
+            $this->reviewModel->submitReview($_POST);
+        }
         
-        $view = new reviewView();
-        $view->render($model);
         
     }
 }
-
 $reviewController = new reviewController();
 $reviewController->post();
