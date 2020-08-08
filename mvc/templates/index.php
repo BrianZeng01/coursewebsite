@@ -37,7 +37,7 @@
             <div class="ubcinfo">
                 <h2 class="firstline">
                     Finding the right courses can be a stressful task.<br />
-                    Come share the experiences you've had with courses and learn which
+                    Come share the experiences you've had with courses and explore which
                     courses might be right for you.
                 </h2>
             </div>
@@ -68,9 +68,10 @@
                 </?>
             </div>
 
-            <?php require "php/repetitiveCode/commonHTML/footer.php"; ?>
         </div>
 
+        <?php require "php/repetitiveCode/commonHTML/footer.php"; ?>
+        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src="js/searchBar.js"></script>

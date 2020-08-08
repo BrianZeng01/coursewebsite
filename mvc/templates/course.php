@@ -10,7 +10,6 @@
 
     <script src="../js/ratings.js" defer></script>
     <script src="../js/makeReview.js" defer></script>
-    <script src="../js/reportReview.js" async></script>
     <?php require 'repetitiveCode/commonHTML/head.php'; ?>
 </head>
 
@@ -48,14 +47,15 @@
                 </span>
                 <h1 style="display:inline;">&nbspDifficulty</h1><br>
                 <h2><?php if (num_rows($model["reviews"]) == 0) {
-                    echo '0/0 People would take this course again';
-                } else {
-                    echo $model["aggregates"]["num_take_again"] . '/' .
-                        num_rows($model["reviews"]) .
-                        ' People would take this course again';
-                }?></h2>
-
-                <?php reviewState($model); ?>
+                        echo '0/0 People would take this course again';
+                    } else {
+                        echo $model["aggregates"]["num_take_again"] . '/' .
+                            num_rows($model["reviews"]) .
+                            ' People would take this course again';
+                    } ?></h2>
+                <div id="reviewBox">
+                    <?php reviewState($model); ?>
+                </div>
 
                 <h3>Note: Sign in to submit a review and upvote/downvote. Please be mindful
                     when submitting reviews, thank you and enjoy!</h3>
@@ -117,7 +117,7 @@
 
                                         <!-- One of the below options depending on if its your review -->
                                         <?php editOrFlagReview($review); ?>
-                                        
+
                                     </div>
 
                                     <?php voteState($review); ?>

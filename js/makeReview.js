@@ -44,6 +44,97 @@ function writeReview(courseId) {
     },
   });
 }
+
+function editReviewInputs() {
+  var currentOverall = document.getElementById("currentOverall").value;
+  var currentDifficulty = document.getElementById("currentDifficulty").value;
+  var currentAnonymous = document.getElementById("currentAnonymous").value;
+  var currentTakeAgain = document.getElementById("currentTakeAgain").value;
+  var currentTextbook = document.getElementById("currentTextbook").value;
+  var currentGrade = document.getElementById("currentGrade").value;
+  //current year selected in bottom of makeReview.js due to javascript loading order
+  var currentProfessor = document.getElementById("currentProfessor").value;
+
+  //Year dropdown
+  var end = 1970;
+  var start = new Date().getFullYear();
+  var options = "<option value='' disabled selected>Year</option>";
+  for (var year = start; year >= end; year--) {
+    options += "<option value=" + year + ">" + year + "</option>";
+  }
+  document.getElementById("year").innerHTML = options;
+  var currentYear = document.getElementById("currentYear");
+  if (typeof currentYear != "undefined" && currentYear != null) {
+    document.getElementById("year").value = currentYear.value;
+  }
+
+  $("input[name=overall][value=" + currentOverall + "]").attr("checked", true);
+  $("input[name=difficulty][value=" + currentDifficulty + "]").attr(
+    "checked",
+    true
+  );
+  overallRating(document.querySelector("input[name=overall]:checked").value);
+  difficultyRating(
+    document.querySelector("input[name=difficulty]:checked").value
+  );
+  if (currentAnonymous == 1) {
+    document.getElementById("anonymous").checked = true;
+  }
+  if (currentTakeAgain == 1) {
+    document.getElementById("takeAgain").checked = true;
+  }
+  document.getElementById("textbook").value = currentTextbook;
+  document.getElementById("grade").value = currentGrade;
+  //current year selected in bottom of makeReview.js due to javascript loading order
+  if (currentProfessor != "N/A") {
+    document.getElementById("professor").value = currentProfessor;
+  }
+}
+
+function report(reviewId, action) {
+  $.ajax({
+    url: "../php/review.php",
+    method: "POST",
+    data: { user: getCookie("id"), reviewId: reviewId, action: action },
+    success: function (data) {
+      if (JSON.parse(data) == "report") {
+        console.log("reported review");
+        var flag = document.getElementById("flag" + reviewId);
+        flag.onclick = function () {
+          report(reviewId, "removeReport");
+        };
+        flag.className = "reported";
+        flag.title = "Remove Report";
+      } else {
+        console.log("removed report on review");
+        var flag = document.getElementById("flag" + reviewId);
+        flag.onclick = function () {
+          report(reviewId, "report");
+        };
+        flag.className = "notReported";
+        flag.title = "Report Review";
+      }
+    },
+    error: function () {
+      console.log("failed to flag review");
+    },
+  });
+}
+
+function editReview(reviewId) {
+  $.ajax({
+    url: "../mvc/controllers/reviewController.php",
+    method: "POST",
+    data: { reviewId: reviewId, action: "editReviewBox" },
+    success: function (data) {
+      console.log("editing review");
+      reviewBox = document.getElementById("reviewBox");
+      reviewBox.innerHTML = data;
+      editReviewInputs();
+    },
+  });
+}
+
 $(document).ready(function () {
   $("#comment").on("keyup keypress keydown", function () {
     var commentLength = document.getElementById("comment").value.length;

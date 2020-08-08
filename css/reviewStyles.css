@@ -19,16 +19,16 @@
 
 .underline {
   height: 6px;
-  background-color: #071245;
+  background-color: #213458;
 }
 
 .overview .scores {
   padding-right: 0;
   font-size: 2rem;
-  padding-left: .4rem;
+  padding-left: 0.4rem;
 }
 
-.overview #makeReview {
+.overview #writeReview {
   background-color: #071245;
   font-size: 2rem;
   color: white;
@@ -37,8 +37,8 @@
   cursor: pointer;
 }
 
-.overview #makeReview:hover {
-  background-color: #1c77ac;
+.overview #writeReview:hover {
+  background-color: #1D7D81;
 }
 
 .overview #notLoggedIn {
@@ -92,7 +92,7 @@
 .review .scores_review {
   padding-right: 0;
   font-size: 1.5rem;
-  padding-left: .3rem;
+  padding-left: 0.3rem;
 }
 
 .review .commentHeader {
@@ -116,7 +116,36 @@
   font-size: 1rem;
 }
 
-.nav {
+.review button {
+  outline: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.review form {
+  display: inline-block;
+}
+
+.review .edit {
+  float: right;
+}
+
+.review .flag {
+  float: right;
+}
+
+.review .flag .notReported {
+  -webkit-filter: invert(79%) sepia(5%) saturate(284%) hue-rotate(314deg) brightness(90%) contrast(85%);
+          filter: invert(79%) sepia(5%) saturate(284%) hue-rotate(314deg) brightness(90%) contrast(85%);
+}
+
+.review .flag .reported {
+  -webkit-filter: invert(37%) sepia(20%) saturate(6817%) hue-rotate(341deg) brightness(97%) contrast(86%);
+          filter: invert(37%) sepia(20%) saturate(6817%) hue-rotate(341deg) brightness(97%) contrast(86%);
+}
+
+.review .nav {
   z-index: 2;
 }
 

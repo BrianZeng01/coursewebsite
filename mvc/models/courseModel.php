@@ -117,21 +117,18 @@ function reviewState($model)
         foreach ($model["reviews"] as $review) {
             $reviewId = $review["review_id"];
             if ($model["cookies"]["id"] == $review["user_id"]) {
-                echo "<form action='editReview.php' method='POST'>
-                        <input type='hidden' name='reviewId' value='$reviewId'>
-                         <button id='makeReview' type='submit'>
+                echo "
+                         <button id='writeReview' type='button' onclick='editReview($reviewId)'>
                               Edit Review
                          </button>
-                </form>";
+                ";
                 return;
             }
         }
         echo "
-            <div id='reviewBox'>
                 <button id='writeReview' type='button' onclick='writeReview($courseId)'>
                      Write a Review
                 </button>
-            </div>
             ";
     } else {
         echo '<button id="makeReview" type="button" onclick="notLoggedIn();">
@@ -166,8 +163,9 @@ function editReview($reviewId)
                     <input type='hidden' name='reviewId' value='$reviewId'>
                     <button title='Edit Review'><i class='far fa-edit fa-2x'></i></button>
                 </form>
-                <form id='deleteReview' action='deleteReview.php' method='POST'>
+                <form id='deleteReview' action='review.php' method='POST'>
                     <input type='hidden' name='reviewId' value='$reviewId'>
+                    <input type='hidden' name='action' value='delete'>
                     <button title='Delete Review' type='button' onclick='deleteConfirmation();'><i class='far fa-trash-alt fa-2x'></i></button>
                 </form>
                </div>";
@@ -178,11 +176,11 @@ function flagReview($reviewId, $usersReport)
 
     if (strpos($usersReport, $_COOKIE["id"]) !== false) {
         echo "<div class='flag'>
-            <button id='flag$reviewId' type='button' class='reported' title='Remove Report' onclick='removeReport($reviewId);'><i class ='fas fa-flag fa-2x'></i></button>
+            <button id='flag$reviewId' type='button' class='reported' title='Remove Report' onclick='report($reviewId, \"removeReport\");'><i class ='fas fa-flag fa-2x'></i></button>
         </div>";
     } else {
         echo "<div class='flag'>
-            <button id='flag$reviewId' type='button' class='notReported' title='Report Review' onclick='report($reviewId);'><i class ='fas fa-flag fa-2x'></i></button>
+            <button id='flag$reviewId' type='button' class='notReported' title='Report Review' onclick='report($reviewId, \"report\");'><i class ='fas fa-flag fa-2x'></i></button>
         </div>";
     }
 }

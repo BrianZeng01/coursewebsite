@@ -6,8 +6,7 @@
     <title>CourseCritics-My Account</title>
     <link rel="stylesheet" href="../css/subjectStyles.css" />
     <link rel="stylesheet" href="../css/reviewStyles.css" />
-    <script src="https://kit.fontawesome.com/3efe0c799c.js" crossorigin="anonymous"></script>
-    <script src="../js/ratings.js" async></script>
+    <script src="../js/ratings.js" defer></script>
 
     <?php require "repetitiveCode/commonHTML/head.php"; ?>
 </head>

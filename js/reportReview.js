@@ -4,12 +4,12 @@ function getCookie(name) {
   if (parts.length === 2) return parts.pop().split(";").shift();
 }
 
-function report(reviewId) {
+function report(reviewId, action) {
   $.ajax({
     url: "../php/ajax/reporting.php",
     type: "POST",
-    data: { user: getCookie("id"), reviewId: reviewId, reportAction: "report" },
-    success: function () {
+    data: { user: getCookie("id"), reviewId: reviewId, action: action },
+    success: function (data) {
       console.log("reported review");
 
       var flag = document.getElementById("flag" + reviewId);

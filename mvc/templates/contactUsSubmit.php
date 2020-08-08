@@ -12,6 +12,7 @@
 
        <div style="padding-top: 5rem" class="content">
            <h2>We greatly appreciate your feedback!</h2> 
+           
        </div>
 
        <?php require "repetitiveCode/commonHTML/footer.php"; ?>
