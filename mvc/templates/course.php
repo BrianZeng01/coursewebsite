@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/makeReviewStyles.css" />
 
     <script src="../js/ratings.js" defer></script>
-    <script src="../js/makeReview.js" defer></script>
+    <script src="../js/review.js" defer></script>
     <?php require 'repetitiveCode/commonHTML/head.php'; ?>
 </head>
 
