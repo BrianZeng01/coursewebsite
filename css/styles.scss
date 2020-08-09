@@ -1,9 +1,5 @@
 @import "./variables";
 
-// @media screen and (min-width: 480px) {
-//   body {
-//   }
-// }
 .grecaptcha-badge {
   visibility: hidden;
 }
@@ -47,13 +43,11 @@ body {
     text-align: center;
     width: 100%;
     a {
+      display: inline-block;
+      width: 100%;
       color: white;
       font-size: 1.5rem;
       text-decoration: none;
-      &:first-child {
-        border-top: solid;
-        border-color: black;
-      }
 
       &:hover {
         background-color: $secondaryColor;
@@ -70,6 +64,9 @@ body {
       }
       a {
         border: none;
+        &:hover {
+          background: rgb(233, 54, 54);
+        }
       }
     }
 
@@ -112,12 +109,15 @@ body {
 .header {
   display: grid;
   text-align: center;
-
-  img {
-    max-width: 100%;
-    height: auto;
-    object-fit: cover;
+  .headerImage {
+    width: 100%;
+    height: 275px;
+    background-image: url("../images/ubctitle.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
   }
+
   h1,
   h3 {
     justify-items: center;
@@ -138,25 +138,6 @@ body {
     height: 10px;
     background-color: $primaryColor;
   }
-  // .frontPageHeader {
-  //   text-align: center;
-  //   font-size: 2.75rem;
-  //   background-image: url(../images/ubctitle.jpg);
-  //   background-size: cover;
-  //   background-blend-mode: multiply;
-  //   left: 0;
-  //   right: 0;
-  //   overflow-x: hidden;
-  //   padding: 14.5rem;
-  //   @media screen and (min-width: 480px) {
-  //     img {
-  //       display: none;
-  //     }
-  //     h1 {
-  //       font-size: 4.5rem;
-  //     }
-  //   }
-  // }
 }
 
 .content {
@@ -233,19 +214,26 @@ body {
   text-align: center;
   color: white;
 
-  h3 {
-    margin: 0.5em;
-    text-decoration: underline;
+  .footerLogo {
+    display: none;
   }
 
-  p {
-    margin: 1.5em;
-    padding: 0;
-  }
+  .text {
+    h3 {
+      margin: 0.5em;
+      text-decoration: underline;
+    }
 
-  a {
-    color: white;;
-    text-decoration: none;
+    p {
+      margin: 1.5em;
+      padding: 0;
+      color: lightgray;
+    }
+
+    a {
+      color: lightgray;
+      text-decoration: none;
+    }
   }
   .contactus {
     a {
@@ -256,6 +244,151 @@ body {
       text-decoration: none;
       &:hover {
         background-color: $secondaryColor;
+      }
+    }
+  }
+  .copyright {
+    color: lightgray;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .headerImage {
+    width: 100%;
+    height: 500px;
+    background-image: url("../images/ubctitle.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+
+  .header {
+    h1 {
+      font-size: 2em;
+    }
+    h3 {
+      font-size: 1.5em;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .mainNav {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    a {
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+    }
+    .nav-logo {
+      display: none;
+    }
+
+    .burger-menu {
+      display: none;
+    }
+
+    .links {
+      display: grid;
+      grid-template-columns: 6fr 1fr;
+
+      .pages {
+        display: grid;
+        margin-right: 5em;
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  }
+
+  .headerImage {
+    width: 100%;
+    height: 500px;
+    background-image: url("../images/ubctitle.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+  .content {
+    .firstline {
+      padding-left: 5em;
+      padding-right: 5em;
+    }
+  }
+
+  .footer {
+    p {
+      padding-left: 15em;
+      padding-right: 15em;
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .mainNav {
+    .links {
+      .pages {
+        display: grid;
+        margin-right: 15em;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .mainNav {
+    .links {
+      .pages {
+        display: grid;
+        margin-right: 25em;
+      }
+    }
+  }
+  .content {
+    .firstline {
+      padding-left: 20em;
+      padding-right: 20em;
+    }
+  }
+  .footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+
+    .footerLogo {
+      display: inline;
+    }
+    .contactus {
+      h3 {
+        font-size: 1.5em;
+      }
+      a {
+        font-size: 1.5em;
+      }
+    }
+    .copyright {
+      grid-column: 1/4;
+      color: gray;
+    }
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .mainNav {
+    .links {
+      .pages {
+        display: grid;
+        margin-right: 35em;
+      }
+    }
+  }
+}
+@media screen and (min-width: 1600px) {
+  .mainNav {
+    .links {
+      .pages {
+        display: grid;
+        margin-right: 45em;
       }
     }
   }

@@ -4,47 +4,37 @@
 <head>
     <title>Coursecritics - UBC</title>
     <?php require "php/repetitiveCode/commonHTML/head.php"; ?>
-    <style>
-        #home {
-            background-color: #1c77ac;
-            text-decoration: underline;
-        }
-    </style>
 </head>
-
+<style>
+    #home {
+        text-decoration: underline;
+        font-weight: bold;
+    }
+</style>
 <body>
+    <?php require "php/repetitiveCode/commonHTML/nav.php" ?>
     <div class="container">
         <div class="header">
-            <?php require "php/repetitiveCode/commonHTML/nav.php" ?>
-            <div class="frontPageHeader">
-                <h1>
-                    CourseCritics
-                    <img src="images/reviewsymbol.png" width="65" height="65" class="symbol" />
-                </h1>
-            </div>
-            <hr />
+            <div class="headerImage"></div>
+            <hr>
+            <h1>The University of British Columbia <br>- Vancouver Campus</h1>
+            <h3>A place of mind</h3>
         </div>
 
         <div class="content">
-            <div class="title">
-                <img src="images/ubcsymbol.png" />
-                <div>
-                    <h1>The University of British Columbia - Vancouver Campus</h1>
-                    <h3>A place of mind</h3>
-                </div>
-            </div>
+
 
             <div class="ubcinfo">
-                <h2 class="firstline">
-                    Finding the right courses can be a stressful task.<br />
+                <h3 class="firstline">
+                    Finding the right courses can be a stressful task.
                     Come share the experiences you've had with courses and explore which
                     courses might be right for you.
-                </h2>
+                </h3>
             </div>
 
             <div class="searchinput">
                 <form action="php/course.php" method="GET">
-                    <h1>Enter A Course Code</h1>
+                    <h2>Enter A Course Code</h2>
                     <div id="courseDoesNotExist"></div>
                     <input id="searchCourse" list="datalistCourse" type="text" name="course" placeholder="Eg. MATH 100" maxlength="10" />
                     <button type="button" id="submitCourse" onclick="courseDoesNotExist();">
@@ -52,8 +42,9 @@
                     </button>
                     <div id="courseList"></div>
                 </form>
+                <h2>OR</h2>
                 <form action="php/sameSubjectCode.php" method="GET">
-                    <h1><br> Or <br><br> Enter a Subject Code</h1>
+                    <h2>Enter a Subject Code</h2>
                     <div id="subjectDoesNotExist"></div>
                     <input id="searchSubject" list="datalistSubject" type="text" name="courses" placeholder="Eg. MATH 100" maxlength="10" />
                     <button type="button" id="submitSubject" onclick="subjectDoesNotExist();">
@@ -65,13 +56,12 @@
 
             <div class="browse">
                 <a href="php/subjects.php">Browse All Courses</a>
-                </?>
             </div>
 
         </div>
 
         <?php require "php/repetitiveCode/commonHTML/footer.php"; ?>
-        
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src="js/searchBar.js"></script>
