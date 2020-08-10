@@ -1,168 +1,254 @@
 @import "./variables";
 
-.content {
-  margin-left: 30%;
-  margin-right: 30%;
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-    margin-left: 5%;
-    margin-right: 5%;
-  }
+.reviewInputs {
+  padding-top: 0.5em;
+  padding-left: 1em;
+  color: white;
+  border-style: solid none none none;
+  border-color: $primaryColor;
+  border-width: 8px;
+  padding-left: 0;
+  background-color: $secondaryColor;
+  background-image: url("../images/diagmonds-light.png");
 
-  @media screen and (max-width: 1400px) {
-    margin-left: 15%;
-    margin-right: 15%;
+  form {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    justify-items: center;
+    label {
+      font-size: 1.3em;
+    }
+    .starBox {
+      width: 40px;
+      filter: invert(98%) sepia(2%) saturate(422%) hue-rotate(167deg)
+        brightness(93%) contrast(85%);
+    }
+
+    [type="radio"] + img {
+      cursor: pointer;
+    }
+
+    [type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    #overallRating,
+    #difficultyRating {
+      grid-column: 1/13;
+      h2 {
+        display: inline-block;
+        font-size: 2em;
+      }
+    }
+
+    .anonymous {
+      grid-column: 1/6;
+    }
+    .takeAgain {
+      grid-column: 6/13;
+    }
+
+    .textbook {
+      grid-column: 1/5;
+    }
+
+    .grade {
+      grid-column: 5/9;
+    }
+
+    .year {
+      grid-column: 9/13;
+    }
+
+    .professor {
+      grid-column: 1/13;
+    }
+
+    .comment,
+    .advice {
+      grid-column: 1/13;
+    }
   }
 }
 
-.underline {
-  height: 6px;
-  background-color: $primaryColor;
+.mainNav {
+  z-index: 2;
+}
+
+body {
+  font-size: 0.8em;
+}
+textarea {
+  border: none;
+  height: 250px;
+  width: 100%;
 }
 
 .overview {
+  margin-left: 1em;
   .scores {
     padding-right: 0;
     font-size: 2rem;
     padding-left: 0.4rem;
   }
+}
 
-  #writeReview {
-    background-color: #071245;
-    font-size: 2rem;
-    color: white;
-    padding: 0.5rem;
-    border-radius: 15px;
-    cursor: pointer;
+#writeReview {
+  margin-bottom: 1em;
+  margin-left: 0.5em;
+  background-color: #071245;
+  font-size: 2rem;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 15px;
+  cursor: pointer;
 
-    &:hover {
-      background-color: $secondaryColor;
-    }
+  &:hover {
+    background-color: $secondaryColor;
   }
+}
 
-  #notLoggedIn {
-    color: red;
-  }
+#notLoggedIn {
+  color: red;
+}
+
+.sort {
+  margin-left: 1em;
+  margin-right: 1em;
 }
 
 .allReviews {
   ul {
+    margin-bottom: 0;
+    margin-top: 0;
     list-style-type: none;
     margin-left: 0;
     padding: 0;
   }
 
   li {
-    display: flex;
-    flex-direction: row;
-    &:nth-child(odd) {
+    display: grid;
+    grid-template-columns: 7fr 1fr;
+    &:nth-child(even) {
       background-color: #f2f4f4;
     }
 
-    &:nth-child(even) {
+    &:nth-child(odd) {
       background-color: #e5e8e8;
     }
+
+    .review {
+      margin-top: 0;
+      margin-bottom: 0;
+      padding: 1rem;
+      padding-top: 0.2rem;
+
+      .ratingHeaders {
+        margin-top: 0;
+        display: inline-block;
+        margin-right: 20px;
+      }
+      h3 {
+        display: inline-block;
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .scores_review {
+        padding-right: 0;
+        font-size: 1.5rem;
+        padding-left: 0.3rem;
+      }
+      .commentHeader {
+        margin-top: 1em;
+        margin-bottom: 0;
+      }
+
+      .h3seperators {
+        width: 215px;
+      }
+
+      .date {
+        float: right;
+      }
+
+      .comment,
+      .advice {
+        margin-top: 0;
+        font-size: 1em;
+      }
+      .advice {
+        margin-bottom: 0;
+      }
+    }
+
+    .reviewBottom {
+      display: grid;
+      justify-items: right;
+      grid-column: 1/3;
+    }
+    .edit,
+    .flag {
+      padding-right: 0.5em;
+      padding-bottom: 0.75em;
+      div {
+        display: inline-block;
+      }
+
+    }
+
+    button {
+      display: inline-block;
+      outline: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .flag {
+      .notReported {
+        filter: invert(79%) sepia(5%) saturate(284%) hue-rotate(314deg)
+          brightness(90%) contrast(85%);
+      }
+
+      .reported {
+        filter: invert(37%) sepia(20%) saturate(6817%) hue-rotate(341deg)
+          brightness(97%) contrast(86%);
+      }
+    }
+    .vote {
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 50px 20px 30px minmax(auto, auto);
+      align-items: center;
+      justify-items: center;
+      input {
+        cursor: pointer;
+        outline: none;
+      }
+
+      .null {
+        filter: invert(79%) sepia(5%) saturate(284%) hue-rotate(314deg)
+          brightness(90%) contrast(85%);
+      }
+
+      .upvoted {
+        filter: invert(61%) sepia(16%) saturate(1810%) hue-rotate(93deg)
+          brightness(106%) contrast(88%);
+      }
+
+      .downvoted {
+        filter: invert(37%) sepia(20%) saturate(6817%) hue-rotate(341deg)
+          brightness(97%) contrast(86%);
+      }
+    }
   }
 }
 
-.review {
+.footer {
   margin-top: 0;
-  margin-bottom: 0;
-  padding: 1rem;
-  padding-top: 0.2rem;
-  flex: 1;
-
-  .ratingHeaders {
-    display: inline-block;
-    margin-right: 100px;
-  }
-  h3 {
-    display: inline-block;
-    margin-top: 0;
-  }
-
-  .scores_review {
-    padding-right: 0;
-    font-size: 1.5rem;
-    padding-left: 0.3rem;
-  }
-  .commentHeader {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-
-  .comment {
-    margin-top: 0;
-  }
-  .h3seperators {
-    width: 215px;
-  }
-
-  .date {
-    float: right;
-  }
-
-  .comment {
-    font-size: 1rem;
-  }
-
-  button {
-    outline: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-
-  form {
-    display: inline-block;
-  }
-
-  .edit {
-    float: right;
-  }
-
-  .flag {
-    float: right;
-
-    .notReported {
-      filter: invert(79%) sepia(5%) saturate(284%) hue-rotate(314deg)
-        brightness(90%) contrast(85%);
-    }
-
-    .reported {
-      filter: invert(37%) sepia(20%) saturate(6817%) hue-rotate(341deg)
-        brightness(97%) contrast(86%);
-    }
-  }
-
-  .nav {
-    z-index: 2;
-  }
-}
-
-.vote {
-  background-color: white;
-  padding-left: 1rem;
-  vertical-align: middle;
-  position: relative;
-  z-index: 1;
-
-  input {
-    cursor: pointer;
-    outline: none;
-  }
-
-  .null {
-    filter: invert(79%) sepia(5%) saturate(284%) hue-rotate(314deg)
-      brightness(90%) contrast(85%);
-  }
-
-  .upvoted {
-    filter: invert(61%) sepia(16%) saturate(1810%) hue-rotate(93deg)
-      brightness(106%) contrast(88%);
-  }
-
-  .downvoted {
-    filter: invert(37%) sepia(20%) saturate(6817%) hue-rotate(341deg)
-      brightness(97%) contrast(86%);
-  }
 }

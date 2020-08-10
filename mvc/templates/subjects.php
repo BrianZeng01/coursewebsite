@@ -4,73 +4,83 @@
 
 <head>
     <title>Coursecritics - UBC courses</title>
-    <link rel="stylesheet" href="../css/subjectStyles.css" />
     <?php require 'repetitiveCode/commonHTML/head.php'; ?>
+    <link rel="stylesheet" href="../css/subjectStyles.css" />
 
     <style>
         #courses {
-            background-color: #1c77ac;
+            font-weight: bold;
             text-decoration: underline;
         }
     </style>
 </head>
 
 <body>
+    <?php require 'repetitiveCode/commonHTML/nav.php'; ?>
     <div class="container">
         <div class="header">
-            <?php require 'repetitiveCode/commonHTML/nav.php'; ?>
-            <div class="subjectHeader">
-                <h1 class="subjectTitle">CourseCritics: UBC Course Schedule</h1>
-                <hr>
-            </div>
+            <h1 class="subjectTitle">UBC Course Schedule</h1>
+            <hr>
         </div>
 
 
         <div class="content">
 
             <div class="searchinput">
-                <form action="course.php" method="GET">
-                    <h1>Enter A Course Code</h1>
-                    <div id="courseDoesNotExist"></div>
-                    <input id="searchCourse" list="datalistCourse" type="text" name="course" placeholder="Eg. MATH 100" maxlength="10" />
-                    <button type="button" id="submitCourse" onclick="courseDoesNotExist();">
-                        <i class="fa fa-search"></i>
-                    </button>
-                    <div id="courseList"></div>
-                </form>
-                <form action="sameSubjectCode.php" method="GET">
-                    <h1><br> Or <br><br> Enter a Subject Code</h1>
-                    <div id="subjectDoesNotExist"></div>
-                    <input id="searchSubject" list="datalistSubject" type="text" name="courses" placeholder="Eg. MATH 100" maxlength="10" />
-                    <button type="button" id="submitSubject" onclick="subjectDoesNotExist();">
-                        <i class="fa fa-search"></i>
-                    </button>
-                    <div id="subjectList"></div>
-                </form>
+                <div>
+                    <form action="course.php" method="GET">
+                        <h1>Enter A Course Code</h1>
+                        <div id="courseDoesNotExist"></div>
+                        <input id="searchCourse" list="datalistCourse" type="text" name="course" placeholder="Eg. MATH 100" maxlength="10" />
+                        <button type="button" id="submitCourse" onclick="courseDoesNotExist();">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        <div id="courseList"></div>
+                    </form>
+                </div>
+                <div>
+                    <h1>OR</h1>
+                </div>
+                <div>
+                    <form action="sameSubjectCode.php" method="GET">
+                        <h1>Enter a Subject Code</h1>
+                        <div id="subjectDoesNotExist"></div>
+                        <input id="searchSubject" list="datalistSubject" type="text" name="courses" placeholder="Eg. MATH 100" maxlength="10" />
+                        <button type="button" id="submitSubject" onclick="subjectDoesNotExist();">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        <div id="subjectList"></div>
+                    </form>
+                </div>
             </div>
 
 
             <div class="note">
-                <h3>Note: Sign in to submit a review. Please be mindful
-                    when submitting reviews, thank you and enjoy!</h3>
+                <h4>Note: Sign in to submit a review. Please be mindful
+                    when submitting reviews, thank you and enjoy!</h4>
             </div>
 
-            <table>
-                <tr>
-                    <th>Subject Code</th>
-                    <th>Title</th>
-                    <th>Faculty or School</th>
-                </tr>
-
-                <?php foreach ($model as $subject) : ?>
-                    <tr class="clickable-row" data-href="https://coursecritics.test/php/sameSubjectCode.php?courses=<?php echo $subject['subject_code'] ?>">
-                        <td><?php echoXss($subject['subject_code']); ?></td>
-                        <td><?php echoXss($subject['subject_title']); ?></td>
-                        <td><?php echoXss($subject['faculty_or_school']); ?></td>
+            <div>
+                <table>
+                    <col class="col1">
+                    <col class="col2">
+                    <col class="col3">
+                    <tr>
+                        <td>Subject</td>
+                        <td>Title</td>
+                        <td>Faculty Or School</td>
                     </tr>
-                <?php endforeach; ?>
 
-            </table>
+                    <?php foreach ($model as $subject) : ?>
+                        <tr class="clickable-row" data-href="https://coursecritics.test/php/sameSubjectCode.php?courses=<?php echo $subject['subject_code'] ?>">
+                            <td><?php echoXss($subject['subject_code']); ?></td>
+                            <td><?php echoXss($subject['subject_title']); ?></td>
+                            <td><?php echoXss($subject['faculty_or_school']); ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+
+                </table>
+            </div>
         </div>
         <?php require 'repetitiveCode/commonHTML/footer.php'; ?>
     </div>

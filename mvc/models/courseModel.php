@@ -71,41 +71,32 @@ function voteState($review)
         if (strpos($review["upvoters"], $_COOKIE["id"]) !== false) {
 
             echo "
-                                                <input id='upvote$id' class='upvoted' 
-                                                onclick='alreadyUpvoted()' type='image' src='../images/upvote.png' alt='Upvote' width='50px' /><br>
-                                                <h2 id='votes$id' style='text-align:center;'>$votes</h2>
-                                                <input id='downvote$id' class='null' 
-                                                onclick='removeUpvote($votes,$id)' type='image' src='../images/downvote.png' alt='Downvote' width='50px' /><br>
-                                                ";
+                    <i id='upvote$id' class='fas fa-caret-up fa-3x upvoted' onclick='alreadyUpvoted()'></i>
+                    <h2 id='votes$id'>$votes</h2>
+                    <i id='downvote$id' class='fas fa-caret-down fa-3x null' onclick='removeUpvote($votes,$id)'></i>
+                    ";
         } elseif (strpos($review['downvoters'], $_COOKIE["id"]) !== false) {
 
             echo "
-                                                <input id='upvote$id' class='null' 
-                                                onclick='removeDownvote($votes,$id)' type='image' src='../images/upvote.png' alt='Upvote' width='50px' /><br>
-                                                <h2 id='votes$id' style='text-align:center;'>$votes</h2>
-                                                <input id='downvote$id' class='downvoted' 
-                                                onclick='alreadyDownvoted()' type='image' src='../images/downvote.png' alt='Downvote' width='50px' /><br>
-                                                ";
+                    <i id='upvote$id' class='fas fa-caret-up fa-3x null' onclick='removeDownvote($votes,$id)'></i>
+                    <h2 id='votes$id'>$votes</h2>
+                    <i id='downvote$id' class='fas fa-caret-down fa-3x downvoted' onclick='alreadyDownvoted()'></i>
+                    ";
         } else {
             echo "
-                                                <input id='upvote$id' class='null' 
-                                                onclick='upvote($votes,$id)' type='image' src='../images/upvote.png' alt='Upvote' width='50px' /><br>
-                                                <h2 id='votes$id' style='text-align:center;'>$votes</h2>
-                                                <input id='downvote$id' class='null' 
-                                                onclick='downvote($votes,$id)' type='image' src='../images/downvote.png' alt='Downvote' width='50px' /><br>
-                                                ";
+                    <i id='upvote$id' class='fas fa-caret-up fa-3x null' onclick='upvote($votes,$id)'></i>
+                    <h2 id='votes$id'>$votes</h2>
+                    <i id='downvote$id' class='fas fa-caret-down fa-3x null' onclick='downvote($votes,$id)'></i>
+                 ";
         };
-        echo "</div> </li>";
+        echo "</div>";
     } else {
         echo "
                                 <div class='vote'>
-                                    <input type='image' class='null' src='../images/upvote.png' alt='Upvote' width='50px' /><br>
-
-                                    <h2 style='text-align:center;'>$votes</h2>
-
-                                    <input type='image' class='null' src='../images/downvote.png' alt='Downvote' width='50px' />
+                                     <i class='fas fa-caret-up fa-3x null'></i>
+                                    <h2>$votes</h2>
+                                     <i class='fas fa-caret-down fa-3x null'></i>
                                 </div>
-                                </li>
                                 ";
     }
 }
@@ -131,7 +122,7 @@ function reviewState($model)
                 </button>
             ";
     } else {
-        echo '<button id="makeReview" type="button" onclick="notLoggedIn();">
+        echo '<button id="writeReview" type="button" onclick="notLoggedIn();">
                   Write a Review
               </button>
               <h4 id="notLoggedIn"></h4>
@@ -158,17 +149,22 @@ function editOrFlagReview($review)
 
 function editReview($reviewId)
 {
-    echo "<div class='edit'>
-                <form action='editReview.php' method='POST'>
-                    <input type='hidden' name='reviewId' value='$reviewId'>
-                    <button title='Edit Review'><i class='far fa-edit fa-2x'></i></button>
-                </form>
-                <form id='deleteReview' action='review.php' method='POST'>
-                    <input type='hidden' name='reviewId' value='$reviewId'>
-                    <input type='hidden' name='action' value='delete'>
-                    <button title='Delete Review' type='button' onclick='deleteConfirmation();'><i class='far fa-trash-alt fa-2x'></i></button>
-                </form>
-               </div>";
+    echo"
+    <div class='reviewBottom'>
+        <div class='edit'>
+            <div class='editBtn'>
+                <button type='button' title='Edit Review' onclick='editReview($reviewId)'>
+                        <i class='far fa-edit fa-2x'></i>
+                </button>
+            </div>
+            <div class='deleteBtn'>
+                <button title='Delete Review' type='button' onclick='deleteConfirmation($reviewId,\"delete\");'>
+                    <i class='far fa-trash-alt fa-2x'></i>
+                </button>
+            </div>
+        </div>
+    </div>
+        ";
 }
 
 function flagReview($reviewId, $usersReport)

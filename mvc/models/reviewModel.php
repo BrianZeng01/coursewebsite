@@ -32,21 +32,6 @@ class reviewModel
         }
     }
 
-    // public function verifyReview($review, $action)
-    // {
-    //     if ($action == "insert") {
-    //         $this->verifyUserHasNoReview($review["courseId"]);
-    //         $this->verifyCourseExists($review["courseId"]);
-    //         $this->verifyReviewInputs($review);
-    //         $this->submitReview($review);
-    //     } else if ($action == "update") {
-    //         $userId = true;
-    //         $courseId = true;
-    //         $this->verifyReviewInputs($review);
-    //         $this->updateReview($review);
-    //     }
-    // }
-
     public function verifyReviewInputs($review, $courseIdBoolean)
     {
         $scores = [1, 2, 3, 4, 5];
@@ -77,15 +62,17 @@ class reviewModel
         if ($action == "reviewBox") {
             if (!isset($_COOKIE["id"])) {
                 echo "<h2>You've already written a Review</h2>";
+                exit;
             }
 
             foreach ($result as $user) {
                 if ($_COOKIE["id"] == $user["user_id"]) {
                     echo "<h2>You've already written a Review</h2>";
+                    exit;
                 }
             }
 
-            require_once("../../php/repetitiveCode/commonHTML/reviewInputs.php");
+            require_once("repetitiveCode/commonHTML/reviewInputs.php");
             exit;
         } else if ($action == "insert") {
             if (!isset($_COOKIE["id"])) {

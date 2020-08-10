@@ -1,6 +1,7 @@
 <?php require_once("utils.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Coursecritics - UBC courses</title>
     <link rel="stylesheet" href="../css/subjectStyles.css" />
@@ -8,43 +9,73 @@
 </head>
 
 <body>
+    <?php require 'repetitiveCode/commonHTML/nav.php'; ?>
     <div class="container">
         <div class="header">
-            <?php require 'repetitiveCode/commonHTML/nav.php'; ?>
-            <div class="subjectHeader">
-                <h1 class="subjectTitle">CourseCritics: UBC Course Schedule</h1>
-                <hr size="8px" color="#072145">
-            </div>
+            <h1 class="subjectTitle">UBC Course Schedule:<br>
+                <?php echoXss($_GET["courses"]) ?>
+            </h1>
+            <hr>
         </div>
 
         <div class="content">
-
+            <div class="searchinput">
+                <div>
+                    <form action="course.php" method="GET">
+                        <h1>Enter A Course Code</h1>
+                        <div id="courseDoesNotExist"></div>
+                        <input id="searchCourse" list="datalistCourse" type="text" name="course" placeholder="Eg. MATH 100" maxlength="10" />
+                        <button type="button" id="submitCourse" onclick="courseDoesNotExist();">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        <div id="courseList"></div>
+                    </form>
+                </div>
+                <div>
+                    <h1>OR</h1>
+                </div>
+                <div>
+                    <form action="sameSubjectCode.php" method="GET">
+                        <h1>Enter a Subject Code</h1>
+                        <div id="subjectDoesNotExist"></div>
+                        <input id="searchSubject" list="datalistSubject" type="text" name="courses" placeholder="Eg. MATH 100" maxlength="10" />
+                        <button type="button" id="submitSubject" onclick="subjectDoesNotExist();">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        <div id="subjectList"></div>
+                    </form>
+                </div>
+            </div>
             <div class="note">
-                <h3>Note: Sign in to submit a review. Please be mindful
-                    when submitting reviews, thank you and enjoy!</h3>
+                <h4>Note: Sign in to submit a review. Please be mindful
+                    when submitting reviews, thank you and enjoy!</h4>
             </div>
             <table>
+                <col class="col1">
+                <col class="col2">
+                <col class="col3">
                 <tr>
-                    <th>Ratings</th>
-                    <th>Course</th>
-                    <th>Title</th>
+                    <td>Ratings</td>
+                    <td>Course</td>
+                    <td>Title</td>
                 </tr>
 
-                <?php 
+                <?php
                 $ratings = $model["ratings"];
                 $text = $model["text"];
 
-                for ($i=0; $i < sizeof($ratings); $i++) : ?>
-                    <tr class="clickable-row" data-href="https://coursecritics.test/php/course.php?course=<?php echoXss($text[$i]["course_code"]); ?>"> <td>
+                for ($i = 0; $i < sizeof($ratings); $i++) : ?>
+                    <tr class="clickable-row" data-href="https://coursecritics.test/php/course.php?course=<?php echoXss($text[$i]["course_code"]); ?>">
+                        <td>
                             <span class="ratings"><?php echo $ratings[$i]["overall"]; ?></span>
                             <span style="color:gray;">(<?php echo $ratings[$i]["reviewCount"]; ?>)</span>
                         </td>
                         <td><?php echoXss($text[$i]["course_code"]); ?></td>
                         <td><?php echoXss($text[$i]["course_title"]); ?></td>
                     </tr>
-                <?php endfor;?>
+                <?php endfor; ?>
             </table>
-          
+
         </div>
         <?php require 'repetitiveCode/commonHTML/footer.php'; ?>
     </div>

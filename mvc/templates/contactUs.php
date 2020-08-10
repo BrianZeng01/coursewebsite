@@ -4,6 +4,12 @@
 <head>
     <title>CourseCritics-Contact Us</title>
     <?php require "repetitiveCode/commonHTML/head.php"; ?>
+    <style>
+        #contactUs {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
@@ -20,6 +26,7 @@
                 <select id="reason" name="reason" required>
                     <option value="Technical Issue">Technical Issue</option>
                     <option value="Feedback">Feedback</option>
+                    <option value="Missing Course">Missing Course</option>
                     <option value="Other">Other</option>
                 </select>
 

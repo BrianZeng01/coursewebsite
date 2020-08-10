@@ -14,7 +14,7 @@
         <div class="pages">
             <div><a id="home" href="../index.php">Home</a></div>
             <div><a id="courses" href="../php/subjects.php">Courses</a></div>
-            <div><a id="contactus" href="../php/contactUs.php">Contact Us</a></div>
+            <div><a id="contactUs" href="../php/contactUs.php">Contact Us</a></div>
             <div><a id="account" class="account" href="../php/account.php">Account</a></div>
         </div>
 

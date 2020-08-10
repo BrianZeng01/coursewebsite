@@ -4,32 +4,28 @@
 
 <head>
     <title>Coursecritics Review</title>
+    <?php require 'repetitiveCode/commonHTML/head.php'; ?>
     <link rel="stylesheet" href="../css/subjectStyles.css" />
     <link rel="stylesheet" href="../css/reviewStyles.css" />
-    <link rel="stylesheet" href="../css/makeReviewStyles.css" />
 
     <script src="../js/ratings.js" defer></script>
     <script src="../js/review.js" defer></script>
-    <?php require 'repetitiveCode/commonHTML/head.php'; ?>
 </head>
 
 <body>
+    <?php require 'repetitiveCode/commonHTML/nav.php'; ?>
     <div class="container">
         <div class="header">
-            <?php require 'repetitiveCode/commonHTML/nav.php'; ?>
-            <div class="subjectHeader">
-                <h1 class="subjectTitle">
-                    <?php echoXss($model["course"]["course_code"]); ?> Reviews
-                </h1>
-                <hr size="8px" color="#072145">
-            </div>
+            <h1 class="subjectTitle">
+                <?php echoXss($model["course"]["course_code"]); ?> Reviews
+            </h1>
+            <hr>
         </div>
 
         <div class="content">
 
             <div class="overview">
                 <h1>Overview</h1>
-                <hr class="underline">
                 <h1><?php echo $model["course"]["course_code"] ?>
                     <span class="numOfReviews">
                         (<?php echo num_rows($model["reviews"]); ?> reviews)
@@ -53,90 +49,99 @@
                             num_rows($model["reviews"]) .
                             ' People would take this course again';
                     } ?></h2>
-                <div id="reviewBox">
-                    <?php reviewState($model); ?>
-                </div>
-
-                <h3>Note: Sign in to submit a review and upvote/downvote. Please be mindful
-                    when submitting reviews, thank you and enjoy!</h3>
-                <hr class="underline">
+            </div>
+            <div id="reviewBox">
+                <?php reviewState($model); ?>
             </div>
 
-            <div class=allReviews>
-                <h1>Reviews<h1>
-                        <h3>Sort by: Work in Progress</h3>
-                        <hr class="underline">
-                        <ul>
-                            <?php foreach ($model["reviews"] as $review) : ?>
-                                <?php
-                                $mysql_date = strtotime($review["date"]);
-                                $date = date("M d/Y", $mysql_date);
-                                $difficulty = number_format((float) round($review["difficulty"], 1), 1, '.', '');
-                                $overall = number_format((float) round($review["overall"], 1), 1, '.', '');
-                                ?>
-                                <li>
-                                    <div class="review">
-                                        <h2 style="display:inline-block;">
-                                            <?php echoXss($review["anonymous"] ?
-                                                "Anonymous" : $review["user_first_name"]); ?>
-                                        </h2>
-                                        <h4 class="date"><?php echoXss($date); ?></h4><br>
-                                        <span class="ratings scores_review">
-                                            <?php echo $overall; ?>
-                                        </span>
-                                        <h2 class="ratingHeaders">&nbspOverall</h2>
-                                        <span class="ratings_difficulty scores_review">
-                                            <?php echo $difficulty; ?>
-                                        </span>
+            <hr>
+            <div class="sort">
+                <h1>Reviews</h1>
+                <h3>Sort by: Work in Progress</h3>
+                <h3>Note: Sign in to submit a review and upvote/downvote. Please be mindful
+                    when submitting reviews, thank you and enjoy!</h3>
 
-                                        <h2 class="ratingHeaders">&nbspDifficulty</h2><br>
-                                        <h3 class="h3seperators">
-                                            Prof: <?php echoXss($review["professor"]); ?>
-                                        </h3>
-                                        <h3>
-                                            Textbook: <?php echoXss($review["textbook"]); ?>
-                                        </h3><br>
+            </div>
 
-                                        <h3 class="h3seperators">
-                                            Grade: <?php echoXss($review["grade"]); ?>
-                                        </h3>
-                                        <h3 class="h3seperators">
-                                            Year: <?php echoXss($review["year"]); ?>
-                                        </h3>
-                                        <h3>Take Again?
-                                            <?php echoXss($review["take_again"] ? "Yes" : "No"); ?></h3>
+            <hr>
+            <div class="allReviews">
+                <ul>
+                    <?php foreach ($model["reviews"] as $review) : ?>
+                        <?php
+                        $mysql_date = strtotime($review["date"]);
+                        $date = date("M d/Y", $mysql_date);
+                        $difficulty = number_format((float) round($review["difficulty"], 1), 1, '.', '');
+                        $overall = number_format((float) round($review["overall"], 1), 1, '.', '');
+                        ?>
+                        <li>
+                            <div class="review">
+                                <h2 style="display:inline-block;">
+                                    <?php echoXss($review["anonymous"] ?
+                                        "Anonymous" : $review["user_first_name"]); ?>
+                                </h2>
+                                <h4 class="date"><?php echoXss($date); ?></h4><br>
+                                <div>
+                                    <span class="ratings scores_review">
+                                        <?php echo $overall; ?>
+                                    </span>
+                                    <h2 class="ratingHeaders">&nbspOverall</h2>
+                                </div>
+                                <div>
+                                    <span class="ratings_difficulty scores_review">
+                                        <?php echo $difficulty; ?>
+                                    </span>
+                                    <h2 class="ratingHeaders">&nbspDifficulty</h2><br>
+                                </div>
+                                <h3 class="h3seperators">
+                                    Prof: <span style="font-weight: normal;">
+                                        <?php echoXss($review["professor"]); ?>
+                                    </span>
+                                </h3>
+                                <h3>
+                                    Textbook: <span style="font-weight: normal;">
+                                        <?php echoXss($review["textbook"]); ?>
+                                        </style>
+                                </h3><br>
 
-                                        <h2 class="commentHeader">Comments</h2>
-                                        <p class="comment">
-                                            <?php echoXss($review["review_comment"]); ?>
-                                        </p>
-                                        <h2 class="commentHeader">Advice</h2>
-                                        <p class="comment">
-                                            <?php echoXss($review["advice"]); ?>
-                                        </p>
+                                <h3 class="h3seperators">
+                                    Grade: <span style="font-weight: normal;">
+                                        <?php echoXss($review["grade"]); ?>
+                                        </style>
+                                </h3>
+                                <h3 class="h3seperators">
+                                    Year: <span style="font-weight: normal;">
+                                        <?php echoXss($review["year"]); ?>
+                                        </style>
+                                </h3>
+                                <h3>Take Again?
+                                    <span style="font-weight: normal;">
+                                        <?php echoXss($review["take_again"] ? "Yes" : "No"); ?></h3>
+                                </style>
+                                <h2 class="commentHeader">Comments</h2>
+                                <p class="comment">
+                                    <?php echoXss($review["review_comment"]); ?>
+                                </p>
+                                <h2 class="commentHeader">Advice</h2>
+                                <p class="advice">
+                                    <?php echoXss($review["advice"]); ?>
+                                </p>
+                            </div>
 
-                                        <!-- One of the below options depending on if its your review -->
-                                        <?php editOrFlagReview($review); ?>
+                            <!-- One of the below options depending on if its your review -->
 
-                                    </div>
 
-                                    <?php voteState($review); ?>
+                            <?php voteState($review); ?>
+                            <?php editOrFlagReview($review); ?>
+                        </li>
 
-                                <?php endforeach; ?>
-                        </ul>
+                    <?php endforeach; ?>
+                </ul>
             </div>
         </div>
 
         <?php require 'repetitiveCode/commonHTML/footer.php'; ?>
 
     </div>
-    <script>
-        function deleteConfirmation() {
-            if (confirm("Are you sure you want to Delete this Review?")) {
-                document.getElementById("deleteReview").submit();
-            };
-        }
-    </script>
     <script src="../js/votes.js"></script>
 </body>
 

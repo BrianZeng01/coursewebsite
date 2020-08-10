@@ -7,13 +7,9 @@ function getCookie(name) {
   if (parts.length === 2) return parts.pop().split(";").shift();
 }
 
-if (getCookie("id") === undefined) {
-  window.location.replace("https://coursecritics.test");
-}
-
 function writeReview(courseId) {
   $.ajax({
-    url: "../mvc/controllers/reviewController.php",
+    url: "../php/review.php",
     method: "POST",
     data: { courseId: courseId, action: "reviewBox" },
     success: function (data) {
@@ -91,6 +87,23 @@ function editReviewInputs() {
   }
 }
 
+function deleteConfirmation(reviewId, action) {
+  if (confirm("Are you sure you want to Delete this Review?")) {
+    // document.getElementById("deleteReview").submit();
+    $.ajax({
+      url: "../php/review.php",
+      method: "POST",
+      data: { reviewId: reviewId, action: action },
+      success: function () {
+        return;
+      },
+      error: function () {
+        console.log("failed to delete review");
+      },
+    });
+  }
+}
+
 function report(reviewId, action) {
   $.ajax({
     url: "../php/review.php",
@@ -131,6 +144,7 @@ function editReview(reviewId) {
       reviewBox = document.getElementById("reviewBox");
       reviewBox.innerHTML = data;
       editReviewInputs();
+      reviewBox.scrollIntoView();
     },
   });
 }

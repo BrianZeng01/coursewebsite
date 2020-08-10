@@ -1,25 +1,14 @@
 @import "./variables";
 
-.subjectHeader {
-  margin-bottom: 2rem;
-  margin-top: 60px;
-
-  h1 {
-    background-color: $secondaryColor;
-    width: 100%;
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-    text-align: center;
+.header {
+  .subjectTitle {
     color: white;
-  }
-
-  hr {
-    height: 8px;
+    font-size: 2em;
     margin-top: 0;
-    background-color: $primaryColor;
-    border-color: $primaryColor;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    background-color: $secondaryColor;
+    background-image: url("../images/diagmonds-light.png");
   }
 }
 
@@ -28,14 +17,25 @@
 }
 
 table {
-  margin: 0 auto;
+  overflow: hidden;
+  table-layout: fixed;
+  width: 100%;
   border-color: $primaryColor;
-  border-style: none solid solid solid;
+  border-style: none none solid none;
   border-width: 5px;
   border-spacing: 0;
   border-collapse: collapse;
   cursor: pointer;
 
+  .col1 {
+    width: 20%;
+  }
+  .col2 {
+    width: 40%;
+  }
+  .col3 {
+    width: 40%;
+  }
   tr {
     &:nth-child(odd) {
       background-color: lightskyblue;
@@ -45,22 +45,16 @@ table {
       background: $primaryColor;
       color: white;
     }
+    &:first-child {
+      color: white;
+      background-color: $primaryColor;
+    }
   }
 
   td {
     padding-bottom: 0.3rem;
     padding-top: 0.3rem;
-    padding-right: 3rem;
-  }
-
-  th {
-    text-align: left;
-    padding-right: 3.5rem;
-    color: white;
-    background-color: $primaryColor;
-    font-size: 1.1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding-left: 0.2em;
   }
 }
 

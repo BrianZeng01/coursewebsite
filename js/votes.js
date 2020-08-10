@@ -32,11 +32,11 @@ function upvote(votes, reviewId) {
       upvoteBtn.onclick = function () {
         alreadyUpvoted();
       };
-      upvoteBtn.className = "upvoted";
+      upvoteBtn.classList.remove("null");
+      upvoteBtn.classList.add("upvoted");
       downvoteBtn.onclick = function () {
         removeUpvote(newVotes, reviewId);
       };
-      downvoteBtn.className = "null";
     },
     error: function () {
       console.log("failed ajax vote call");
@@ -49,23 +49,23 @@ function downvote(votes, reviewId) {
   $.ajax({
     url: "../php/ajax/voting.php",
     type: "POST",
-    data: { user: getCookie("id"), reviewId: reviewId, voteAction: "downvote"},
+    data: { user: getCookie("id"), reviewId: reviewId, voteAction: "downvote" },
     success: function () {
       console.log("upvote sent to database");
 
       var newVotes = parseInt(votes) - 1;
       var upvoteBtn = document.getElementById("upvote" + reviewId);
-     var downvoteBtn = document.getElementById("downvote" + reviewId);
+      var downvoteBtn = document.getElementById("downvote" + reviewId);
 
       document.getElementById("votes" + reviewId).innerHTML = newVotes;
       downvoteBtn.onclick = function () {
         alreadyDownvoted();
       };
-      downvoteBtn.className = "downvoted";
+      downvoteBtn.classList.remove("null");
+      downvoteBtn.classList.add("downvoted");
       upvoteBtn.onclick = function () {
         removeDownvote(newVotes, reviewId);
       };
-      upvoteBtn.className = "null";
       console.log("downvoted");
     },
     error: function () {
@@ -78,7 +78,11 @@ function removeUpvote(votes, reviewId) {
   $.ajax({
     url: "../php/ajax/voting.php",
     type: "POST",
-    data: { user: getCookie("id"), reviewId: reviewId, voteAction: "removeUpvote" },
+    data: {
+      user: getCookie("id"),
+      reviewId: reviewId,
+      voteAction: "removeUpvote",
+    },
     success: function () {
       console.log("upvote sent to database");
 
@@ -90,11 +94,11 @@ function removeUpvote(votes, reviewId) {
       downvoteBtn.onclick = function () {
         downvote(newVotes, reviewId);
       };
-      downvoteBtn.className = "null";
       upvoteBtn.onclick = function () {
         upvote(newVotes, reviewId);
       };
-      upvoteBtn.className = "null";
+      upvoteBtn.classList.remove("upvoted");
+      upvoteBtn.classList.add("null");
       console.log("removeUpvote");
     },
     error: function () {
@@ -107,7 +111,11 @@ function removeDownvote(votes, reviewId) {
   $.ajax({
     url: "../php/ajax/voting.php",
     type: "POST",
-    data: { user: getCookie("id"), reviewId: reviewId, voteAction: "removeDownvote" },
+    data: {
+      user: getCookie("id"),
+      reviewId: reviewId,
+      voteAction: "removeDownvote",
+    },
     success: function () {
       console.log("upvote sent to database");
 
@@ -119,11 +127,11 @@ function removeDownvote(votes, reviewId) {
       downvoteBtn.onclick = function () {
         downvote(newVotes, reviewId);
       };
-      downvoteBtn.className = "null";
+      downvoteBtn.classList.remove("downvoted");
+      downvoteBtn.classList.add("null");
       upvoteBtn.onclick = function () {
         upvote(newVotes, reviewId);
       };
-      upvoteBtn.className = "null";
 
       console.log("removeDownvote");
     },

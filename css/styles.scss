@@ -6,6 +6,8 @@
 
 body {
   margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
   font-family: Arial, Helvetica, sans-serif;
 }
 .mainNav {
@@ -130,28 +132,35 @@ body {
   h3 {
     color: gray;
   }
-
-  hr {
-    margin-top: 0;
-    border: none;
-    width: 100%;
-    height: 10px;
-    background-color: $primaryColor;
-  }
+}
+hr {
+  margin-top: 0;
+  margin-bottom: 0;
+  border: none;
+  width: 100%;
+  height: 10px;
+  background-color: $primaryColor;
 }
 
 .content {
+  display: grid;
+  grid-template-columns: 1fr;
   .ubcinfo {
+    color: white;
     overflow-x: hidden;
     text-align: center;
-    padding: 1em;
-    background-color: $tertiaryColor;
-    border-color: $primaryColor;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    background-color: $secondaryColor;
+    background-image: url("../images/diagmonds-light.png");
   }
 
   .searchinput {
     text-align: center;
 
+    h1 {
+      font-size: 1.5em;
+    }
     input {
       text-align: center;
       width: 12.5rem;
@@ -209,7 +218,7 @@ body {
 }
 
 .footer {
-  margin-top: 2em;
+  margin-top: 4em;
   background-color: $primaryColor;
   text-align: center;
   color: white;
@@ -225,7 +234,8 @@ body {
     }
 
     p {
-      margin: 1.5em;
+      margin: 1em;
+      margin-top: 0.5em; 
       padding: 0;
       color: lightgray;
     }
@@ -237,6 +247,7 @@ body {
   }
   .contactus {
     a {
+      font-size: 1.2em;
       background-color: $secondaryColor;
       border-radius: 0.5em;
       padding: 1rem;
@@ -295,8 +306,7 @@ body {
 
       .pages {
         display: grid;
-        margin-right: 5em;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(5, 1fr);
       }
     }
   }
@@ -310,17 +320,23 @@ body {
     background-position: 50% 50%;
   }
   .content {
+    display: grid;
     .firstline {
       padding-left: 5em;
       padding-right: 5em;
     }
-  }
 
-  .footer {
-    p {
-      padding-left: 15em;
-      padding-right: 15em;
+    .searchinput {
+      display: grid;
+      align-items: center;
+      grid-template-columns: 3fr 1fr 3fr;
     }
+  }
+}
+.footer {
+  p {
+    padding-left: 15em;
+    padding-right: 15em;
   }
 }
 
@@ -329,9 +345,13 @@ body {
     .links {
       .pages {
         display: grid;
-        margin-right: 15em;
+        grid-template-columns: repeat(6, 1fr);
       }
     }
+  }
+  .searchinput {
+    padding-left: 4em;
+    padding-right: 4em;
   }
 }
 
@@ -340,7 +360,11 @@ body {
     .links {
       .pages {
         display: grid;
-        margin-right: 25em;
+        grid-template-columns: repeat(7, 1fr);
+      }
+      #login,
+      #logout {
+        margin-left: 3em;
       }
     }
   }
@@ -348,6 +372,11 @@ body {
     .firstline {
       padding-left: 20em;
       padding-right: 20em;
+    }
+
+    .searchinput {
+      padding-left: 12em;
+      padding-right: 12em;
     }
   }
   .footer {
@@ -378,8 +407,15 @@ body {
     .links {
       .pages {
         display: grid;
-        margin-right: 35em;
+        grid-template-columns: repeat(8, 1fr);
       }
+    }
+  }
+
+  .content {
+    .searchinput {
+      padding-left: 20em;
+      padding-right: 20em;
     }
   }
 }
@@ -388,8 +424,18 @@ body {
     .links {
       .pages {
         display: grid;
-        margin-right: 45em;
+        grid-template-columns: repeat(9, 1fr);
       }
+      #login,
+      #logout {
+        margin-left: 7em;
+      }
+    }
+  }
+  .content {
+    .searchinput {
+      padding-left: 25em;
+      padding-right: 25em;
     }
   }
 }

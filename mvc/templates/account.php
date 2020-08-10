@@ -9,6 +9,12 @@
     <script src="../js/ratings.js" defer></script>
 
     <?php require "repetitiveCode/commonHTML/head.php"; ?>
+    <style>
+        #account {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>

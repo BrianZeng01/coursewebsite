@@ -11,6 +11,7 @@
         font-weight: bold;
     }
 </style>
+
 <body>
     <?php require "php/repetitiveCode/commonHTML/nav.php" ?>
     <div class="container">
@@ -33,25 +34,31 @@
             </div>
 
             <div class="searchinput">
-                <form action="php/course.php" method="GET">
-                    <h2>Enter A Course Code</h2>
-                    <div id="courseDoesNotExist"></div>
-                    <input id="searchCourse" list="datalistCourse" type="text" name="course" placeholder="Eg. MATH 100" maxlength="10" />
-                    <button type="button" id="submitCourse" onclick="courseDoesNotExist();">
-                        <i class="fa fa-search"></i>
-                    </button>
-                    <div id="courseList"></div>
-                </form>
-                <h2>OR</h2>
-                <form action="php/sameSubjectCode.php" method="GET">
-                    <h2>Enter a Subject Code</h2>
-                    <div id="subjectDoesNotExist"></div>
-                    <input id="searchSubject" list="datalistSubject" type="text" name="courses" placeholder="Eg. MATH 100" maxlength="10" />
-                    <button type="button" id="submitSubject" onclick="subjectDoesNotExist();">
-                        <i class="fa fa-search"></i>
-                    </button>
-                    <div id="subjectList"></div>
-                </form>
+                <div>
+                    <form action="php/course.php" method="GET">
+                        <h2>Enter A Course Code</h2>
+                        <div id="courseDoesNotExist"></div>
+                        <input id="searchCourse" list="datalistCourse" type="text" name="course" placeholder="Eg. MATH 100" maxlength="10" />
+                        <button type="button" id="submitCourse" onclick="courseDoesNotExist();">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        <div id="courseList"></div>
+                    </form>
+                </div>
+                <div>
+                    <h2>OR</h2>
+                </div>
+                <div>
+                    <form action="php/sameSubjectCode.php" method="GET">
+                        <h2>Enter a Subject Code</h2>
+                        <div id="subjectDoesNotExist"></div>
+                        <input id="searchSubject" list="datalistSubject" type="text" name="courses" placeholder="Eg. MATH 100" maxlength="10" />
+                        <button type="button" id="submitSubject" onclick="subjectDoesNotExist();">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        <div id="subjectList"></div>
+                    </form>
+                </div>
             </div>
 
             <div class="browse">
