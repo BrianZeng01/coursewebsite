@@ -1,6 +1,11 @@
+body {
+  font-size: 0.8em;
+}
+
 .reviewInputs {
   padding-top: 0.5em;
   padding-left: 1em;
+  font-weight: bold;
   color: white;
   border-style: solid none none none;
   border-color: #213458;
@@ -39,8 +44,19 @@
   height: 0;
 }
 
+.reviewInputs form textarea {
+  border: none;
+  outline: none;
+  border-radius: 1.25em;
+  padding: 1em;
+  width: 90%;
+  height: 150px;
+}
+
 .reviewInputs form #overallRating,
 .reviewInputs form #difficultyRating {
+  padding: 0;
+  padding-right: 2.2em;
   -ms-grid-column: 1;
   -ms-grid-column-span: 12;
   grid-column: 1/13;
@@ -48,65 +64,97 @@
 
 .reviewInputs form #overallRating h2,
 .reviewInputs form #difficultyRating h2 {
+  vertical-align: 25%;
   display: inline-block;
   font-size: 2em;
 }
 
 .reviewInputs form .anonymous {
+  margin-right: 2.5em;
+  margin-bottom: 1.5em;
   -ms-grid-column: 1;
   -ms-grid-column-span: 5;
   grid-column: 1/6;
 }
 
 .reviewInputs form .takeAgain {
+  margin-right: 3em;
   -ms-grid-column: 6;
   -ms-grid-column-span: 7;
   grid-column: 6/13;
 }
 
 .reviewInputs form .textbook {
+  margin-bottom: 1.5em;
+  margin-right: 5em;
   -ms-grid-column: 1;
   -ms-grid-column-span: 4;
   grid-column: 1/5;
 }
 
 .reviewInputs form .grade {
+  margin-right: 7em;
   -ms-grid-column: 5;
   -ms-grid-column-span: 4;
   grid-column: 5/9;
 }
 
 .reviewInputs form .year {
+  margin-right: 3em;
   -ms-grid-column: 9;
   -ms-grid-column-span: 4;
   grid-column: 9/13;
 }
 
 .reviewInputs form .professor {
+  margin-bottom: 1.5em;
+  padding-left: 12%;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 6;
+  grid-column: 1/7;
+}
+
+.reviewInputs form .comment,
+.reviewInputs form .advice {
+  width: 85%;
   -ms-grid-column: 1;
   -ms-grid-column-span: 12;
   grid-column: 1/13;
 }
 
-.reviewInputs form .comment,
-.reviewInputs form .advice {
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 12;
-  grid-column: 1/13;
+.reviewInputs form .comment input,
+.reviewInputs form .advice input {
+  float: right;
+  margin-right: 1em;
+}
+
+.reviewInputs .buttons {
+  padding: 0.2em;
+  padding-right: 0.4em;
+  padding-left: 0.4em;
+  margin-left: 1.6em;
+  border-radius: 0.4em;
+  margin-bottom: 0.75em;
+  font-size: 1.5em;
+  background-color: #213458;
+  color: white;
+}
+
+.reviewInputs .buttons:hoover {
+  background-color: #1F77AC;
+}
+
+.reviewInputs .deleteBtn {
+  float: right;
+  margin-right: 3.5em;
 }
 
 .mainNav {
   z-index: 2;
 }
 
-body {
-  font-size: 0.8em;
-}
-
-textarea {
-  border: none;
-  height: 250px;
-  width: 100%;
+.header .subjectTitle {
+  font-size: 2.75em;
 }
 
 .overview {
@@ -180,7 +228,6 @@ textarea {
 }
 
 .allReviews li .review h3 {
-  display: inline-block;
   margin-top: 0;
   margin-bottom: 0;
 }

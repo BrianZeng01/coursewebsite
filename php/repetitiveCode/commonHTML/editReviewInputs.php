@@ -111,28 +111,21 @@ echo '
 
         <div class="comment">
             <label for="comment">Comments</label>
-            <textarea type="text" id="comment" name="comment" style="resize:none;" required maxlength="500" placeholder="At first glance, the course content seemed daunting and the workload looked heavy. However, the course had great structure and lessons were very organized which made it managable. The simpler material seemed kind of rushed. The course content was also extrememly relevant during my first internship and carried over into my upper year courses.">
-            ' . $comment . '</textarea>
+            <textarea type="text" id="comment" name="comment" style="resize:none;" required maxlength="500" placeholder="At first glance, the course content seemed daunting and the workload looked heavy. However, the course had great structure and lessons were very organized which made it managable. The simpler material seemed kind of rushed. The course content was also extrememly relevant during my first internship and carried over into my upper year courses.">' . $comment . '</textarea>
             <input disabled maxlength="3" size="3" value=' . $commentCounter . ' id="commentCounter">
         </div>
         <div class="advice">
             <label for="advice">Advice</label>
-            <textarea type="text" id="advice" name="advice" style="resize:none;" maxlength="500" placeholder="The entire course builds on itself so make sure to keep up with the lessons. The first few weeks were quite easy which led to a lot of people underestimating the importance of the topics and struggling later on. The question bank for exams is pretty small so as long as you do a couple practice exams you will be fine.">
-            ' . $advice . '</textarea>
+            <textarea type="text" id="advice" name="advice" style="resize:none;" maxlength="500" placeholder="The entire course builds on itself so make sure to keep up with the lessons. The first few weeks were quite easy which led to a lot of people underestimating the importance of the topics and struggling later on. The question bank for exams is pretty small so as long as you do a couple practice exams you will be fine.">' . $advice . '</textarea>
             <input disabled maxlength="3" size="3" value=' . $adviceCounter . ' id="adviceCounter">
         </div>
 
         <div id="submitReview">
-            <input type="submit" value="Save Changes">
+            <input class="buttons" type="submit" value="Save Changes">
         </div>
     </form>
-    <input type="button" value="Cancel" onclick="window.location.reload();">
-    <form id="deleteReview" action="review.php" method="POST">
-        <input type="hidden" name="reviewId" value=' . $reviewId . '>
-        <input type="hidden" name="action" value="delete">
-        <button title="Delete Review" type="button" onclick="deleteConfirmation();"><i class="far fa-trash-alt fa-2x"></i></button>
-    </form>
+    <input class="buttons" type="button" value="Cancel" onclick="window.location.reload();">
+    <button class="deleteBtn" title="Delete Review" type="button" onclick="deleteConfirmation(' . $reviewId . ',\'delete\');"><i class="far fa-trash-alt fa-2x"></i></button>
 
 </div>
 ';
-

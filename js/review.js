@@ -36,6 +36,31 @@ function writeReview(courseId) {
         if (typeof currentYear != "undefined" && currentYear != null) {
           document.getElementById("year").value = currentYear.value;
         }
+
+        $(document).ready(function () {
+          $("#comment").on("keyup keypress keydown", function () {
+            var commentLength = document.getElementById("comment").value.length;
+            document.getElementById("commentCounter").value =
+              500 - commentLength;
+          });
+
+          $("#advice").on("keyup keypress", function () {
+            var adviceLength = document.getElementById("advice").value.length;
+            document.getElementById("adviceCounter").value = 500 - adviceLength;
+          });
+
+          $("#professor").on("keyup keypress keydown", function () {
+            var professor = document.getElementById("professor");
+            var regex = /^[a-zA-Z]+[\s]?[a-zA-Z]*$/;
+
+            if (!regex.test(professor.value)) {
+              professor.value = professor.value.substr(
+                0,
+                professor.value.length - 1
+              );
+            }
+          });
+        });
       }
     },
   });
@@ -89,13 +114,12 @@ function editReviewInputs() {
 
 function deleteConfirmation(reviewId, action) {
   if (confirm("Are you sure you want to Delete this Review?")) {
-    // document.getElementById("deleteReview").submit();
     $.ajax({
       url: "../php/review.php",
       method: "POST",
       data: { reviewId: reviewId, action: action },
       success: function () {
-        return;
+        window.location.reload();
       },
       error: function () {
         console.log("failed to delete review");
@@ -145,30 +169,33 @@ function editReview(reviewId) {
       reviewBox.innerHTML = data;
       editReviewInputs();
       reviewBox.scrollIntoView();
+
+      $(document).ready(function () {
+        $("#comment").on("keyup keypress keydown", function () {
+          var commentLength = document.getElementById("comment").value.length;
+          document.getElementById("commentCounter").value = 500 - commentLength;
+        });
+
+        $("#advice").on("keyup keypress", function () {
+          var adviceLength = document.getElementById("advice").value.length;
+          document.getElementById("adviceCounter").value = 500 - adviceLength;
+        });
+
+        $("#professor").on("keyup keypress keydown", function () {
+          var professor = document.getElementById("professor");
+          var regex = /^[a-zA-Z]+[\s]?[a-zA-Z]*$/;
+
+          if (!regex.test(professor.value)) {
+            professor.value = professor.value.substr(
+              0,
+              professor.value.length - 1
+            );
+          }
+        });
+      });
     },
   });
 }
-
-$(document).ready(function () {
-  $("#comment").on("keyup keypress keydown", function () {
-    var commentLength = document.getElementById("comment").value.length;
-    document.getElementById("commentCounter").value = 500 - commentLength;
-  });
-
-  $("#advice").on("keyup keypress", function () {
-    var adviceLength = document.getElementById("advice").value.length;
-    document.getElementById("adviceCounter").value = 500 - adviceLength;
-  });
-
-  $("#professor").on("keyup keypress keydown", function () {
-    var professor = document.getElementById("professor");
-    var regex = /^[a-zA-Z]+[\s]?[a-zA-Z]*$/;
-
-    if (!regex.test(professor.value)) {
-      professor.value = professor.value.substr(0, professor.value.length - 1);
-    }
-  });
-});
 
 function overallRating(value) {
   overallValue = value;
@@ -182,27 +209,27 @@ function overallRating(value) {
   if (value == 5) {
     for (i = 0; i < value; i++) {
       elements[i].style.filter =
-        " invert(62%) sepia(15%) saturate(6906%) hue-rotate(101deg) brightness(115%) contrast(64%)";
+        "invert(75%) sepia(32%) saturate(669%) hue-rotate(91deg) brightness(93%) contrast(89%)";
     }
   } else if (value == 4) {
     for (i = 0; i < value; i++) {
       elements[i].style.filter =
-        "invert(72%) sepia(67%) saturate(687%) hue-rotate(359deg) brightness(103%) contrast(89%)";
+        "invert(74%) sepia(35%) saturate(7495%) hue-rotate(349deg) brightness(96%) contrast(87%)";
     }
   } else if (value == 3) {
     for (i = 0; i < value; i++) {
       elements[i].style.filter =
-        "invert(67%) sepia(77%) saturate(2069%) hue-rotate(354deg) brightness(99%) contrast(92%)";
+        "invert(78%) sepia(89%) saturate(2193%) hue-rotate(327deg) brightness(101%) contrast(92%)";
     }
   } else if (value == 2) {
     for (i = 0; i < value; i++) {
       elements[i].style.filter =
-        "invert(74%) sepia(35%) saturate(7495%) hue-rotate(349deg) brightness(96%) contrast(87%)";
+        "invert(67%) sepia(77%) saturate(2069%) hue-rotate(354deg) brightness(99%) contrast(92%)";
     }
   } else {
     for (i = 0; i < value; i++) {
       elements[i].style.filter =
-        "invert(40%) sepia(51%) saturate(4752%) hue-rotate(11deg) brightness(91%) contrast(101%)";
+        "invert(28%) sepia(63%) saturate(2359%) hue-rotate(344deg) brightness(111%) contrast(81%)";
     }
   }
 }
@@ -214,33 +241,33 @@ function hoverOverall(value) {
 
   for (i = 0; i < elements.length; i++) {
     elements[i].style.filter =
-      "invert(98%) sepia(2%) saturate(422%) hue-rotate(167deg) brightness(93%) contrast(85%)";
+      "invert(75%) sepia(32%) saturate(669%) hue-rotate(91deg) brightness(93%) contrast(89%)";
   }
 
   if (value == 5) {
     for (i = 0; i < value; i++) {
       elements[i].style.filter =
-        " invert(62%) sepia(15%) saturate(6906%) hue-rotate(101deg) brightness(115%) contrast(64%)";
+        "invert(32%) sepia(41%) saturate(3209%) hue-rotate(11deg) brightness(100%) contrast(101%);";
     }
   } else if (value == 4) {
     for (i = 0; i < value; i++) {
       elements[i].style.filter =
-        "invert(72%) sepia(67%) saturate(687%) hue-rotate(359deg) brightness(103%) contrast(89%)";
+        "invert(74%) sepia(35%) saturate(7495%) hue-rotate(349deg) brightness(96%) contrast(87%)";
     }
   } else if (value == 3) {
     for (i = 0; i < value; i++) {
       elements[i].style.filter =
-        "invert(67%) sepia(77%) saturate(2069%) hue-rotate(354deg) brightness(99%) contrast(92%)";
+        "invert(78%) sepia(89%) saturate(2193%) hue-rotate(327deg) brightness(101%) contrast(92%)";
     }
   } else if (value == 2) {
     for (i = 0; i < value; i++) {
       elements[i].style.filter =
-        "invert(74%) sepia(35%) saturate(7495%) hue-rotate(349deg) brightness(96%) contrast(87%)";
+        "invert(67%) sepia(77%) saturate(2069%) hue-rotate(354deg) brightness(99%) contrast(92%)";
     }
   } else {
     for (i = 0; i < value; i++) {
       elements[i].style.filter =
-        "invert(40%) sepia(51%) saturate(4752%) hue-rotate(11deg) brightness(91%) contrast(101%)";
+        "invert(28%) sepia(63%) saturate(2359%) hue-rotate(344deg) brightness(111%) contrast(81%)";
     }
   }
 }
@@ -262,17 +289,17 @@ function difficultyRating(value) {
   if (value == 5) {
     for (i = 0; i < value; i++) {
       elements[i].style.filter =
-        "invert(40%) sepia(51%) saturate(4752%) hue-rotate(11deg) brightness(91%) contrast(101%)";
+        "invert(28%) sepia(63%) saturate(2359%) hue-rotate(344deg) brightness(111%) contrast(81%)";
     }
   } else if (value == 4) {
     for (i = 0; i < value; i++) {
       elements[i].style.filter =
-        "invert(74%) sepia(35%) saturate(7495%) hue-rotate(349deg) brightness(96%) contrast(87%)";
+        "invert(67%) sepia(77%) saturate(2069%) hue-rotate(354deg) brightness(99%) contrast(92%)";
     }
   } else if (value == 3) {
     for (i = 0; i < value; i++) {
       elements[i].style.filter =
-        "invert(67%) sepia(77%) saturate(2069%) hue-rotate(354deg) brightness(99%) contrast(92%)";
+        "invert(78%) sepia(89%) saturate(2193%) hue-rotate(327deg) brightness(101%) contrast(92%)";
     }
   } else if (value == 2) {
     for (i = 0; i < value; i++) {
@@ -282,7 +309,7 @@ function difficultyRating(value) {
   } else {
     for (i = 0; i < value; i++) {
       elements[i].style.filter =
-        " invert(62%) sepia(15%) saturate(6906%) hue-rotate(101deg) brightness(115%) contrast(64%)";
+        "invert(75%) sepia(32%) saturate(669%) hue-rotate(91deg) brightness(93%) contrast(89%)";
     }
   }
 }
@@ -300,17 +327,17 @@ function hoverDifficulty(value) {
   if (value == 5) {
     for (i = 0; i < value; i++) {
       elements[i].style.filter =
-        "invert(40%) sepia(51%) saturate(4752%) hue-rotate(11deg) brightness(91%) contrast(101%)";
+        "invert(28%) sepia(63%) saturate(2359%) hue-rotate(344deg) brightness(111%) contrast(81%)";
     }
   } else if (value == 4) {
     for (i = 0; i < value; i++) {
       elements[i].style.filter =
-        "invert(74%) sepia(35%) saturate(7495%) hue-rotate(349deg) brightness(96%) contrast(87%)";
+        "invert(67%) sepia(77%) saturate(2069%) hue-rotate(354deg) brightness(99%) contrast(92%)";
     }
   } else if (value == 3) {
     for (i = 0; i < value; i++) {
       elements[i].style.filter =
-        "invert(67%) sepia(77%) saturate(2069%) hue-rotate(354deg) brightness(99%) contrast(92%)";
+        "invert(78%) sepia(89%) saturate(2193%) hue-rotate(327deg) brightness(101%) contrast(92%)";
     }
   } else if (value == 2) {
     for (i = 0; i < value; i++) {
@@ -320,7 +347,7 @@ function hoverDifficulty(value) {
   } else {
     for (i = 0; i < value; i++) {
       elements[i].style.filter =
-        " invert(62%) sepia(15%) saturate(6906%) hue-rotate(101deg) brightness(115%) contrast(64%)";
+        "invert(75%) sepia(32%) saturate(669%) hue-rotate(91deg) brightness(93%) contrast(89%)";
     }
   }
 }

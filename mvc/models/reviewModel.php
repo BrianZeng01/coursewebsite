@@ -242,7 +242,6 @@ class reviewModel
         $stmt->close();
 
 
-        header("Location: https://coursecritics.test/php/course.php?course=$courseCode");
         exit;
     }
 

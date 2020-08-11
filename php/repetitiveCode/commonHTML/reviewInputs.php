@@ -2,7 +2,7 @@
 echo '
 <div class="reviewInputs">
     <form action="review.php" method="POST">
-        <input type="hidden" name="courseId" value='.$courseId.'>
+        <input type="hidden" name="courseId" value=' . $courseId . '>
         <input type="hidden" name="action" value="insert">
         
         <div id="overallRating">
@@ -112,9 +112,11 @@ echo '
         </div>
 
         <div id="submitReview">
-            <input type="submit" value="Submit Review">
+            <input class="buttons" type="submit" value="Submit Review">
         </div>
 
     </form>
+
+    <input class="buttons" type="button" value="Cancel" onclick="window.location.reload();">
  </div>
 ';

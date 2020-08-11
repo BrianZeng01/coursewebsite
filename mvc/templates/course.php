@@ -92,7 +92,7 @@
                                     </span>
                                     <h2 class="ratingHeaders">&nbspDifficulty</h2><br>
                                 </div>
-                                <h3 class="h3seperators">
+                                <h3>
                                     Prof: <span style="font-weight: normal;">
                                         <?php echoXss($review["professor"]); ?>
                                     </span>
@@ -100,23 +100,24 @@
                                 <h3>
                                     Textbook: <span style="font-weight: normal;">
                                         <?php echoXss($review["textbook"]); ?>
-                                        </style>
-                                </h3><br>
+                                    </span>
+                                </h3>
 
-                                <h3 class="h3seperators">
+                                <h3>
                                     Grade: <span style="font-weight: normal;">
                                         <?php echoXss($review["grade"]); ?>
-                                        </style>
+                                    </span>
                                 </h3>
-                                <h3 class="h3seperators">
+                                <h3>
                                     Year: <span style="font-weight: normal;">
                                         <?php echoXss($review["year"]); ?>
-                                        </style>
+                                    </span>
                                 </h3>
                                 <h3>Take Again?
                                     <span style="font-weight: normal;">
-                                        <?php echoXss($review["take_again"] ? "Yes" : "No"); ?></h3>
-                                </style>
+                                        <?php echoXss($review["take_again"] ? "Yes" : "No"); ?>
+                                    </span>
+                                </h3>
                                 <h2 class="commentHeader">Comments</h2>
                                 <p class="comment">
                                     <?php echoXss($review["review_comment"]); ?>
@@ -131,7 +132,9 @@
 
 
                             <?php voteState($review); ?>
-                            <?php editOrFlagReview($review); ?>
+                            <div class="reviewBottom">
+                                <?php editOrFlagReview($review); ?>
+                            </div>
                         </li>
 
                     <?php endforeach; ?>
@@ -143,6 +146,7 @@
 
     </div>
     <script src="../js/votes.js"></script>
+
 </body>
 
 </html>

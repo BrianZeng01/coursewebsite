@@ -150,7 +150,6 @@ function editOrFlagReview($review)
 function editReview($reviewId)
 {
     echo"
-    <div class='reviewBottom'>
         <div class='edit'>
             <div class='editBtn'>
                 <button type='button' title='Edit Review' onclick='editReview($reviewId)'>
@@ -163,7 +162,6 @@ function editReview($reviewId)
                 </button>
             </div>
         </div>
-    </div>
         ";
 }
 
