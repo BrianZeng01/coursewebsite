@@ -14,18 +14,26 @@
             font-weight: bold;
             text-decoration: underline;
         }
+
+        .allReviews .title {
+            padding-left: 0.5em;
+            font-size: 2em;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
+        <?php require "repetitiveCode/commonHTML/nav.php"; ?>
         <div class="header">
-            <?php require "repetitiveCode/commonHTML/nav.php"; ?>
+            <div>
+                <h1 class="subjectTitle">Your Account</h1>
+            </div>
         </div>
 
-        <div style="padding-top: 4rem;" class="content">
+        <div class="content">
             <div class="allReviews">
-                <h2>All Reviews</h2>
+                <h2 class="title">All Reviews</h2>
 
                 <?php foreach ($model as $review) : ?>
                     <?php
@@ -52,37 +60,47 @@
                             </span>
 
                             <h2 class="ratingHeaders">&nbspDifficulty</h2><br>
-                            <h3 class="h3seperators">
-                                Prof: <?php echoXss($review["professor"]); ?>
+                            <h3>
+                                Prof: <span style="font-weight: normal;">
+                                    <?php echoXss($review["professor"]); ?>
+                                </span>
                             </h3>
                             <h3>
-                                Textbook: <?php echoXss($review["textbook"]); ?>
-                            </h3><br>
-
-                            <h3 class="h3seperators">
-                                Grade: <?php echoXss($review["grade"]); ?>
+                                Textbook: <span style="font-weight: normal;">
+                                    <?php echoXss($review["textbook"]); ?>
+                                </span>
                             </h3>
-                            <h3 class="h3seperators">
-                                Year: <?php echoXss($review["year"]); ?>
+
+                            <h3>
+                                Grade: <span style="font-weight: normal;">
+                                    <?php echoXss($review["grade"]); ?>
+                                </span>
+                            </h3>
+                            <h3>
+                                Year: <span style="font-weight: normal;">
+                                    <?php echoXss($review["year"]); ?>
+                                </span>
                             </h3>
                             <h3>Take Again?
-                                <?php echoXss($review["take_again"] ? "Yes" : "No"); ?></h3>
-
+                                <span style="font-weight: normal;">
+                                    <?php echoXss($review["take_again"] ? "Yes" : "No"); ?>
+                                </span>
+                            </h3>
                             <h2 class="commentHeader">Comments</h2>
                             <p class="comment">
                                 <?php echoXss($review["review_comment"]); ?>
                             </p>
                             <h2 class="commentHeader">Advice</h2>
-                            <p class="comment">
+                            <p class="advice">
                                 <?php echoXss($review["advice"]); ?>
                             </p>
-
-                            <!-- One of the below options depending on if its your review -->
-                            <?php editReviewAccountPage($review["review_id"]); ?>
 
                         </div>
 
                         <?php voteState($review); ?>
+                        <div class="reviewBottom">
+                            <?php editOrFlagReview($review); ?>
+                        </div>
 
                     <?php endforeach; ?>
 

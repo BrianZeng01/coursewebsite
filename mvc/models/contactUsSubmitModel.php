@@ -14,24 +14,31 @@ class contactUsSubmitModel
 
         define("RECAPTCHA_V3_SECRET_KEY", "6LeJoLoZAAAAAMBIHJITE9NZAeuh3h1lI596Cnch");
 
-        if (!isset($feedback["token"]) || !isset($feedback["action"]) ||
-         !isset($feedback["message"]) || !isset($feedback["reason"])) {
-             print_r($feedback);
-             exit;
+        if (
+            !isset($feedback["token"]) || !isset($feedback["action"]) ||
+            !isset($feedback["message"]) || !isset($feedback["reason"])
+        ) {
+            header("Location: https://cousecritics.test");
+            exit;
         }
 
-            $token = $feedback["token"];
-            $action = $feedback["action"];
-            
-            if ($this->verifyResponse($token, $action)) {
+        $token = $feedback["token"];
+        $action = $feedback["action"];
+        $reason = $feedback["reason"];
+        $message = $feedback["message"];
 
-                $query = "INSERT INTO feedback (reason,message) VALUES (?,?)";
-                $stmt = $this->databaseConnection->prepare($query);
-                $stmt->bind_param('ss', $feedback["reason"], $feedback["message"]);
-                $stmt->execute();
-                $stmt->close();
-                return;
-            }
+        if ($this->verifyResponse($token, $action)) {
+
+            $this->verifyInput($reason, $message);
+
+            $query = "INSERT INTO feedback (reason,message) VALUES (?,?)";
+            $stmt = $this->databaseConnection->prepare($query);
+            $stmt->bind_param('ss', $feedback["reason"], $feedback["message"]);
+            $stmt->execute();
+            $stmt->close();
+            header("Location: https://cousecritics.test/php/contactUs.php?feedback=received");
+            exit;
+        }
     }
 
     public function verifyResponse($token, $action)
@@ -45,10 +52,23 @@ class contactUsSubmitModel
         curl_close($ch);
         $arrResponse = json_decode($response, true);
 
-        if($arrResponse["success"] == "1" && $arrResponse["action"] == $action && $arrResponse["score"] >= 0.5) {
+        if ($arrResponse["success"] == "1" && $arrResponse["action"] == $action && $arrResponse["score"] >= 0.5) {
             return true;
         } else {
             return false;
+        }
+    }
+
+    public function verifyInput($reason, $message) {
+        $reasons = ["Technical Issue", "User Interface", "Missing Course", "Other"];
+
+        if (!in_array($reason, $reasons) || strlen($message) > 500){
+            header("Location: https://cousecritics.test");
+            exit;
+            
+        } else {
+            return;
+
         }
     }
 }

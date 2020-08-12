@@ -1,0 +1,56 @@
+.header h1 {
+  font-size: 2em;
+  color: white;
+  margin-top: 0;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+  margin-bottom: 1em;
+  background-color: #1F77AC;
+  background-image: url("../../images/diagmonds-light.png");
+}
+
+.content .thanks {
+  margin-top: 0;
+  text-align: center;
+}
+
+.content form {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: center;
+}
+
+.content form label {
+  font-size: 1.5em;
+}
+
+.content form #reason {
+  font-size: 1.25em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.content form #message {
+  padding: 1em;
+  margin-bottom: 1em;
+  width: 75%;
+  height: 250px;
+  border-radius: 0.5em;
+}
+
+.content form input {
+  background-color: #213458;
+  color: white;
+  font-size: 1.5em;
+  border-radius: 0.25em;
+}
+
+.content form input:hover {
+  background-color: #1F77AC;
+}
+/*# sourceMappingURL=feedbackStyles.css.map */

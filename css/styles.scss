@@ -153,6 +153,7 @@ hr {
     padding-right: 1.5em;
     background-color: $secondaryColor;
     background-image: url("../images/diagmonds-light.png");
+    
   }
 
   .searchinput {
@@ -235,7 +236,7 @@ hr {
 
     p {
       margin: 1em;
-      margin-top: 0.5em; 
+      margin-top: 0.5em;
       padding: 0;
       color: lightgray;
     }
@@ -259,7 +260,7 @@ hr {
     }
   }
   .copyright {
-    color: lightgray;
+    color: gray;
   }
 }
 
@@ -321,9 +322,9 @@ hr {
   }
   .content {
     display: grid;
-    .firstline {
-      padding-left: 5em;
-      padding-right: 5em;
+    .ubcinfo { 
+      padding-left: 7.5em;
+      padding-right: 7.5em;
     }
 
     .searchinput {
@@ -369,9 +370,10 @@ hr {
     }
   }
   .content {
-    .firstline {
-      padding-left: 20em;
-      padding-right: 20em;
+    .ubcinfo {
+      padding-left: 10em;
+      padding-right: 10em;
+      font-size: 1.4em;
     }
 
     .searchinput {
@@ -417,6 +419,12 @@ hr {
       padding-left: 20em;
       padding-right: 20em;
     }
+
+    .ubcinfo 
+    {
+      padding-left: 15em;
+      padding-right: 15em;
+    }
   }
 }
 @media screen and (min-width: 1600px) {
@@ -436,6 +444,10 @@ hr {
     .searchinput {
       padding-left: 25em;
       padding-right: 25em;
+    }
+    .ubcinfo {
+      padding-left: 20em;
+      padding-right: 20em;
     }
   }
 }

@@ -10,7 +10,6 @@ class contactUsSubmitController {
     }
 
     public function post() {
-
         $this->contactUsSubmitModel->submitFeedback($_POST);
 
         $view = new contactUsSubmitView();

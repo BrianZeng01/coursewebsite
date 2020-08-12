@@ -52,7 +52,7 @@
                     <form action="php/sameSubjectCode.php" method="GET">
                         <h2>Enter a Subject Code</h2>
                         <div id="subjectDoesNotExist"></div>
-                        <input id="searchSubject" list="datalistSubject" type="text" name="courses" placeholder="Eg. MATH 100" maxlength="10" />
+                        <input id="searchSubject" list="datalistSubject" type="text" name="courses" placeholder="Eg. PHYS" maxlength="10" />
                         <button type="button" id="submitSubject" onclick="subjectDoesNotExist();">
                             <i class="fa fa-search"></i>
                         </button>

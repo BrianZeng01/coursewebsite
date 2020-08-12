@@ -9,7 +9,7 @@
             little guidance. By creating a platform exclusively for reviewing courses it is our hope
             that students will know exactly what they're signing up for.</p>
         <h3>Legal</h3>
-        <a href="#">Privacy | Terms of Use | Cookies</a>
+        <a href="../php/legal.php">Privacy | Terms of Use | Cookies</a>
     </div>
 
     <div class="contactus">
