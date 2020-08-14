@@ -19,69 +19,66 @@
     <?php require 'repetitiveCode/commonHTML/nav.php'; ?>
     <div class="container">
         <div class="header">
-            <div>
-                <h1 class="subjectTitle">UBC Course Schedule</h1>
-            </div>
+            <h1 class="subjectTitle">UBC Course Schedule</h1>
+            <hr>
         </div>
-        <hr>
 
         <div class="content">
+            <div class="bugFix">
+                <div class="searchinput">
+                    <div>
+                        <form action="course.php" method="GET">
+                            <h1>Enter A Course Code</h1>
+                            <div id="courseDoesNotExist"></div>
+                            <input id="searchCourse" list="datalistCourse" type="text" name="course" placeholder="Eg. MATH 100" maxlength="10" />
+                            <button type="button" id="submitCourse" onclick="courseDoesNotExist();">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            <div id="courseList"></div>
+                        </form>
+                    </div>
+                    <div>
+                        <h1>OR</h1>
+                    </div>
+                    <div>
+                        <form action="sameSubjectCode.php" method="GET">
+                            <h1>Enter a Subject Code</h1>
+                            <div id="subjectDoesNotExist"></div>
+                            <input id="searchSubject" list="datalistSubject" type="text" name="courses" placeholder="Eg. PHYS" maxlength="10" />
+                            <button type="button" id="submitSubject" onclick="subjectDoesNotExist();">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            <div id="subjectList"></div>
+                        </form>
+                    </div>
+                </div>
 
-            <div class="searchinput">
-                <div>
-                    <form action="course.php" method="GET">
-                        <h1>Enter A Course Code</h1>
-                        <div id="courseDoesNotExist"></div>
-                        <input id="searchCourse" list="datalistCourse" type="text" name="course" placeholder="Eg. MATH 100" maxlength="10" />
-                        <button type="button" id="submitCourse" onclick="courseDoesNotExist();">
-                            <i class="fa fa-search"></i>
-                        </button>
-                        <div id="courseList"></div>
-                    </form>
-                </div>
-                <div>
-                    <h1>OR</h1>
-                </div>
-                <div>
-                    <form action="sameSubjectCode.php" method="GET">
-                        <h1>Enter a Subject Code</h1>
-                        <div id="subjectDoesNotExist"></div>
-                        <input id="searchSubject" list="datalistSubject" type="text" name="courses" placeholder="Eg. PHYS" maxlength="10" />
-                        <button type="button" id="submitSubject" onclick="subjectDoesNotExist();">
-                            <i class="fa fa-search"></i>
-                        </button>
-                        <div id="subjectList"></div>
-                    </form>
+
+                <div class="note">
+                    <h4>Note: Sign in to submit a review. Please be mindful
+                        when submitting reviews, thank you and enjoy!</h4>
                 </div>
             </div>
 
+            <table>
+                <col class="col1">
+                <col class="col2">
+                <col class="col3">
+                <tr>
+                    <td>Subject</td>
+                    <td>Title</td>
+                    <td>Faculty Or School</td>
+                </tr>
 
-            <div class="note">
-                <h4>Note: Sign in to submit a review. Please be mindful
-                    when submitting reviews, thank you and enjoy!</h4>
-            </div>
-
-            <div>
-                <table>
-                    <col class="col1">
-                    <col class="col2">
-                    <col class="col3">
-                    <tr>
-                        <td>Subject</td>
-                        <td>Title</td>
-                        <td>Faculty Or School</td>
+                <?php foreach ($model as $subject) : ?>
+                    <tr class="clickable-row" data-href="https://coursecritics.test/php/sameSubjectCode.php?courses=<?php echo $subject['subject_code'] ?>">
+                        <td><?php echoXss($subject['subject_code']); ?></td>
+                        <td><?php echoXss($subject['subject_title']); ?></td>
+                        <td><?php echoXss($subject['faculty_or_school']); ?></td>
                     </tr>
+                <?php endforeach; ?>
 
-                    <?php foreach ($model as $subject) : ?>
-                        <tr class="clickable-row" data-href="https://coursecritics.test/php/sameSubjectCode.php?courses=<?php echo $subject['subject_code'] ?>">
-                            <td><?php echoXss($subject['subject_code']); ?></td>
-                            <td><?php echoXss($subject['subject_title']); ?></td>
-                            <td><?php echoXss($subject['faculty_or_school']); ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-
-                </table>
-            </div>
+            </table>
         </div>
         <?php require 'repetitiveCode/commonHTML/footer.php'; ?>
     </div>

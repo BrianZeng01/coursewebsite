@@ -64,6 +64,11 @@
             </div>
 
             <hr>
+
+            <?php if (num_rows($model["reviews"]) == 0) {
+                echo "<h2>Be the first to make a Review!</h2>";
+            }
+            ?>
             <div class="allReviews">
                 <ul>
                     <?php foreach ($model["reviews"] as $review) : ?>
@@ -127,8 +132,6 @@
                                     <?php echoXss($review["advice"]); ?>
                                 </p>
                             </div>
-
-                            <!-- One of the below options depending on if its your review -->
 
 
                             <?php voteState($review); ?>

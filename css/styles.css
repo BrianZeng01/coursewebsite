@@ -4,6 +4,7 @@
 
 body {
   margin: 0;
+  min-height: 100vh;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr;
@@ -138,7 +139,6 @@ body {
   height: 275px;
   background-image: url("../images/ubctitle.jpg");
   background-size: cover;
-  background-repeat: no-repeat;
   background-position: 50% 50%;
 }
 
@@ -275,6 +275,10 @@ hr {
   text-decoration: none;
 }
 
+.footer .contactus h3 {
+  margin-bottom: 1.5em;
+}
+
 .footer .contactus a {
   font-size: 1.2em;
   background-color: #1F77AC;
@@ -293,14 +297,6 @@ hr {
 }
 
 @media screen and (min-width: 480px) {
-  .headerImage {
-    width: 100%;
-    height: 500px;
-    background-image: url("../images/ubctitle.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-  }
   .header h1 {
     font-size: 2em;
   }
@@ -338,9 +334,9 @@ hr {
     -ms-grid-columns: (1fr)[5];
         grid-template-columns: repeat(5, 1fr);
   }
-  .headerImage {
+  .header .headerImage {
     width: 100%;
-    height: 500px;
+    height: 350px;
     background-image: url("../images/ubctitle.jpg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -377,7 +373,7 @@ hr {
     -ms-grid-columns: (1fr)[6];
         grid-template-columns: repeat(6, 1fr);
   }
-  .searchinput {
+  .content .searchinput {
     padding-left: 4em;
     padding-right: 4em;
   }
@@ -394,16 +390,26 @@ hr {
   .mainNav .links #logout {
     margin-left: 3em;
   }
+  .header .headerImage {
+    width: 100%;
+    height: 450px;
+    background-image: url("../images/ubctitle.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
   .content .ubcinfo {
     padding-left: 10em;
     padding-right: 10em;
     font-size: 1.4em;
+    background-position: center;
   }
   .content .searchinput {
     padding-left: 12em;
     padding-right: 12em;
   }
   .footer {
+    padding-top: 1em;
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: 1fr 1fr 1fr;

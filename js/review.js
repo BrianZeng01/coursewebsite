@@ -214,7 +214,7 @@ function overallRating(value) {
   } else if (value == 4) {
     for (i = 0; i < value; i++) {
       elements[i].style.filter =
-        "invert(74%) sepia(35%) saturate(7495%) hue-rotate(349deg) brightness(96%) contrast(87%)";
+        "invert(72%) sepia(67%) saturate(687%) hue-rotate(359deg) brightness(103%) contrast(89%)";
     }
   } else if (value == 3) {
     for (i = 0; i < value; i++) {
@@ -241,18 +241,18 @@ function hoverOverall(value) {
 
   for (i = 0; i < elements.length; i++) {
     elements[i].style.filter =
-      "invert(75%) sepia(32%) saturate(669%) hue-rotate(91deg) brightness(93%) contrast(89%)";
+      "invert(98%) sepia(2%) saturate(422%) hue-rotate(167deg) brightness(93%) contrast(85%)";
   }
 
   if (value == 5) {
     for (i = 0; i < value; i++) {
       elements[i].style.filter =
-        "invert(32%) sepia(41%) saturate(3209%) hue-rotate(11deg) brightness(100%) contrast(101%);";
+        "invert(75%) sepia(32%) saturate(669%) hue-rotate(91deg) brightness(93%) contrast(89%)";
     }
   } else if (value == 4) {
     for (i = 0; i < value; i++) {
       elements[i].style.filter =
-        "invert(74%) sepia(35%) saturate(7495%) hue-rotate(349deg) brightness(96%) contrast(87%)";
+        "invert(72%) sepia(67%) saturate(687%) hue-rotate(359deg) brightness(103%) contrast(89%)";
     }
   } else if (value == 3) {
     for (i = 0; i < value; i++) {

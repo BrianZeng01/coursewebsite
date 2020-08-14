@@ -8,11 +8,11 @@
   background-image: url("../images/diagmonds-light.png");
 }
 
-.note {
+.content h4 {
   text-align: center;
 }
 
-table {
+.content table {
   overflow: hidden;
   table-layout: fixed;
   width: 100%;
@@ -24,40 +24,40 @@ table {
   cursor: pointer;
 }
 
-table .col1 {
+.content table .col1 {
   width: 20%;
 }
 
-table .col2 {
+.content table .col2 {
   width: 40%;
 }
 
-table .col3 {
+.content table .col3 {
   width: 40%;
 }
 
-table tr:nth-child(odd) {
+.content table tr:nth-child(odd) {
   background-color: lightskyblue;
 }
 
-table tr:hover {
+.content table tr:hover {
   background: #213458;
   color: white;
 }
 
-table tr:first-child {
+.content table tr:first-child {
   color: white;
   background-color: #213458;
 }
 
-table td {
+.content table td {
   padding-bottom: 0.3rem;
   padding-top: 0.3rem;
   padding-left: 0.2em;
 }
 
-.ratings,
-.ratings_difficulty {
+.content .ratings,
+.content .ratings_difficulty {
   border-radius: 2px;
   font-weight: bold;
   padding: 0.1rem;

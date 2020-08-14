@@ -22,6 +22,6 @@ for (var i = 0; i < difficultyRating.length; i++) {
   } else if (difficulty > 0) {
     difficultyRating[i].style.backgroundColor = "#28b463";
   } else {
-    overallRating[i].style.backgroundColor = "#777777";
+    difficultyRating[i].style.backgroundColor = "#777777";
   }
 }
