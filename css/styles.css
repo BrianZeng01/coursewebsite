@@ -71,6 +71,93 @@ body {
   background-color: #1F77AC;
 }
 
+.mainNav .links #signinBtn {
+  border: none;
+  outline: none;
+  background-color: #213458;
+  color: white;
+  font-size: 1.5em;
+  height: 100%;
+  width: 100%;
+}
+
+.mainNav .links #signinBtn:hover {
+  background-color: #1F77AC;
+}
+
+.mainNav .links .modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) scale(0);
+          transform: translate(-50%, -50%) scale(0);
+  -webkit-transition: 200ms ease-in-out;
+  transition: 200ms ease-in-out;
+  border: 1px solid black;
+  border-radius: 5px;
+  z-index: 10;
+  background-color: white;
+  color: black;
+  width: 500px;
+  max-width: 80%;
+}
+
+.mainNav .links .modal .modalHeader {
+  border-bottom: 5px solid black;
+}
+
+.mainNav .links .modal .modalHeader h2 {
+  display: inline-block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.mainNav .links .modal .modalHeader .closeModal {
+  padding-top: 0.25em;
+  padding-right: 0.25em;
+  color: black;
+  float: right;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.mainNav .links .modal .modalBody {
+  display: -ms-grid;
+  display: grid;
+  padding: 1em;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  justify-items: center;
+  gap: 1em;
+}
+
+.mainNav .links .modal.active {
+  -webkit-transform: translate(-50%, -50%) scale(1);
+          transform: translate(-50%, -50%) scale(1);
+}
+
+.mainNav .links #overlay {
+  position: fixed;
+  -webkit-transition: 200ms ease-in-out;
+  transition: 200ms ease-in-out;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+.mainNav .links #overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
 .mainNav .links #login {
   display: none;
 }
@@ -89,29 +176,6 @@ body {
 
 .mainNav .links #logout a:hover {
   background: #e93636;
-}
-
-.mainNav .links .dropdown {
-  position: relative;
-  display: inline-block;
-  font-size: 1.5rem;
-  color: white;
-  margin: auto;
-}
-
-.mainNav .links .dropdown:hover,
-.mainNav .links .dropdown:focus {
-  background-color: #1F77AC;
-}
-
-.mainNav .links .dropdown-content {
-  display: none;
-  padding: 0;
-  margin: 0;
-}
-
-.mainNav .links .show {
-  display: block;
 }
 
 .mainNav .links #account {
@@ -250,6 +314,7 @@ hr {
 .footer {
   margin-top: 4em;
   background-color: #213458;
+  margin-bottom: 0em;
   text-align: center;
   color: white;
 }

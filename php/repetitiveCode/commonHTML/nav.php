@@ -1,3 +1,6 @@
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0"
+    nonce="uBVAfhzg"></script>
 <div class="mainNav">
     <div class="nav-logo">
         <h1 style="color: white;">CourseCritics</h1>
@@ -18,16 +21,29 @@
             <div><a id="account" class="account" href="../php/account.php">Account</a></div>
         </div>
 
-        <div id="login" onclick="loginDropdown()" class="dropdown">
-            Sign In
-            <div id="loginDropdown" class="dropdown-content">
-                <div id="signin" class="g-signin2" data-onsuccess="onSignIn"></div>
-                <div>
-                    <fb:login-button class="fb-signin" scope="public_profile,email" onlogin="checkLoginState();">
-                    </fb:login-button>
+        <div id="login">
+            <button data-modal-target="#modal" id="signinBtn">Sign In</button>
+            <div class="modal" id="modal">
+                <div class="modalHeader">
+                    <h2>Sign In</h2>
+                    <button data-close-button class="closeModal">&times;</button>
+                </div>
+                <div class="modalBody">
+                    <div id="signin" class="g-signin2" data-onsuccess="onSignIn" data-width="300" data-longtitle="true"
+                        data-height="40"></div>
+                    <div>
+                        <fb:login-button class="fb-signin" scope="public_profile" data-width="300"
+                            onlogin="checkLoginState();">
+                        </fb:login-button>
+                    </div>
+                    <!-- <div class="fb-login-button" data-size="large" data-button-type="login_with"
+                        data-auto-logout-link="false" data-use-continue-as="false" data-width="300"
+                        onlogin="checkLoginState();"></div> -->
                 </div>
             </div>
+            <div id="overlay"></div>
         </div>
+
         <div id="logout">
             <a id="signout" href="#" onclick="signOut();">Sign Out</a>
         </div>

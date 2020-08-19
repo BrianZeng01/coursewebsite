@@ -1,5 +1,4 @@
 function displayLogin() {
-  // console.log(myUserEntity);
   if (getCookie("id") == undefined) {
     document.getElementById("logout").style.display = "none";
     document.getElementById("account").style.display = "none";
@@ -9,12 +8,10 @@ function displayLogin() {
     document.getElementById("account").style.display = "inline-block";
     document.getElementById("login").style.display = "none";
     console.log("Logged in via " + getCookie("thirdParty"));
-    console.log(getCookie("id"), getCookie("name"));
   }
 }
 
 function onSignIn(googleUser) {
-  // console.log(getCookie("id"));
   if (getCookie("id") == undefined) {
     var myUserEntity = {};
     var profile = googleUser.getBasicProfile();
@@ -28,34 +25,33 @@ function onSignIn(googleUser) {
       "name=" +
       myUserEntity.Name +
       "; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/; SameSite=None; Secure";
-    document.cookie = "thirdParty=Google; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/; SameSite=None; Secure";
-
+    document.cookie =
+      "thirdParty=Google; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/; SameSite=None; Secure";
 
     sessionStorage.setItem("myUserEntity", JSON.stringify(myUserEntity));
     location.reload();
   }
-  // console.log(document.cookie)
 }
 
 function signOut() {
   if (getCookie("id") !== undefined) {
-
     if (getCookie("thirdParty") == "Google") {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log("User signed out of Google.");
-    });
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log("User signed out of Google.");
+      });
     }
 
     if (getCookie("thirdParty") == "Facebook") {
-      FB.logout(function(response) {
-              console.log("User signed out of Facebook");
+      FB.logout(function (response) {
+        console.log("User signed out of Facebook");
       });
     }
 
     document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     document.cookie = "name=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    document.cookie = "thirdParty=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie =
+      "thirdParty=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 
     sessionStorage.clear();
     location.reload();
@@ -74,7 +70,7 @@ function statusChangeCallback(response) {
   if (response.status === "connected") {
     testAPI();
   } else {
-    console.log("FB not logged in");
+    return;
   }
 }
 
@@ -100,21 +96,21 @@ window.fbAsyncInit = function () {
 
 function testAPI() {
   FB.api("/me", function (response) {
-    
     if (getCookie("id") == undefined) {
-    // console.log("Successful login for: " + response.name + response.id);
-    firstname = response.name.substr(0,response.name.indexOf(' '));
-    document.cookie =
-      "id=" +
-      response.id +
-      "; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/; SameSite=None; Secure";
-    document.cookie =
-      "name=" +
-      firstname +
-      "; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/; SameSite=None; Secure";
-    document.cookie = "thirdParty=Facebook; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/; SameSite=None; Secure";
+      // console.log("Successful login for: " + response.name + response.id);
+      firstname = response.name.substr(0, response.name.indexOf(" "));
+      document.cookie =
+        "id=" +
+        response.id +
+        "; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/; SameSite=None; Secure";
+      document.cookie =
+        "name=" +
+        firstname +
+        "; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/; SameSite=None; Secure";
+      document.cookie =
+        "thirdParty=Facebook; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/; SameSite=None; Secure";
 
-    location.reload();
+      location.reload();
     }
   });
 }
@@ -137,3 +133,39 @@ window.onclick = function (event) {
 };
 
 displayLogin();
+
+const openModalButtons = document.querySelectorAll("[data-modal-target]");
+const closeModalButtons = document.querySelectorAll("[data-close-button]");
+const overlay = document.getElementById("overlay");
+
+openModalButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const modal = document.querySelector(button.dataset.modalTarget);
+    openModal(modal);
+  });
+});
+closeModalButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const modal = button.closest(".modal");
+    closeModal(modal);
+  });
+});
+
+function openModal(modal) {
+  if (modal == null) return;
+  modal.classList.add("active");
+  overlay.classList.add("active");
+}
+
+function closeModal(modal) {
+  if (modal == null) return;
+  modal.classList.remove("active");
+  overlay.classList.remove("active");
+}
+
+overlay.addEventListener("click", () => {
+  const modals = document.querySelectorAll(".modal.active");
+  modals.forEach((modal) => {
+    closeModal(modal);
+  });
+});
