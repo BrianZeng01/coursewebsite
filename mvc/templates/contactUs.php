@@ -4,12 +4,13 @@
 <head>
     <title>CourseCritics-Contact Us</title>
     <?php require "repetitiveCode/commonHTML/head.php"; ?>
+    <link rel="stylesheet" href="../../css/subjectStyles.css">
     <link rel="stylesheet" href="../../css/feedbackStyles.css">
     <style>
-        #contactUs {
-            font-weight: bold;
-            text-decoration: underline;
-        }
+    #contactUs {
+        font-weight: bold;
+        text-decoration: underline;
+    }
     </style>
 </head>
 
@@ -17,9 +18,8 @@
     <?php require "repetitiveCode/commonHTML/nav.php"; ?>
     <div class="container">
         <div class="header">
-            <div>
-                <h1>Contact Us</h1>
-            </div>
+            <h1 class="subjectTitle">Contact Us</h1>
+            <hr>
         </div>
 
         <div class="content">
@@ -39,7 +39,8 @@
                     </select>
 
                     <label for="message">Leave a Message</label>
-                    <textarea id="message" name="message" style="resize: none;" maxlength="500" required placeholder="My reviews are not being submitted."></textarea>
+                    <textarea id="message" name="message" style="resize: none;" maxlength="500" required
+                        placeholder="My reviews are not being submitted."></textarea>
 
                     <input type="submit" value="Submit Feedback">
 
@@ -50,18 +51,18 @@
         <?php require "repetitiveCode/commonHTML/footer.php"; ?>
     </div>
     <script>
-        $("#form").submit(function(event) {
-            event.preventDefault();
-            grecaptcha.ready(function() {
-                grecaptcha.execute('6LeJoLoZAAAAAK4V6WwcFIjJSzvIAfTEBGVwhnIf', {
-                    action: 'submit'
-                }).then(function(token) {
-                    $('#form').prepend('<input type="hidden" name="token" value="' + token + '">');
-                    $('#form').prepend('<input type="hidden" name="action" value="submit">');
-                    $('#form').unbind('submit').submit();
-                });
+    $("#form").submit(function(event) {
+        event.preventDefault();
+        grecaptcha.ready(function() {
+            grecaptcha.execute('6LeJoLoZAAAAAK4V6WwcFIjJSzvIAfTEBGVwhnIf', {
+                action: 'submit'
+            }).then(function(token) {
+                $('#form').prepend('<input type="hidden" name="token" value="' + token + '">');
+                $('#form').prepend('<input type="hidden" name="action" value="submit">');
+                $('#form').unbind('submit').submit();
             });
-        })
+        });
+    })
     </script>
 </body>
 

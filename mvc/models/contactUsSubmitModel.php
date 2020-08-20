@@ -18,7 +18,7 @@ class contactUsSubmitModel
             !isset($feedback["token"]) || !isset($feedback["action"]) ||
             !isset($feedback["message"]) || !isset($feedback["reason"])
         ) {
-            header("Location: https://cousecritics.test");
+            header("Location: https://coursecritics.test");
             exit;
         }
 
@@ -36,7 +36,7 @@ class contactUsSubmitModel
             $stmt->bind_param('ss', $feedback["reason"], $feedback["message"]);
             $stmt->execute();
             $stmt->close();
-            header("Location: https://cousecritics.test/php/contactUs.php?feedback=received");
+            header("Location: https://coursecritics.test/php/contactUs.php?feedback=received");
             exit;
         }
     }
@@ -59,16 +59,15 @@ class contactUsSubmitModel
         }
     }
 
-    public function verifyInput($reason, $message) {
+    public function verifyInput($reason, $message)
+    {
         $reasons = ["Technical Issue", "User Interface", "Missing Course", "Other"];
 
-        if (!in_array($reason, $reasons) || strlen($message) > 500){
-            header("Location: https://cousecritics.test");
+        if (!in_array($reason, $reasons) || strlen($message) > 500) {
+            header("Location: https://coursecritics.test");
             exit;
-            
         } else {
             return;
-
         }
     }
 }
