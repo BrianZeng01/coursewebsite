@@ -29,16 +29,13 @@
                     <button data-close-button class="closeModal">&times;</button>
                 </div>
                 <div class="modalBody">
-                    <div id="signin" class="g-signin2" data-onsuccess="onSignIn" data-width="300" data-longtitle="true"
-                        data-height="40"></div>
+                    <div id="signin" class="g-signin2" data-onsuccess="onSignIn" data-width="174" data-longtitle="true"
+                        data-height="26"></div>
                     <div>
-                        <fb:login-button class="fb-signin" scope="public_profile" data-width="300"
-                            onlogin="checkLoginState();">
+                        <fb:login-button size="large" scope="public_profile" data-width="300px"
+                            onlogin="checkLoginState();"> Sign In with Facebook
                         </fb:login-button>
                     </div>
-                    <!-- <div class="fb-login-button" data-size="large" data-button-type="login_with"
-                        data-auto-logout-link="false" data-use-continue-as="false" data-width="300"
-                        onlogin="checkLoginState();"></div> -->
                 </div>
             </div>
             <div id="overlay"></div>

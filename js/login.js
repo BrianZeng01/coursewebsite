@@ -69,8 +69,6 @@ function statusChangeCallback(response) {
   console.log(response);
   if (response.status === "connected") {
     testAPI();
-  } else {
-    return;
   }
 }
 
@@ -89,9 +87,9 @@ window.fbAsyncInit = function () {
     version: "v7.0",
   });
 
-  FB.getLoginStatus(function (response) {
-    statusChangeCallback(response);
-  });
+  // FB.getLoginStatus(function (response) {
+  //   statusChangeCallback(response);
+  // });
 };
 
 function testAPI() {
