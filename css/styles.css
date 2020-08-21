@@ -98,7 +98,7 @@ body {
   z-index: 10;
   background-color: white;
   color: black;
-  width: 500px;
+  width: 400px;
   max-width: 80%;
 }
 
@@ -176,6 +176,10 @@ body {
 
 .mainNav .links #logout a:hover {
   background: #e93636;
+}
+
+.mainNav .links .show {
+  display: block;
 }
 
 .mainNav .links #account {
