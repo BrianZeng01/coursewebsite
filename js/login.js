@@ -86,10 +86,6 @@ window.fbAsyncInit = function () {
     xfbml: true,
     version: "v7.0",
   });
-
-  // FB.getLoginStatus(function (response) {
-  //   statusChangeCallback(response);
-  // });
 };
 
 function testAPI() {
