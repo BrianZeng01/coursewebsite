@@ -102,13 +102,13 @@ echo '
 
         <div class="comment">
             <label for="comment">Comments</label>
-            <textarea type="text" id="comment" name="comment" style="resize:none;" required maxlength="500" placeholder="At first glance, the course content seemed daunting and the workload looked heavy. However, the course had great structure and lessons were very organized which made it managable. The "simpler" material seemed kind of rushed. The course content was also extrememly relevant during my first internship and carried over into my upper year courses."></textarea>
             <input disabled maxlength="3" size="3" value="500" id="commentCounter">
+            <textarea type="text" id="comment" name="comment" style="resize:none;" required maxlength="500" placeholder="At first glance, the course content seemed daunting and the workload looked heavy. However, the course had great structure and lessons were very organized which made it managable. The "simpler" material seemed kind of rushed. The course content was also extrememly relevant during my first internship and carried over into my upper year courses."></textarea>
         </div>
         <div class="advice">
             <label for="advice">Advice</label>
-            <textarea type="text" id="advice" name="advice" style="resize:none;" maxlength="500" placeholder="The entire course builds on itself so make sure to keep up with the lessons. The first few weeks were quite easy which led to a lot of people underestimating the importance of the topics and struggling later on. The question bank for exams is pretty small so as long as you do a couple practice exams you will be fine."></textarea>
             <input disabled maxlength="3" size="3" value="500" id="adviceCounter">
+            <textarea type="text" id="advice" name="advice" style="resize:none;" maxlength="500" placeholder="The entire course builds on itself so make sure to keep up with the lessons. The first few weeks were quite easy which led to a lot of people underestimating the importance of the topics and struggling later on. The question bank for exams is pretty small so as long as you do a couple practice exams you will be fine."></textarea>
         </div>
 
         <div id="submitReview">
