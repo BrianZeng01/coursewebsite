@@ -108,15 +108,17 @@ echo '
         <div class="advice">
             <label for="advice">Advice</label>
             <input disabled maxlength="3" size="3" value="500" id="adviceCounter">
-            <textarea type="text" id="advice" name="advice" style="resize:none;" maxlength="500" placeholder="The entire course builds on itself so make sure to keep up with the lessons. The first few weeks were quite easy which led to a lot of people underestimating the importance of the topics and struggling later on. The question bank for exams is pretty small so as long as you do a couple practice exams you will be fine."></textarea>
+            <textarea type="text" id="advice" name="advice" style="resize:none;" maxlength="500" placeholder="(Optional) The entire course builds on itself so make sure to keep up with the lessons. The first few weeks were quite easy which led to a lot of people underestimating the importance of the topics and struggling later on. The question bank for exams is pretty small so as long as you do a couple practice exams you will be fine."></textarea>
         </div>
 
         <div id="submitReview">
             <input class="buttons" type="submit" value="Submit Review">
         </div>
 
+        <div>
+            <input class="buttons" type="button" value="Cancel" onclick="window.location.reload();">
+        </div>
     </form>
 
-    <input class="buttons" type="button" value="Cancel" onclick="window.location.reload();">
  </div>
 ';

@@ -87,7 +87,7 @@ body {
 
     .professor {
       margin-bottom: 1.5em;
-      padding-left: 12%;
+      margin-left: 2.5em;
       grid-column: 1/7;
     }
 
@@ -100,6 +100,10 @@ body {
         text-align: center;
         padding-right: 0em;
       }
+    }
+
+    #cancelReview {
+      margin-left: 2em;
     }
   }
 
@@ -302,10 +306,11 @@ body {
 
 @media screen and (min-width: 480px) {
   .reviewInputs {
+    margin-bottom: 0;
     form {
       .professor {
         grid-column: 1/4;
-        padding-left: 4em;
+        margin-left: 4em;
       }
     }
     .buttons {
@@ -324,6 +329,67 @@ body {
   }
   .flag {
     margin-right: 2em;
+  }
+
+  .reviewInputs {
+    form {
+      padding-left: 2em;
+      justify-items: normal;
+      #overallRating {
+        grid-column: 1/7;
+        padding-right: 0;
+      }
+      #difficultyRating {
+        grid-column: 7/13;
+        padding-right: 0;
+      }
+
+      .anonymous {
+        grid-column: 1/4;
+        margin-right: 0;
+      }
+
+      .takeAgain {
+        grid-column: 4/13;
+        margin-right: 0;
+      }
+
+      .textbook {
+        grid-column: 1/3;
+        margin-right: 0;
+      }
+
+      .grade {
+        grid-column: 3/5;
+        margin-right: 0;
+      }
+
+      .year {
+        grid-column: 5/13;
+        margin-right: 0;
+      }
+
+      .professor {
+        grid-column: 1/13;
+        margin-left: 0;
+      }
+    }
+
+    #submitReview {
+      grid-column: 1/13;
+    }
+
+    #cancelReview {
+      grid-column: 1/4;
+    }
+
+    #deleteReview {
+      grid-column: 4/13;
+      justify-items: right;
+    }
+    .buttons {
+      margin-left: 0;
+    }
   }
 }
 
