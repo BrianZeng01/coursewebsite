@@ -19,7 +19,7 @@
   text-align: center;
 }
 
-.content table {
+.content .table table {
   overflow: hidden;
   table-layout: fixed;
   width: 100%;
@@ -31,33 +31,33 @@
   cursor: pointer;
 }
 
-.content table .col1 {
+.content .table table .col1 {
   width: 20%;
 }
 
-.content table .col2 {
+.content .table table .col2 {
   width: 40%;
 }
 
-.content table .col3 {
+.content .table table .col3 {
   width: 40%;
 }
 
-.content table tr:nth-child(odd) {
+.content .table table tr:nth-child(odd) {
   background-color: lightskyblue;
 }
 
-.content table tr:hover {
+.content .table table tr:hover {
   background: #213458;
   color: white;
 }
 
-.content table tr:first-child {
+.content .table table tr:first-child {
   color: white;
   background-color: #213458;
 }
 
-.content table td {
+.content .table table td {
   padding-bottom: 0.3rem;
   padding-top: 0.3rem;
   padding-left: 0.2em;
@@ -69,5 +69,19 @@
   font-weight: bold;
   padding: 0.1rem;
   color: white;
+}
+
+@media screen and (min-width: 992px) {
+  .content .table {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .content .table table {
+    width: 980px;
+    border-left: solid;
+    border-right: solid;
+    border-width: 6px;
+    border-color: #213458;
+  }
 }
 /*# sourceMappingURL=subjectStyles.css.map */

@@ -52,7 +52,7 @@
                 <h4>Note: Sign in to submit a review. Please be mindful
                     when submitting reviews, thank you and enjoy!</h4>
             </div>
-            <div>
+            <div class="table">
                 <table>
                     <col class="col1">
                     <col class="col2">
