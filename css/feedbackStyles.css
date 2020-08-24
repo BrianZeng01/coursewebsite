@@ -41,8 +41,7 @@
 .content form #message {
   padding: 1em;
   margin-bottom: 1.5em;
-  width: 600px;
-  max-width: 90%;
+  width: 325px;
   height: 250px;
   border-radius: 0.5em;
 }
@@ -56,5 +55,11 @@
 
 .content form input:hover {
   background-color: #1F77AC;
+}
+
+@media screen and (min-width: 700px) {
+  .content form #message {
+    width: 600px;
+  }
 }
 /*# sourceMappingURL=feedbackStyles.css.map */

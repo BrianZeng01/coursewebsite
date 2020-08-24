@@ -106,7 +106,6 @@ function editReviewInputs() {
   }
   document.getElementById("textbook").value = currentTextbook;
   document.getElementById("grade").value = currentGrade;
-  //current year selected in bottom of makeReview.js due to javascript loading order
   if (currentProfessor != "N/A") {
     document.getElementById("professor").value = currentProfessor;
   }

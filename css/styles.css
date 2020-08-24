@@ -78,7 +78,7 @@ body {
   outline: none;
   background-color: #213458;
   color: white;
-  font-size: 1.5em;
+  font-size: 1.75em;
   height: 100%;
   width: 100%;
 }
@@ -189,7 +189,7 @@ body {
 }
 
 .container {
-  min-height: 100%;
+  min-height: 100vh;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr;

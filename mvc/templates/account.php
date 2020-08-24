@@ -4,12 +4,12 @@
 
 <head>
     <title>CourseCritics-My Account</title>
+    <?php require "repetitiveCode/commonHTML/head.php"; ?>
     <link rel="stylesheet" href="../css/subjectStyles.css" />
     <link rel="stylesheet" href="../css/reviewStyles.css" />
     <script src="../js/ratings.js" defer></script>
     <script src="../js/review.js" defer></script>
 
-    <?php require "repetitiveCode/commonHTML/head.php"; ?>
     <style>
     #account {
         font-weight: bold;
@@ -19,6 +19,7 @@
     .allReviews .title {
         padding-left: 0.5em;
         font-size: 2em;
+        margin-bottom: 0;
     }
     </style>
 </head>
@@ -36,9 +37,11 @@
                 <?php if (count($model) == 0) {
                     echo "<h2 class='title'>You haven't made any reviews yet :(</h2>";
                 } else {
-                    echo "<h2 class='title'>All Reviews</h2>";
+                    $count = count($model);
+                    echo "<h2 class='title'>All Reviews ($count)</h2>";
                 }
                 ?>
+                <div id="reviewBox"></div>
                 <ul>
 
                     <?php foreach ($model as $review) : ?>
@@ -105,7 +108,7 @@
 
                         <?php voteState($review); ?>
                         <div class="reviewBottom">
-                            <?php editOrFlagReview($review); ?>
+                            <?php editReviewAccountPage($review["review_id"]); ?>
                         </div>
                     </li>
 

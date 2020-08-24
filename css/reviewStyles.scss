@@ -18,7 +18,8 @@ body {
   form {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    justify-items: center;
+    padding-left: 1.5em;
+    justify-items: left;
     label {
       font-size: 1.3em;
     }
@@ -50,7 +51,6 @@ body {
     #overallRating,
     #difficultyRating {
       padding: 0;
-      padding-right: 2.2em;
       grid-column: 1/13;
       h2 {
         vertical-align: 25%;
@@ -60,35 +60,31 @@ body {
     }
 
     .anonymous {
-      margin-right: 2.5em;
       margin-bottom: 1.5em;
-      grid-column: 1/6;
+      margin-right: 0;
+      grid-column: 1/7;
     }
     .takeAgain {
-      margin-right: 3em;
-      grid-column: 6/13;
+      margin-left: 0;
+      grid-column: 7/13;
     }
 
     .textbook {
       margin-bottom: 1.5em;
-      margin-right: 5em;
       grid-column: 1/5;
     }
 
     .grade {
-      margin-right: 7em;
-      grid-column: 5/9;
+      grid-column: 5/10;
     }
 
     .year {
-      margin-right: 3em;
-      grid-column: 9/13;
+      grid-column: 10/13;
     }
 
     .professor {
       margin-bottom: 1.5em;
-      margin-left: 2.5em;
-      grid-column: 1/7;
+      grid-column: 1/13;
     }
 
     .comment,
@@ -102,28 +98,30 @@ body {
       }
     }
 
-    #cancelReview {
-      margin-left: 2em;
+    #submitReview {
+      grid-column: 1/13;
     }
-  }
 
-  .buttons {
-    padding: 0.2em;
-    padding-right: 0.4em;
-    padding-left: 0.4em;
-    margin-left: 1.6em;
-    border-radius: 0.4em;
-    margin-bottom: 0.75em;
-    font-size: 1.5em;
-    background-color: $primaryColor;
-    color: white;
-    &:hoover {
-      background-color: $secondaryColor;
+    #cancelReview {
+      grid-column: 1/10;
     }
-  }
-  .deleteBtn {
-    float: right;
-    margin-right: 3.5em;
+
+    #deleteReview {
+      grid-column: 10/13;
+    }
+    .buttons {
+      padding: 0.2em;
+      padding-right: 0.4em;
+      padding-left: 0.4em;
+      border-radius: 0.4em;
+      margin-bottom: 0.75em;
+      font-size: 1.5em;
+      background-color: $primaryColor;
+      color: white;
+      &:hoover {
+        background-color: $secondaryColor;
+      }
+    }
   }
 }
 
@@ -137,10 +135,11 @@ body {
   }
 }
 .content {
-  display: grid;
-  grid-template-rows: auto auto auto;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
   .overview {
-    margin-left: 1em;
+    grid-column: 1/13;
+    padding-left: 1em;
     .scores {
       padding-right: 0;
       font-size: 2rem;
@@ -148,18 +147,24 @@ body {
     }
   }
 
-  #writeReview {
-    margin-bottom: 1em;
-    margin-left: 0.5em;
-    background-color: $primaryColor;
-    font-size: 2rem;
-    color: white;
-    padding: 0.5rem;
-    border-radius: 15px;
-    cursor: pointer;
+  hr {
+    grid-column: 1/13;
+  }
+  #reviewBox {
+    grid-column: 1/13;
+    #writeReview {
+      margin-left: 0.5em;
+      margin-bottom: 1em;
+      background-color: $primaryColor;
+      font-size: 2rem;
+      color: white;
+      padding: 0.5rem;
+      border-radius: 15px;
+      cursor: pointer;
 
-    &:hover {
-      background-color: $secondaryColor;
+      &:hover {
+        background-color: $secondaryColor;
+      }
     }
   }
 
@@ -168,11 +173,16 @@ body {
   }
 
   .sort {
+    grid-column: 1/13;
     margin-left: 1em;
     margin-right: 1em;
   }
 
   .allReviews {
+    grid-column: 1/13;
+    .title {
+      grid-column: 1/13;
+    }
     ul {
       margin-bottom: 0;
       margin-top: 0;
@@ -282,16 +292,19 @@ body {
         }
 
         .null {
+          cursor: pointer;
           filter: invert(79%) sepia(5%) saturate(284%) hue-rotate(314deg)
             brightness(90%) contrast(85%);
         }
 
         .upvoted {
+          cursor: pointer;
           filter: invert(61%) sepia(16%) saturate(1810%) hue-rotate(93deg)
             brightness(106%) contrast(88%);
         }
 
         .downvoted {
+          cursor: pointer;
           filter: invert(37%) sepia(20%) saturate(6817%) hue-rotate(341deg)
             brightness(97%) contrast(86%);
         }
@@ -307,14 +320,14 @@ body {
 @media screen and (min-width: 480px) {
   .reviewInputs {
     margin-bottom: 0;
-    form {
-      .professor {
-        grid-column: 1/4;
-        margin-left: 4em;
+  }
+
+  .content {
+    #reviewBox {
+      margin: 0;
+      #writeReview {
+        margin-left: 0.5em;
       }
-    }
-    .buttons {
-      margin-left: 3em;
     }
   }
   .flag {
@@ -325,70 +338,36 @@ body {
 @media screen and (min-width: 800px) {
   .content {
     margin-left: 2em;
-    margin-right: 4em;
+    margin-right: 6em;
   }
   .flag {
     margin-right: 2em;
   }
 
   .reviewInputs {
+    margin-bottom: 0;
     form {
       padding-left: 2em;
-      justify-items: normal;
-      #overallRating {
-        grid-column: 1/7;
-        padding-right: 0;
-      }
-      #difficultyRating {
-        grid-column: 7/13;
-        padding-right: 0;
-      }
 
       .anonymous {
         grid-column: 1/4;
-        margin-right: 0;
       }
 
       .takeAgain {
         grid-column: 4/13;
-        margin-right: 0;
       }
 
       .textbook {
         grid-column: 1/3;
-        margin-right: 0;
       }
 
       .grade {
         grid-column: 3/5;
-        margin-right: 0;
       }
 
       .year {
         grid-column: 5/13;
-        margin-right: 0;
       }
-
-      .professor {
-        grid-column: 1/13;
-        margin-left: 0;
-      }
-    }
-
-    #submitReview {
-      grid-column: 1/13;
-    }
-
-    #cancelReview {
-      grid-column: 1/4;
-    }
-
-    #deleteReview {
-      grid-column: 4/13;
-      justify-items: right;
-    }
-    .buttons {
-      margin-left: 0;
     }
   }
 }

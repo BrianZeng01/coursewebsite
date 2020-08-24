@@ -53,8 +53,8 @@
             <div id="reviewBox">
                 <?php reviewState($model); ?>
             </div>
-
             <hr>
+
             <div class="sort">
                 <h1>Reviews</h1>
                 <h3>Sort by: Work in Progress</h3>
@@ -62,83 +62,82 @@
                     when submitting reviews, thank you and enjoy!</h3>
 
             </div>
-
             <hr>
 
-            <?php if (num_rows($model["reviews"]) == 0) {
-                echo "<h2>Be the first to make a Review!</h2>";
-            }
-            ?>
             <div class="allReviews">
+                <?php if (num_rows($model["reviews"]) == 0) {
+                    echo "<h2 style='grid-column: 1/13;'>Be the first to make a Review!</h2>";
+                }
+                ?>
                 <ul>
                     <?php foreach ($model["reviews"] as $review) : ?>
-                        <?php
+                    <?php
                         $mysql_date = strtotime($review["date"]);
                         $date = date("M d/Y", $mysql_date);
                         $difficulty = number_format((float) round($review["difficulty"], 1), 1, '.', '');
                         $overall = number_format((float) round($review["overall"], 1), 1, '.', '');
                         ?>
-                        <li>
-                            <div class="review">
-                                <h2 style="display:inline-block;">
-                                    <?php echoXss($review["anonymous"] ?
+                    <li>
+                        <div class="review">
+                            <h2 style="display:inline-block;">
+                                <?php echoXss($review["anonymous"] ?
                                         "Anonymous" : $review["user_first_name"]); ?>
-                                </h2>
-                                <h4 class="date"><?php echoXss($date); ?></h4><br>
-                                <div>
-                                    <span class="ratings scores_review">
-                                        <?php echo $overall; ?>
-                                    </span>
-                                    <h2 class="ratingHeaders">&nbspOverall</h2>
-                                </div>
-                                <div>
-                                    <span class="ratings_difficulty scores_review">
-                                        <?php echo $difficulty; ?>
-                                    </span>
-                                    <h2 class="ratingHeaders">&nbspDifficulty</h2><br>
-                                </div>
-                                <h3>
-                                    Prof: <span style="font-weight: normal;">
-                                        <?php echoXss($review["professor"]); ?>
-                                    </span>
-                                </h3>
-                                <h3>
-                                    Textbook: <span style="font-weight: normal;">
-                                        <?php echoXss($review["textbook"]); ?>
-                                    </span>
-                                </h3>
-
-                                <h3>
-                                    Grade: <span style="font-weight: normal;">
-                                        <?php echoXss($review["grade"]); ?>
-                                    </span>
-                                </h3>
-                                <h3>
-                                    Year: <span style="font-weight: normal;">
-                                        <?php echoXss($review["year"]); ?>
-                                    </span>
-                                </h3>
-                                <h3>Take Again?
-                                    <span style="font-weight: normal;">
-                                        <?php echoXss($review["take_again"] ? "Yes" : "No"); ?>
-                                    </span>
-                                </h3>
-                                <h2 class="commentHeader">Comments</h2>
-                                <p class="comment">
-                                    <?php echoXss($review["review_comment"]); ?>
-                                </p>
-                                <h2 class="commentHeader">Advice</h2>
-                                <p class="advice">
-                                    <?php echoXss($review["advice"]); ?>
-                                </p>
+                            </h2>
+                            <h4 class="date"><?php echoXss($date); ?></h4><br>
+                            <div>
+                                <span class="ratings scores_review">
+                                    <?php echo $overall; ?>
+                                </span>
+                                <h2 class="ratingHeaders">&nbspOverall</h2>
                             </div>
-
-
-                            <?php voteState($review); ?>
-                            <div class="reviewBottom">
-                                <?php editOrFlagReview($review); ?>
+                            <div>
+                                <span class="ratings_difficulty scores_review">
+                                    <?php echo $difficulty; ?>
+                                </span>
+                                <h2 class="ratingHeaders">&nbspDifficulty</h2><br>
                             </div>
-                        </li>
+                            <h3>
+                                Prof: <span style="font-weight: normal;">
+                                    <?php echoXss($review["professor"]); ?>
+                                </span>
+                            </h3>
+                            <h3>
+                                Textbook: <span style="font-weight: normal;">
+                                    <?php echoXss($review["textbook"]); ?>
+                                </span>
+                            </h3>
+
+                            <h3>
+                                Grade: <span style="font-weight: normal;">
+                                    <?php echoXss($review["grade"]); ?>
+                                </span>
+                            </h3>
+                            <h3>
+                                Year: <span style="font-weight: normal;">
+                                    <?php echoXss($review["year"]); ?>
+                                </span>
+                            </h3>
+                            <h3>Take Again?
+                                <span style="font-weight: normal;">
+                                    <?php echoXss($review["take_again"] ? "Yes" : "No"); ?>
+                                </span>
+                            </h3>
+                            <h2 class="commentHeader">Comments</h2>
+                            <p class="comment">
+                                <?php echoXss($review["review_comment"]); ?>
+                            </p>
+                            <h2 class="commentHeader">Advice</h2>
+                            <p class="advice">
+                                <?php echoXss($review["advice"]); ?>
+                            </p>
+                        </div>
+
+
+                        <?php voteState($review); ?>
+                        <div class="reviewBottom">
+                            <?php editOrFlagReview($review); ?>
+                        </div>
+                    </li>
 
                     <?php endforeach; ?>
                 </ul>
